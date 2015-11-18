@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/category_icon"
+            android:background="@drawable/round_shape_blue"
+            android:src="@drawable/exclamation_mark_25"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/goal_name"
+            android:text="Programming - labs"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/category_icon"/>
+
+        <TextView
+            style="@style/ListItem.SecondLine"
+            android:id="@+id/check_in_due"
+            android:textColor="@color/grey"
+            android:text="Dues in 3 months"
+            android:layout_below="@id/goal_name"
+            android:layout_toEndOf="@+id/category_icon" />
+
+        <TextView
+            style="@style/ListItem.Percentage"
+            android:id="@+id/goal_percentage"
+            android:text="10 / 40"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progress="25"
+            android:progressDrawable="@drawable/progress_bar_drawable"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/check_in_due"
+            android:layout_alignStart="@+id/check_in_due"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/list_items_divider"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/category_icon2"
+            android:background="@drawable/round_shape_blue"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/goal_name2"
+            android:text="Programming - problems"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/category_icon2"/>
+
+        <TextView
+            style="@style/ListItem.SecondLine"
+            android:id="@+id/check_in_due2"
+            android:textColor="@color/grey"
+            android:text="Dues in 3 months"
+            android:layout_below="@id/goal_name2"
+            android:layout_toEndOf="@+id/category_icon2" />
+
+        <TextView
+            style="@style/ListItem.Percentage"
+            android:id="@+id/goal_percentage2"
+            android:text="6 / 10"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:id="@+id/progressBar2"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progress="60"
+            android:progressDrawable="@drawable/progress_bar_drawable"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/check_in_due2"
+            android:layout_alignStart="@+id/check_in_due2"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/list_items_divider"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/category_icon3"
+            android:background="@drawable/round_shape_orange"
+            android:src="@drawable/exclamation_mark_25"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/goal_name3"
+            android:text="Math - tests"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/category_icon3"/>
+
+        <TextView
+            style="@style/ListItem.SecondLine"
+            android:id="@+id/check_in_due3"
+            android:textColor="@color/grey"
+            android:text="Dues in 3 months"
+            android:layout_below="@id/goal_name3"
+            android:layout_toEndOf="@+id/category_icon3" />
+
+        <TextView
+            style="@style/ListItem.Percentage"
+            android:id="@+id/goal_percentage3"
+            android:text="17 / 17"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:id="@+id/progressBar3"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progress="100"
+            android:progressDrawable="@drawable/progress_bar_drawable"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/check_in_due3"
+            android:layout_alignStart="@+id/check_in_due3"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/list_items_divider"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/category_icon4"
+            android:background="@drawable/round_shape_green"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/goal_name4"
+            android:text="Operating Systems - labs"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/category_icon4"/>
+
+        <TextView
+            style="@style/ListItem.SecondLine"
+            android:id="@+id/check_in_due4"
+            android:textColor="@color/grey"
+            android:text="Dues in 3 months"
+            android:layout_below="@id/goal_name4"
+            android:layout_toEndOf="@+id/category_icon4" />
+
+        <TextView
+            style="@style/ListItem.Percentage"
+            android:id="@+id/goal_percentage4"
+            android:text="2 / 4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:id="@+id/progressBar4"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress_bar_drawable"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/check_in_due4"
+            android:layout_alignStart="@+id/check_in_due4"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/list_items_divider"/>
+
+</LinearLayout>
