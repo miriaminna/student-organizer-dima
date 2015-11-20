@@ -69,7 +69,7 @@
         <TextView
             style="@style/ListItem.FirstLine"
             android:id="@+id/goal_name2"
-            android:text="Programming - problems"
+            android:text="Programming - tasks"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/category_icon2"/>
 
@@ -77,7 +77,7 @@
             style="@style/ListItem.SecondLine"
             android:id="@+id/check_in_due2"
             android:textColor="@color/grey"
-            android:text="Dues in 3 months"
+            android:text="Dues in 1 day"
             android:layout_below="@id/goal_name2"
             android:layout_toEndOf="@+id/category_icon2" />
 
@@ -174,7 +174,7 @@
         <TextView
             style="@style/ListItem.FirstLine"
             android:id="@+id/goal_name4"
-            android:text="Operating Systems - labs"
+            android:text="Algebra - test"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/category_icon4"/>
 
@@ -182,7 +182,7 @@
             style="@style/ListItem.SecondLine"
             android:id="@+id/check_in_due4"
             android:textColor="@color/grey"
-            android:text="Dues in 3 months"
+            android:text="Dues in 2 weeks"
             android:layout_below="@id/goal_name4"
             android:layout_toEndOf="@+id/category_icon4" />
 
