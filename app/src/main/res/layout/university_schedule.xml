@@ -1,0 +1,179 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        app:title="University Schedule"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <TextView
+        style="@style/ListItem.FirstLine"
+        android:id="@+id/textHint"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="Tap on a time frame to set new time"/>
+    <RelativeLayout
+        android:layout_marginLeft="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/pair1"
+            android:text="Pair 1: "
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair1_start"
+            android:layout_width="60dp"
+            android:text="08:40"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/pair1"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/dash1"
+            android:text="-"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignTop="@+id/pair1_start"
+            android:layout_toEndOf="@+id/pair1_start"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair1_end"
+            android:layout_width="60dp"
+            android:text="10:15"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/dash1"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/pair2"
+            android:text="Pair 2: "
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair2_start"
+            android:layout_width="60dp"
+            android:text="10:35"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/pair2"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/dash2"
+            android:text="-"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignTop="@+id/pair2_start"
+            android:layout_toEndOf="@+id/pair2_start"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair2_end"
+            android:layout_width="60dp"
+            android:text="12:10"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/dash2"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/pair3"
+            android:text="Pair 3: "
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair3_start"
+            android:layout_width="60dp"
+            android:text="12:20"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/pair3"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/dash3"
+            android:text="-"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignTop="@+id/pair3_start"
+            android:layout_toEndOf="@+id/pair3_start"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair3_end"
+            android:layout_width="60dp"
+            android:text="13:55"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/dash3"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/pair4"
+            android:text="Pair 4: "
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair4_start"
+            android:layout_width="60dp"
+            android:text="14:05"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/pair4"/>
+
+        <TextView
+            style="@style/ListItem.FirstLine"
+            android:id="@+id/dash4"
+            android:text="-"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignTop="@+id/pair4_start"
+            android:layout_toEndOf="@+id/pair4_start"/>
+
+        <TextView
+            style="@style/EditText"
+            android:id="@+id/pair4_end"
+            android:layout_width="60dp"
+            android:text="15:35"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/dash4"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

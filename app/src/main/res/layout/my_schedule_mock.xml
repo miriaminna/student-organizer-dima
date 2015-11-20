@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/CalendarMonthTitle"
+        android:id="@+id/month_title"
+        android:layout_marginTop="10dp"
+        android:text="Monday"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/pair1"
+            android:text="Pair 1\n"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/time1"
+            android:text="08:40 - 10:15\n"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/name1"
+            android:text="Programming Languages"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/pair2"
+            android:text="Pair 2\n"
+            android:background="@drawable/square_boards_blue"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/time2"
+            android:text="10:35 - 12:10\n"
+            android:background="@drawable/square_boards_blue"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/name2"
+            android:text="Algebra\nProgramming"
+            android:layout_width="141dp"
+            android:background="@drawable/square_boards_blue"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/pair3"
+            android:text="Pair 3\n"
+            android:background="@drawable/square_boards_green"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/time3"
+            android:text="12:20 - 13:55\n"
+            android:background="@drawable/square_boards_green"/>
+        <TextView
+            style="@style/CalendarDayTitle"
+            android:id="@+id/name3"
+            android:text="English\n"
+            android:layout_width="141dp"
+            android:background="@drawable/square_boards_green"/>
+    </LinearLayout>
+</LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/CalendarMonthTitle"
+            android:id="@+id/month_title"
+            android:layout_marginTop="10dp"
+            android:text="Tuesday"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair1"
+                android:text="Pair 1\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time1"
+                android:text="08:40 - 10:15\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name1"
+                android:text="English\n"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_green"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair2"
+                android:text="Pair 2\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time2"
+                android:text="10:35 - 12:10\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name2"
+                android:text="Algebra\nProgramming"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair3"
+                android:text="Pair 3\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time3"
+                android:text="12:20 - 13:55\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name3"
+                android:text="Basics of the Physics"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_blue"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/CalendarMonthTitle"
+            android:id="@+id/month_title"
+            android:layout_marginTop="10dp"
+            android:text="Monday"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair1"
+                android:text="Pair 1\n"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time1"
+                android:text="08:40 - 10:15\n"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name1"
+                android:text="Programming Languages"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair2"
+                android:text="Pair 2\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time2"
+                android:text="10:35 - 12:10\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name2"
+                android:text="Algebra\nProgramming"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair3"
+                android:text="Pair 3\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time3"
+                android:text="12:20 - 13:55\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name3"
+                android:text="English\n"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_green"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/CalendarMonthTitle"
+            android:id="@+id/month_title"
+            android:layout_marginTop="10dp"
+            android:text="Monday"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair1"
+                android:text="Pair 1\n"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time1"
+                android:text="08:40 - 10:15\n"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name1"
+                android:text="Programming Languages"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair2"
+                android:text="Pair 2\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time2"
+                android:text="10:35 - 12:10\n"
+                android:background="@drawable/square_boards_blue"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name2"
+                android:text="Algebra\nProgramming"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_blue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/pair3"
+                android:text="Pair 3\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/time3"
+                android:text="12:20 - 13:55\n"
+                android:background="@drawable/square_boards_green"/>
+            <TextView
+                style="@style/CalendarDayTitle"
+                android:id="@+id/name3"
+                android:text="English\n"
+                android:layout_width="141dp"
+                android:background="@drawable/square_boards_green"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

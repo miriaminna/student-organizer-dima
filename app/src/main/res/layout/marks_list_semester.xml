@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@color/white"
+android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="332dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/circled_left"
+            android:background="@null"/>
+
+        <TextView
+            style="@style/CalendarMonthTitle"
+            android:id="@+id/month_title"
+            android:layout_width="250dp"
+            android:layout_marginTop="10dp"
+            android:text="Year 1 Semester 1"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/circled_right"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <include layout="@layout/marks_list_semester_item"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/goals_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"/>
+
+
+</LinearLayout>
