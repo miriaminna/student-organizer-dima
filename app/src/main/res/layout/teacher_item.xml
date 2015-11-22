@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:background="@color/white">
+    <ImageButton
+        style="@style/ListItem.Avatar"
+        android:id="@+id/teacher_icon"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/round_shape_orange"
+        android:layout_below="@+id/category_icon"/>
+
+    <TextView
+        style="@style/ListItem.FirstLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Teacher Name"
+        android:id="@+id/teacher_name"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/teacher_icon"/>
+    <TextView
+        style="@style/ListItem.SecondLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Professor"
+        android:id="@+id/teacher_type"
+        android:layout_below="@+id/teacher_name"
+        android:layout_alignStart="@+id/teacher_name"/>
+</RelativeLayout>
