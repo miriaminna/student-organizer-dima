@@ -3,20 +3,25 @@ package app.studentorganizer.entities;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
+import java.util.Objects;
+
+import javax.security.auth.Subject;
+
 /**
  * Created by Vitalii on 23-Nov-15.
  */
 public class Task {
-    private Content mContent;
-//    private Subject mSubject;
-    private String mName;
-    private Integer mProgress;
-    private Integer mTarget;
-    private Double mPoints;
-    private LocalDate mDeadline;
+    protected Content mContent;
+    protected Subject mSubject;
+    protected String mName;
+    protected Integer mProgress;
+    protected Integer mTarget;
+    protected Double mPoints;
+    protected LocalDate mDeadline;
 
-    public Task() {
-
+    public Task(Subject subject) {
+        mContent = new Content();
+        mSubject = subject;
     }
 
     public Content getContent() {
@@ -71,7 +76,19 @@ public class Task {
         return this.mDeadline;
     }
 
+    public Subject getSubject() {
+        return mSubject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.mSubject = subject;
+    }
+
     String getProgressString() {
         return String.format("%s / %s", this.mProgress, this.mTarget);
+    }
+
+    Boolean isCompleted() {
+        return mProgress.equals(mTarget);
     }
 }

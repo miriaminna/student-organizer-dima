@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Vitalii on 23-Nov-15.
  */
 public class Content {
-    private List<File> mFiles;
-    private List<String> mLiterature;
+    protected List<File> mFiles;
+    protected List<String> mLiterature;
 
     public Content() {
         mFiles = new ArrayList<>();
