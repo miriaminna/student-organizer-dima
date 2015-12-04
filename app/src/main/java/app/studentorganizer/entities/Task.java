@@ -11,17 +11,56 @@ import javax.security.auth.Subject;
  * Created by Vitalii on 23-Nov-15.
  */
 public class Task {
+    protected Integer mId;
     protected Content mContent;
     protected Subject mSubject;
+    protected Integer mSubjectId;
     protected String mName;
+    protected MultiTask mMultiTask;
+    protected Integer mMultiTaskId;
     protected Integer mProgress;
     protected Integer mTarget;
     protected Double mPoints;
     protected LocalDate mDeadline;
 
+    public Task() {
+    }
+
     public Task(Subject subject) {
         mContent = new Content();
         mSubject = subject;
+    }
+
+    public Integer getId() {
+        return mId;
+    }
+
+    public void setId(Integer id) {
+        mId = id;
+    }
+
+    public Integer getMultiTaskId() {
+        return mMultiTaskId;
+    }
+
+    public void setMultiTaskId(Integer multiTaskId) {
+        mMultiTaskId = multiTaskId;
+    }
+
+    public Integer getSubjectId() {
+        return mSubjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        mSubjectId = subjectId;
+    }
+
+    public MultiTask getMultiTask() {
+        return mMultiTask;
+    }
+
+    public void setMultiTask(MultiTask multiTask) {
+        mMultiTask = multiTask;
     }
 
     public Content getContent() {

@@ -11,17 +11,13 @@ public class Database extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Student.db";
 
     // Table Names
-    private static final String SIMPLE_TASKS = "simple_tasks";
-    private static final String MULTI_TASKS = "multi_tasks";
-    private static final String SIMPLE_TO_MULTI = "simple_to_multi";
-    private static final String TEACHERS = "teachers";
-    private static final String SUBJECTS = "subjects";
-    private static final String CONTENTS = "content";
-    private static final String CONTENT_ITEMS = "content_items";
-    private static final String TESTS = "tests";
-    private static final String SUBJECT_TO_CONTENT = "subject_to_content";
-    private static final String TEST_TO_CONTENT = "test_to_content";
-    private static final String TASK_TO_CONTENT = "task_to_content";
+    public static final String SIMPLE_TASKS = "simple_tasks";
+    public static final String MULTI_TASKS = "multi_tasks";
+    public static final String TEACHERS = "teachers";
+    public static final String SUBJECTS = "subjects";
+    public static final String CONTENTS = "content";
+    public static final String CONTENT_ITEMS = "content_items";
+    public static final String TESTS = "tests";
 
     // SIMPLE_TASKS column names
     public static final String SIMPLE_TASK_ID = "_id";

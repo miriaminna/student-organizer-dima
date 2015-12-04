@@ -14,6 +14,14 @@ import javax.security.auth.Subject;
 public class MultiTask extends Task {
     private List<Task> mSubtasks;
 
+    public MultiTask() {
+    }
+
+    public MultiTask(Subject subject) {
+        super(subject);
+        this.mSubtasks = new ArrayList<>();
+    }
+
     public List<Task> getSubtasks() {
         return mSubtasks;
     }
@@ -58,10 +66,5 @@ public class MultiTask extends Task {
             mPoints += task.getPoints();
         }
         return mPoints;
-    }
-
-    public MultiTask(Subject subject) {
-        super(subject);
-        this.mSubtasks = new ArrayList<>();
     }
 }

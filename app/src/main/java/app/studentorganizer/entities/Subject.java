@@ -9,9 +9,11 @@ import app.studentorganizer.com.SubjectType;
  * Created by Vitalii on 23-Nov-15.
  */
 public class Subject {
+    protected Integer mId;
     protected List<Task> mTasks;
     protected String mName;
     protected Teacher mTeacher;
+    protected Integer mTeacherId;
     protected SubjectType mType;
     protected Content mContent;
     protected List<Test> mTests;
@@ -19,6 +21,22 @@ public class Subject {
     public Subject() {
         mTasks = new ArrayList<>();
         mTests = new ArrayList<>();
+    }
+
+    public Integer getId() {
+        return mId;
+    }
+
+    public void setId(Integer id) {
+        mId = id;
+    }
+
+    public Integer getTeacherId() {
+        return mTeacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        mTeacherId = teacherId;
     }
 
     public List<Task> getTasks() {
