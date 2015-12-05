@@ -11,6 +11,7 @@ import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
 
+import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.ContentType;
 import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.com.TestType;
@@ -103,6 +104,35 @@ public class DatabaseManager {
 
     public void close() {
         mDatabaseHelper.close();
+    }
+
+    public ArrayList<Task> getAllTasksTest() {
+        Task task1 = new Task();
+        task1.setId(1);
+        task1.setName("Programming - Labs");
+        task1.setDeadline(new LocalDate().plusDays(1));
+        task1.setPoints(30.0);
+        task1.setProgress(10);
+        task1.setTarget(40);
+        task1.setSubject(new Subject());
+        task1.getSubject().setColorTag(ColorTag.GREEN);
+
+        Task task2 = new Task();
+        task2.setId(1);
+        task2.setName("Algebra - Smile :)");
+        task2.setDeadline(new LocalDate().plusDays(1));
+        task2.setPoints(30.0);
+        task2.setProgress(75);
+        task2.setTarget(10);
+        task2.setSubject(new Subject());
+        task2.getSubject().setColorTag(ColorTag.BLUE);
+
+        ArrayList<Task> test = new ArrayList<>();
+
+        test.add(task1);
+        test.add(task2);
+
+        return test;
     }
 
     public ArrayList<Task> getAllTasks() {
@@ -384,6 +414,7 @@ public class DatabaseManager {
         values.put(Database.SUBJECT_NAME, subject.getName());
         values.put(Database.SUBJECT_TEACHER_ID, subject.getTeacherId());
         values.put(Database.SUBJECT_TYPE, subject.getType().name());
+        values.put(Database.SUBJECT_COLOR, subject.getColorTag().name());
 
         long id = mDatabase.insert(Database.SUBJECTS, null, values);
 
@@ -636,7 +667,8 @@ public class DatabaseManager {
         subject.setId(cursor.getInt(0));
         subject.setName(cursor.getString(1));
         subject.setTeacherId(cursor.getInt(2));
-        subject.setType(SubjectType.valueOf(cursor.getString(2)));
+        subject.setType(SubjectType.valueOf(cursor.getString(3)));
+        subject.setColorTag(ColorTag.valueOf(cursor.getString(4)));
 
         return subject;
     }

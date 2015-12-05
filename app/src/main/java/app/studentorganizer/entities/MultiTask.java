@@ -17,11 +17,6 @@ public class MultiTask extends Task {
     public MultiTask() {
     }
 
-    public MultiTask(Subject subject) {
-        super(subject);
-        this.mSubtasks = new ArrayList<>();
-    }
-
     public List<Task> getSubtasks() {
         return mSubtasks;
     }

@@ -17,9 +17,6 @@
         app:title="Student Organizer"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
-    <include layout="@layout/list_mock"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/goals_list"
         android:layout_width="match_parent"

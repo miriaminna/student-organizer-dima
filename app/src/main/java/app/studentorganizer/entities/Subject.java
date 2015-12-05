@@ -3,6 +3,7 @@ package app.studentorganizer.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.SubjectType;
 
 /**
@@ -17,10 +18,19 @@ public class Subject {
     protected SubjectType mType;
     protected Content mContent;
     protected List<Test> mTests;
+    protected ColorTag mColorTag;
 
     public Subject() {
         mTasks = new ArrayList<>();
         mTests = new ArrayList<>();
+    }
+
+    public ColorTag getColorTag() {
+        return mColorTag;
+    }
+
+    public void setColorTag(ColorTag colorTag) {
+        mColorTag = colorTag;
     }
 
     public Integer getId() {

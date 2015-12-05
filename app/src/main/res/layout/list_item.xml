@@ -12,7 +12,7 @@
 
     <TextView
         style="@style/ListItem.FirstLine"
-        android:id="@+id/goal_name"
+        android:id="@+id/task_name"
         android:text="Programming - labs"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/category_icon"/>
@@ -22,12 +22,12 @@
         android:id="@+id/check_in_due"
         android:textColor="@color/grey"
         android:text="Dues in 3 months"
-        android:layout_below="@id/goal_name"
+        android:layout_below="@id/task_name"
         android:layout_toEndOf="@+id/category_icon" />
 
     <TextView
         style="@style/ListItem.Percentage"
-        android:id="@+id/goal_percentage"
+        android:id="@+id/task_progress"
         android:text="10 / 40"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"/>

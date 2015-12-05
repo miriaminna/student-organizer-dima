@@ -5,8 +5,6 @@ import org.joda.time.Period;
 
 import java.util.Objects;
 
-import javax.security.auth.Subject;
-
 /**
  * Created by Vitalii on 23-Nov-15.
  */

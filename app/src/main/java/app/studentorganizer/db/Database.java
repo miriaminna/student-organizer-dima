@@ -44,6 +44,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String SUBJECT_NAME = "_name";
     public static final String SUBJECT_TEACHER_ID = "_teacher_id";
     public static final String SUBJECT_TYPE = "_type";
+    public static final String SUBJECT_COLOR = "_color";
 
     // CONTENTS column names
     public static final String CONTENT_ID = "_id";
@@ -56,7 +57,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String CONTENT_ITEM_CONTENT_ID = "_content_id";
     public static final String CONTENT_ITEM_TYPE = "_type";
     public static final String CONTENT_ITEM_SOURCE = "_source";
-    public static final String CONTENT_ITEM_TEXT = "_source";
+    public static final String CONTENT_ITEM_TEXT = "_text";
 
     // TESTS column names
     public static final String TEST_ID = "_id";
@@ -105,18 +106,19 @@ public class Database extends SQLiteOpenHelper {
             + SUBJECT_ID + " integer primary key autoincrement, "
             + SUBJECT_NAME + " text not null, "
             + SUBJECT_TEACHER_ID + " integer, "
-            + SUBJECT_TYPE + " text not null)";
+            + SUBJECT_TYPE + " text not null, "
+            + SUBJECT_COLOR + " text not null)";
 
     private static final String CREATE_TABLE_CONTENTS =
             "create table " + CONTENTS + "("
-            + CONTENT_ID + " integer primary key autoincrement"
+            + CONTENT_ID + " integer primary key autoincrement, "
             + CONTENT_SUBJECT_ID + " integer, "
             + CONTENT_TASK_ID + " integer, "
             + CONTENT_TEST_ID + " integer)";
 
     private static final String CREATE_TABLE_CONTENT_ITEMS =
             "create table " + CONTENT_ITEMS + "("
-            + CONTENT_ITEM_ID + " integer primary key autoincrement"
+            + CONTENT_ITEM_ID + " integer primary key autoincrement, "
             + CONTENT_ITEM_CONTENT_ID + " integer, "
             + CONTENT_ITEM_TYPE + " text not null, "
             + CONTENT_ITEM_SOURCE + " text, "
@@ -124,14 +126,14 @@ public class Database extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TESTS =
             "create table " + TESTS + "("
-            + TEST_ID + " integer primary key autoincrement"
+            + TEST_ID + " integer primary key autoincrement, "
             + TEST_TYPE + " text not null, "
             + TEST_SUBJECT_ID + " integer, "
             + TEST_DATE + " text not null)";
 
     private static final String CREATE_TABLE_UNIVERSITY_SCHEDULE =
             "create table " + UNIVERSITY_SCHEDULE + "("
-                    + UNIVERSITY_SCHEDULE_ID + " integer primary key autoincrement"
+                    + UNIVERSITY_SCHEDULE_ID + " integer primary key autoincrement, "
                     + UNIVERSITY_SCHEDULE_LESSON_NUMBER + " integer, "
                     + UNIVERSITY_SCHEDULE_DAY + " integer, "
                     + UNIVERSITY_SCHEDULE_START + " text not null, "
@@ -139,7 +141,7 @@ public class Database extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_STUDENT_SCHEDULE =
             "create table " + STUDENT_SCHEDULE + "("
-                    + STUDENT_SCHEDULE_ID + " integer primary key autoincrement"
+                    + STUDENT_SCHEDULE_ID + " integer primary key autoincrement, "
                     + STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID + " integer, "
                     + STUDENT_SCHEDULE_SUBJECT_ID + " integer, "
                     + STUDENT_SCHEDULE_CLASSROOM + " integer)";
