@@ -8,65 +8,64 @@ import app.studentorganizer.entities.Subject;
  * Created by henko on 04.12.15.
  */
 public class StudentScheduleEntry {
-    protected int mId;
-    protected int mDay;
-    protected int mLessonNumber;
+    protected Integer mId;
+    protected UnivScheduleEntry mUnivScheduleEntry;
+    protected Integer mUnivScheduleEntryId;
     protected Subject mSubject;
-    protected LocalTime mStart;
-    protected LocalTime mEnd;
+    protected int mSubjectId;
+    protected int mClassroom;
 
     public StudentScheduleEntry() {
     }
 
-    public StudentScheduleEntry(int id, int day, int lessonNumber, Subject subject,
-                                LocalTime start, LocalTime end) {
-
-        this.mId = id;
-        this.mDay = day;
-        this.mLessonNumber = lessonNumber;
-        this.mSubject = subject;
-        this.mStart = start;
-        this.mEnd = end;
+    public StudentScheduleEntry(
+            UnivScheduleEntry univScheduleEntry,
+            Subject subject,
+            int classroom) {
+        mUnivScheduleEntry = univScheduleEntry;
+        mSubject = subject;
+        mSubjectId = (mSubject == null) ? 0 : mSubject.getId();
+        mClassroom = classroom;
     }
 
-    public int getId() {
+    public Integer getId() {
         return mId;
     }
 
-    public void setId(int id) {
-        this.mId = id;
+    public void setId(Integer id) {
+        mId = id;
     }
 
-    public int getDay() {
-        return mDay;
+    public Integer getUnivScheduleEntryId() {
+        return mUnivScheduleEntryId;
     }
 
-    public void setDay(int day) {
-        this.mDay = day;
+    public void setUnivScheduleEntryId(Integer univScheduleEntryId) {
+        mUnivScheduleEntryId = univScheduleEntryId;
     }
 
-    public int getLessonNumber() {
-        return mLessonNumber;
+    public UnivScheduleEntry getUnivScheduleEntry() {
+        return mUnivScheduleEntry;
     }
 
-    public void setLessonNumber(int lessonNumber) {
-        this.mLessonNumber = lessonNumber;
+    public void setUnivScheduleEntry(UnivScheduleEntry univScheduleEntry) {
+        mUnivScheduleEntry = univScheduleEntry;
     }
 
-    public LocalTime getStart() {
-        return mStart;
+    public int getSubjectId() {
+        return mSubjectId;
     }
 
-    public void setStart(LocalTime start) {
-        this.mStart = start;
+    public void setSubjectId(int subjectId) {
+        mSubjectId = subjectId;
     }
 
-    public LocalTime getEnd() {
-        return mEnd;
+    public int getClassroom() {
+        return mClassroom;
     }
 
-    public void setEnd(LocalTime snd) {
-        this.mEnd = snd;
+    public void setClassroom(int classroom) {
+        mClassroom = classroom;
     }
 
     public Subject getSubject() {

@@ -18,6 +18,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String CONTENTS = "content";
     public static final String CONTENT_ITEMS = "content_items";
     public static final String TESTS = "tests";
+    public static final String UNIVERSITY_SCHEDULE = "university_schedule";
+    public static final String STUDENT_SCHEDULE = "student_schedule";
 
     // SIMPLE_TASKS column names
     public static final String SIMPLE_TASK_ID = "_id";
@@ -61,6 +63,19 @@ public class Database extends SQLiteOpenHelper {
     public static final String TEST_TYPE = "_type";
     public static final String TEST_SUBJECT_ID = "_subject_id";
     public static final String TEST_DATE = "_date";
+
+    // UNIVERSITY_SCHEDULE column names
+    public static final String UNIVERSITY_SCHEDULE_ID = "_id";
+    public static final String UNIVERSITY_SCHEDULE_LESSON_NUMBER = "_lesson_number";
+    public static final String UNIVERSITY_SCHEDULE_DAY = "_day";
+    public static final String UNIVERSITY_SCHEDULE_START = "_start";
+    public static final String UNIVERSITY_SCHEDULE_END = "_end";
+
+    // STUDENT_SCHEDULE column names
+    public static final String STUDENT_SCHEDULE_ID = "_id";
+    public static final String STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID = "_university_schedule_id";
+    public static final String STUDENT_SCHEDULE_SUBJECT_ID = "_subject_id";
+    public static final String STUDENT_SCHEDULE_CLASSROOM = "_classroom";
 
     // Table Create Statements
 
@@ -114,6 +129,21 @@ public class Database extends SQLiteOpenHelper {
             + TEST_SUBJECT_ID + " integer, "
             + TEST_DATE + " text not null)";
 
+    private static final String CREATE_TABLE_UNIVERSITY_SCHEDULE =
+            "create table " + UNIVERSITY_SCHEDULE + "("
+                    + UNIVERSITY_SCHEDULE_ID + " integer primary key autoincrement"
+                    + UNIVERSITY_SCHEDULE_LESSON_NUMBER + " integer, "
+                    + UNIVERSITY_SCHEDULE_DAY + " integer, "
+                    + UNIVERSITY_SCHEDULE_START + " text not null, "
+                    + UNIVERSITY_SCHEDULE_END + " text not null)";
+
+    private static final String CREATE_TABLE_STUDENT_SCHEDULE =
+            "create table " + STUDENT_SCHEDULE + "("
+                    + STUDENT_SCHEDULE_ID + " integer primary key autoincrement"
+                    + STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID + " integer, "
+                    + STUDENT_SCHEDULE_SUBJECT_ID + " integer, "
+                    + STUDENT_SCHEDULE_CLASSROOM + " integer)";
+
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -127,6 +157,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TESTS);
         db.execSQL(CREATE_TABLE_CONTENTS);
         db.execSQL(CREATE_TABLE_CONTENT_ITEMS);
+        db.execSQL(CREATE_TABLE_UNIVERSITY_SCHEDULE);
+        db.execSQL(CREATE_TABLE_STUDENT_SCHEDULE);
     }
 
     @Override
@@ -138,6 +170,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TESTS);
         db.execSQL("DROP TABLE IF EXISTS " + CONTENTS);
         db.execSQL("DROP TABLE IF EXISTS " + CONTENT_ITEMS);
+        db.execSQL("DROP TABLE IF EXISTS " + UNIVERSITY_SCHEDULE);
+        db.execSQL("DROP TABLE IF EXISTS " + STUDENT_SCHEDULE);
 
         onCreate(db);
     }

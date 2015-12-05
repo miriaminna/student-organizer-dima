@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
 
@@ -16,10 +17,12 @@ import app.studentorganizer.com.TestType;
 import app.studentorganizer.entities.Content;
 import app.studentorganizer.entities.ContentItem;
 import app.studentorganizer.entities.MultiTask;
+import app.studentorganizer.entities.StudentScheduleEntry;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
 import app.studentorganizer.entities.Test;
+import app.studentorganizer.entities.UnivScheduleEntry;
 
 public class DatabaseManager {
     private Database mDatabaseHelper;
@@ -75,6 +78,20 @@ public class DatabaseManager {
             Database.TEST_DATE
     };
 
+    private String[] UNIVERSITY_SCHEDULE_COLUMNS = {
+            Database.UNIVERSITY_SCHEDULE_ID,
+            Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
+            Database.UNIVERSITY_SCHEDULE_DAY,
+            Database.UNIVERSITY_SCHEDULE_START,
+            Database.UNIVERSITY_SCHEDULE_END
+    };
+
+    private String[] STUDENT_SCHEDULE_COLUMNS = {
+            Database.STUDENT_SCHEDULE_ID,
+            Database.STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID,
+            Database.STUDENT_SCHEDULE_SUBJECT_ID,
+            Database.STUDENT_SCHEDULE_CLASSROOM
+    };
 
     public DatabaseManager(Context context) {
         mDatabaseHelper = new Database(context);
@@ -205,6 +222,40 @@ public class DatabaseManager {
         }
 
         return tests;
+    }
+
+    public ArrayList<UnivScheduleEntry> getAllUniversitySchedule() {
+        ArrayList<UnivScheduleEntry> univScheduleEntries = new ArrayList<>();
+
+        Cursor cursor = mDatabase.query(
+                Database.UNIVERSITY_SCHEDULE,
+                UNIVERSITY_SCHEDULE_COLUMNS,
+                null, null, null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            univScheduleEntries.add(parseUniversitySchedule(cursor));
+            cursor.moveToNext();
+        }
+
+        return univScheduleEntries;
+    }
+
+    public ArrayList<StudentScheduleEntry> getAllStudentSchedule() {
+        ArrayList<StudentScheduleEntry> studentScheduleEntries = new ArrayList<>();
+
+        Cursor cursor = mDatabase.query(
+                Database.STUDENT_SCHEDULE,
+                STUDENT_SCHEDULE_COLUMNS,
+                null, null, null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            studentScheduleEntries.add(parseStudentScheduleEntry(cursor));
+            cursor.moveToNext();
+        }
+
+        return studentScheduleEntries;
     }
 
     public Task updateSimpleTask(Task task) {
@@ -422,7 +473,6 @@ public class DatabaseManager {
         return contentItemFromDB;
     }
 
-
     public Test updateTest(Test test) {
         deleteTest(test);
         return addTest(test);
@@ -456,6 +506,95 @@ public class DatabaseManager {
         Test testFromDB = parseTest(cursor);
         cursor.close();
         return testFromDB;
+    }
+
+    public UnivScheduleEntry updateUniversitySchedule(UnivScheduleEntry univScheduleEntry) {
+        deleteUniversitySchedule(univScheduleEntry);
+        return addUniversitySchedule(univScheduleEntry);
+    }
+
+    public void deleteUniversitySchedule(UnivScheduleEntry univScheduleEntry) {
+        long id = univScheduleEntry.getId();
+        deleteUniversitySchedule(id);
+    }
+
+    public void deleteUniversitySchedule(long id) {
+        mDatabase.delete(
+                Database.UNIVERSITY_SCHEDULE,
+                Database.UNIVERSITY_SCHEDULE_ID + " = " + id, null);
+    }
+
+    public UnivScheduleEntry addUniversitySchedule(UnivScheduleEntry univScheduleEntry) {
+        ContentValues values = new ContentValues();
+
+        values.put(
+                Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
+                univScheduleEntry.getLessonNumber());
+        values.put(
+                Database.UNIVERSITY_SCHEDULE_DAY,
+                univScheduleEntry.getDay());
+        values.put(
+                Database.UNIVERSITY_SCHEDULE_START,
+                univScheduleEntry.getStart().toString());
+        values.put(
+                Database.UNIVERSITY_SCHEDULE_END,
+                univScheduleEntry.getEnd().toString());
+
+        long id = mDatabase.insert(Database.UNIVERSITY_SCHEDULE, null, values);
+
+        Cursor cursor = mDatabase.query(
+                Database.UNIVERSITY_SCHEDULE,
+                UNIVERSITY_SCHEDULE_COLUMNS,
+                Database.UNIVERSITY_SCHEDULE_ID + " = " + id,
+                null, null, null, null);
+        cursor.moveToFirst();
+
+        UnivScheduleEntry universityScheduleFromDB = parseUniversitySchedule(cursor);
+        cursor.close();
+        return universityScheduleFromDB;
+    }
+
+    public StudentScheduleEntry updateStudentSchedule(StudentScheduleEntry studentScheduleEntry) {
+        deleteStudentSchedule(studentScheduleEntry);
+        return addStudentSchedule(studentScheduleEntry);
+    }
+
+    public void deleteStudentSchedule(StudentScheduleEntry studentScheduleEntry) {
+        long id = studentScheduleEntry.getId();
+        deleteStudentSchedule(id);
+    }
+
+    public void deleteStudentSchedule(long id) {
+        mDatabase.delete(
+                Database.STUDENT_SCHEDULE,
+                Database.STUDENT_SCHEDULE_ID + " = " + id, null);
+    }
+
+    public StudentScheduleEntry addStudentSchedule(StudentScheduleEntry studentScheduleEntry) {
+        ContentValues values = new ContentValues();
+
+        values.put(
+                Database.STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID,
+                studentScheduleEntry.getUnivScheduleEntryId());
+        values.put(
+                Database.STUDENT_SCHEDULE_SUBJECT_ID,
+                studentScheduleEntry.getSubjectId());
+        values.put(
+                Database.STUDENT_SCHEDULE_CLASSROOM,
+                studentScheduleEntry.getClassroom());
+
+        long id = mDatabase.insert(Database.STUDENT_SCHEDULE, null, values);
+
+        Cursor cursor = mDatabase.query(
+                Database.STUDENT_SCHEDULE,
+                STUDENT_SCHEDULE_COLUMNS,
+                Database.STUDENT_SCHEDULE_ID + " = " + id,
+                null, null, null, null);
+        cursor.moveToFirst();
+
+        StudentScheduleEntry studentScheduleEntryFromDB = parseStudentScheduleEntry(cursor);
+        cursor.close();
+        return studentScheduleEntryFromDB;
     }
 
     private Task parseSimpleTask(Cursor cursor) {
@@ -536,4 +675,26 @@ public class DatabaseManager {
         return test;
     }
 
+    private UnivScheduleEntry parseUniversitySchedule(Cursor cursor) {
+        UnivScheduleEntry univScheduleEntry = new UnivScheduleEntry();
+
+        univScheduleEntry.setId(cursor.getInt(0));
+        univScheduleEntry.setLessonNumber(cursor.getInt(1));
+        univScheduleEntry.setDay(cursor.getInt(2));
+        univScheduleEntry.setStart(new LocalTime(cursor.getString(3)));
+        univScheduleEntry.setEnd(new LocalTime(cursor.getString(4)));
+
+        return univScheduleEntry;
+    }
+
+    private StudentScheduleEntry parseStudentScheduleEntry(Cursor cursor) {
+        StudentScheduleEntry studentScheduleEntry = new StudentScheduleEntry();
+
+        studentScheduleEntry.setId(cursor.getInt(0));
+        studentScheduleEntry.setUnivScheduleEntryId(cursor.getInt(1));
+        studentScheduleEntry.setSubjectId(cursor.getInt(2));
+        studentScheduleEntry.setClassroom(cursor.getInt(3));
+
+        return studentScheduleEntry;
+    }
 }
