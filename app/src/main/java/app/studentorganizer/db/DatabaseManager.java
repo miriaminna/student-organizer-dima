@@ -36,7 +36,9 @@ public class DatabaseManager {
             Database.SIMPLE_TASK_SUBJECT_ID,
             Database.SIMPLE_TASK_MULTI_TASK_ID,
             Database.SIMPLE_TASK_DEADLINE,
-            Database.SIMPLE_TASK_POINTS
+            Database.SIMPLE_TASK_POINTS,
+            Database.SIMPLE_TASK_PROGRESS,
+            Database.SIMPLE_TASK_TARGET
     };
 
     private String[] MULTI_TASK_TABLE_COLUMNS = {
@@ -125,7 +127,7 @@ public class DatabaseManager {
         task2.setDeadline(new LocalDate().plusDays(1));
         task2.setPoints(30.0);
         task2.setProgress(75);
-        task2.setTarget(10);
+        task2.setTarget(100);
         task2.setSubject(new Subject());
         task2.getSubject().setColorTag(ColorTag.BLUE);
 
@@ -329,6 +331,8 @@ public class DatabaseManager {
                 (task.getMultiTask() == null ? 0 : task.getMultiTaskId()));
         values.put(Database.SIMPLE_TASK_DEADLINE, task.getDeadline().toString());
         values.put(Database.SIMPLE_TASK_POINTS, task.getPoints());
+        values.put(Database.SIMPLE_TASK_PROGRESS, task.getProgress());
+        values.put(Database.SIMPLE_TASK_TARGET, task.getTarget());
 
         long id = mDatabase.insert(Database.SIMPLE_TASKS, null, values);
 
@@ -656,6 +660,12 @@ public class DatabaseManager {
         task.setMultiTaskId(cursor.getInt(3));
         task.setDeadline(new LocalDate(cursor.getString(4)));
         task.setPoints(cursor.getDouble(5));
+        task.setProgress(cursor.getInt(6));
+        task.setTarget(cursor.getInt(7));
+
+        // maybe here have to find subject and parse object
+        task.setSubject(new Subject());
+        task.getSubject().setColorTag(ColorTag.BLUE);
 
         return task;
     }

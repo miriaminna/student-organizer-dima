@@ -11,6 +11,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.activities.BaseActivity;
 import app.studentorganizer.adapters.TaskListAdapter;
@@ -19,7 +20,7 @@ import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Task;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnTaskCheckedInListener {
 
     private DatabaseManager mDatabaseManager;
     private TaskListAdapter mTaskListAdapter;
@@ -61,5 +62,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected RecyclerView.ItemDecoration initializeDecoration() {
         return new BaseItemDecoration(this, R.drawable.list_items_divider);
+    }
+
+    @Override
+    public void onTaskCheckedIn() {
+        // gamno-code
+
+        for (int i = 0; i < mTasks.size(); i++) {
+            mTasks.set(i, mDatabaseManager.updateSimpleTask(mTasks.get(i)));
+        }
+        mTaskListAdapter.notifyDataSetChanged();
     }
 }

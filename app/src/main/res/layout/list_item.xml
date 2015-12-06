@@ -25,12 +25,25 @@
         android:layout_below="@id/task_name"
         android:layout_toEndOf="@+id/category_icon" />
 
+
+    <ImageButton
+        style="@style/ListItem.PrimaryAction"
+        android:id="@+id/check_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check_in_32"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="18dp" />
+
     <TextView
         style="@style/ListItem.Percentage"
         android:id="@+id/task_progress"
+        android:layout_height="wrap_content"
         android:text="10 / 40"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_marginRight="30dp"
+        android:layout_alignBottom="@+id/check_in_button"
+        android:layout_alignEnd="@+id/progressBar"/>
 
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"

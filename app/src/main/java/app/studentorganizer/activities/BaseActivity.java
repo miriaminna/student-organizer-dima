@@ -14,6 +14,9 @@ import app.studentorganizer.R;
 public abstract class BaseActivity extends AppCompatActivity {
     protected RecyclerView mRecyclerView;
 
+    public BaseActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
