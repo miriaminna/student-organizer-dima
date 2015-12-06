@@ -15,7 +15,7 @@ import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.entities.Task;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnTaskCheckedInListener {
 
     private DatabaseManager mDatabaseManager;
     private TaskListAdapter mTaskListAdapter;
@@ -89,5 +89,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTaskCheckedIn() {
+        // gamno-code
+
+        for (int i = 0; i < mTasks.size(); i++) {
+            mTasks.set(i, mDatabaseManager.updateSimpleTask(mTasks.get(i)));
+        }
+        mTaskListAdapter.notifyDataSetChanged();
     }
 }

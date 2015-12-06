@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "Student.db";
 
     // Table Names
@@ -28,6 +28,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String SIMPLE_TASK_MULTI_TASK_ID = "_multi_task_id";
     public static final String SIMPLE_TASK_DEADLINE = "_deadline";
     public static final String SIMPLE_TASK_POINTS = "_points";
+    public static final String SIMPLE_TASK_PROGRESS = "_progress";
+    public static final String SIMPLE_TASK_TARGET = "_target";
 
     // MULTI_TASKS column names
     public static final String MULTI_TASK_ID = "_id";
@@ -87,7 +89,9 @@ public class Database extends SQLiteOpenHelper {
             + SIMPLE_TASK_SUBJECT_ID + " integer, "
             + SIMPLE_TASK_MULTI_TASK_ID + " integer, "
             + SIMPLE_TASK_DEADLINE + " text not null, "
-            + SIMPLE_TASK_POINTS + " integer)";
+            + SIMPLE_TASK_POINTS + " integer, "
+            + SIMPLE_TASK_PROGRESS + " integer, "
+            + SIMPLE_TASK_TARGET + " integer)";
 
     private static final String CREATE_TABLE_MULTI_TASK =
             "create table " + MULTI_TASKS + "("
