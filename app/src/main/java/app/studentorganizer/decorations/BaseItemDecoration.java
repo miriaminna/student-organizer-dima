@@ -1,4 +1,4 @@
-package app.studentorganizer;
+package app.studentorganizer.decorations;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,10 +7,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class TaskItemDecorator extends RecyclerView.ItemDecoration {
+/**
+ * Created by Vitalii on 06-Dec-15.
+ */
+public class BaseItemDecoration extends RecyclerView.ItemDecoration  {
     private Drawable mDivider;
 
-    public TaskItemDecorator(Context context, int resId) {
+    public BaseItemDecoration(Context context, int resId) {
         mDivider = ContextCompat.getDrawable(context, resId);
     }
 

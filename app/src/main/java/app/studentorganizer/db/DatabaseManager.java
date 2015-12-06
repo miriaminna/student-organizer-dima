@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
@@ -47,6 +48,7 @@ public class DatabaseManager {
     private String[] TEACHER_TABLE_COLUMNS = {
             Database.TEACHER_ID,
             Database.TEACHER_NAME,
+            Database.TEACHER_TYPE,
             Database.TEACHER_CONTACTS
     };
 
@@ -167,6 +169,22 @@ public class DatabaseManager {
         }
 
         return tasks;
+    }
+
+    public ArrayList<Teacher> getAllTeachersTest() {
+        ArrayList<Teacher> teachers = new ArrayList<>();
+
+        Teacher teacher = new Teacher();
+        teacher.setName("Oleksandr Galkin");
+        teacher.setType("Doc.");
+        teachers.add(teacher);
+
+        teacher = new Teacher();
+        teacher.setName("Oleksandr Maksymets");
+        teacher.setType("Ph.D.");
+        teachers.add(teacher);
+
+        return teachers;
     }
 
     public ArrayList<Teacher> getAllTeachers() {
@@ -360,7 +378,7 @@ public class DatabaseManager {
         return taskFromDB;
     }
 
-    public Teacher updateTeacher(Teacher teacher) {
+    public Teacher updateTeacher(Teacher teacher) { // TODO: Do normal update, not a delete-insert
         deleteTeacher(teacher);
         return addTeacher(teacher);
     }
@@ -370,7 +388,7 @@ public class DatabaseManager {
         deleteTeacher(id);
     }
 
-    public void deleteTeacher(long id) {
+    public void deleteTeacher(long id) { // TODO: Concatenation of strings in queries - bad idea...
         mDatabase.delete(Database.TEACHERS, Database.TEACHER_ID + " = " + id, null);
     }
 
@@ -378,6 +396,7 @@ public class DatabaseManager {
         ContentValues values = new ContentValues();
 
         values.put(Database.TEACHER_NAME, teacher.getName());
+        values.put(Database.TEACHER_TYPE, teacher.getType());
         values.put(Database.TEACHER_CONTACTS, teacher.getContactsAsString());
 
         long id = mDatabase.insert(Database.TEACHERS, null, values);
@@ -656,7 +675,8 @@ public class DatabaseManager {
 
         teacher.setId(cursor.getInt(0));
         teacher.setName(cursor.getString(1));
-        teacher.setContacts(cursor.getString(2));
+        teacher.setType(cursor.getString(2));
+        teacher.setContacts(cursor.getString(3));
 
         return teacher;
     }

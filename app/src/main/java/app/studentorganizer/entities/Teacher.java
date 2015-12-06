@@ -11,6 +11,7 @@ import java.util.List;
 public class Teacher {
     protected Integer mId;
     protected String mName;
+    protected String mType;
     protected List<Subject> mSubjects;
     protected List<Pair<String, String>> mContacts;
 
@@ -32,6 +33,14 @@ public class Teacher {
 
     public void setName(String name) {
         this.mName = name;
+    }
+
+    public String getType() {
+        return mType;
+    }
+
+    public void setType(String type) {
+        mType = type;
     }
 
     public List<Subject> getSubjects() {

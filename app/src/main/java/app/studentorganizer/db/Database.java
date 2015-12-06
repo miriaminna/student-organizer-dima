@@ -37,6 +37,7 @@ public class Database extends SQLiteOpenHelper {
     // TEACHERS column names
     public static final String TEACHER_ID = "_id";
     public static final String TEACHER_NAME = "_name";
+    public static final String TEACHER_TYPE = "_type";
     public static final String TEACHER_CONTACTS = "_contacts";
 
     // SUBJECT column names
@@ -99,6 +100,7 @@ public class Database extends SQLiteOpenHelper {
             "create table " + TEACHERS + "("
             + TEACHER_ID + " integer primary key autoincrement, "
             + TEACHER_NAME + " text not null, "
+            + TEACHER_TYPE + " text not null, "
             + TEACHER_CONTACTS + " text)";
 
     private static final String CREATE_TABLE_SUBJECTS =

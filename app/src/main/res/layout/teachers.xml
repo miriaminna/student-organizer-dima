@@ -17,11 +17,8 @@
         app:title="Teachers"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
-    <include layout="@layout/teacher_item"/>
-
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/goals_list"
+        android:id="@+id/teachers_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
