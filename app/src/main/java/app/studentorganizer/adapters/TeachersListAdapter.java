@@ -49,8 +49,6 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
             Intent intent = new Intent(mContext, TeacherActivity.class);
             intent.putExtra(TeacherActivity.ID_EXTRA, mTeacherID);
             mContext.startActivity(intent);
-
-            System.out.println("Clicked");
         }
     }
 

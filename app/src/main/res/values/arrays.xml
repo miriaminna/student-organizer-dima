@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="degrees">
+        <item>PROFESSOR</item>
+        <item>POSTGRADUATE</item>
+        <item>DOCENT</item>
+    </string-array>
+</resources>

@@ -1,7 +1,9 @@
 package app.studentorganizer.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +48,10 @@ public class TeachersActivity extends BaseListActivity {
     @Override
     public int getListView() {
         return R.id.teachers_list;
+    }
+
+    public void onTeacherNew(View v) {
+        Intent intent = new Intent(this, NewTeacherActivity.class);
+        startActivity(intent);
     }
 }

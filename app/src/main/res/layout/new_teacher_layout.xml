@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewTeacherActivity">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        app:title="Add Teacher"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/ListItem.FirstLine"
+                android:id="@+id/nameHint"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:text="Teacher Name:"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Ivanov Ivan"
+                android:textColor="@color/black"
+                android:layout_marginLeft="24dp"
+                android:ems="10"
+                android:id="@+id/teacher_name" />
+
+            <TextView
+                style="@style/ListItem.FirstLine"
+                android:id="@+id/degreeHint"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:text="Teacher's Degree:"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/teacher_type"
+                android:entries="@array/degrees"
+                android:layout_marginLeft="24dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageButton"
+        android:background="@drawable/round_shape_blue"
+        android:src="@drawable/plus_32"
+        android:onClick="onTeacherAdd"
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp" />
+
+</RelativeLayout>
