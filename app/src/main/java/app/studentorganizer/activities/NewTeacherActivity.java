@@ -12,6 +12,7 @@ import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.com.TeacherType;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Teacher;
 
 public class NewTeacherActivity extends BaseActivity {
@@ -41,8 +42,11 @@ public class NewTeacherActivity extends BaseActivity {
     public void onTeacherAdd(View v) {
         Teacher teacher = new Teacher();
         teacher.setName(((TextView)findViewById(R.id.teacher_name)).getText().toString());
-        teacher.setType(((Spinner)findViewById(R.id.teacher_type)).getSelectedItem().toString());
-//        mDatabaseManager.addTeacher(teacher);
+        teacher.setType(((Spinner) findViewById(R.id.teacher_type)).getSelectedItem().toString());
+
+        System.out.println("Adding teacher");
+        DBFactory.getFactory().getTeacherDAO().addEntity(teacher);
+
         finish();
     }
 }

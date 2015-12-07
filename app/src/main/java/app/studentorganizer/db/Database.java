@@ -51,6 +51,7 @@ public class Database extends SQLiteOpenHelper {
 
     // CONTENTS column names
     public static final String CONTENT_ID = "_id";
+    // TODO: Make one column with id
     public static final String CONTENT_SUBJECT_ID = "_subject_id";
     public static final String CONTENT_TASK_ID = "_task_id";
     public static final String CONTENT_TEST_ID = "_test_id";

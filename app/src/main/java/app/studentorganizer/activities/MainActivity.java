@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TaskListAdapter;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Task;
 
@@ -29,7 +30,7 @@ public class MainActivity extends BaseListActivity implements OnTaskCheckedInLis
 
     @Override
     public void loadDataFromDB() {
-        mTasks.addAll(mDatabaseManager.getAllTasksTest());
+        mTasks.addAll(DBFactory.getFactory().getTaskDAO().getAllEntities());
     }
 
     @Override
@@ -53,7 +54,8 @@ public class MainActivity extends BaseListActivity implements OnTaskCheckedInLis
         // gamno-code
 
         for (int i = 0; i < mTasks.size(); i++) {
-            mTasks.set(i, mDatabaseManager.updateSimpleTask(mTasks.get(i)));
+            DBFactory.getFactory().getTaskDAO().updateEntity(mTasks.get(i));
+//            mTasks.set(i, );
         }
         mTaskListAdapter.notifyDataSetChanged();
     }
