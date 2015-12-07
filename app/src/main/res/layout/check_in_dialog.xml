@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+    <TextView
+        style="@style/DialogTitle"
+        android:id="@+id/title"
+        android:text="Check in goal"/>
+
+    <TextView
+        style="@style/CheckInCurrentValue"
+        android:id="@+id/current_value"
+        android:text="100"
+        android:layout_below="@+id/title"/>
+
+    <TextView
+        style="@style/ProgressValue"
+        android:id="@+id/progress_value_left"
+        android:text="0"
+        android:layout_marginLeft="24dp"
+        android:layout_below="@+id/current_value"
+        android:layout_alignParentStart="true" />
+
+    <SeekBar
+        style="@style/SeekBar"
+        android:id="@+id/seek_bar"
+        android:progress="100"
+        android:max="350"
+        android:layout_below="@+id/current_value"
+        android:layout_alignTop="@+id/progress_value_left"
+        android:layout_toRightOf="@+id/progress_value_left"
+        android:layout_toStartOf="@+id/progress_value_right" />
+
+    <TextView
+        style="@style/ProgressValue"
+        android:id="@+id/progress_value_right"
+        android:text="350"
+        android:layout_marginRight="24dp"
+        android:layout_alignBottom="@+id/seek_bar"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        style="@style/DialogButton"
+        android:id="@+id/save_button"
+        android:text="SAVE"
+        android:layout_below="@id/progress_value_right"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        style="@style/DialogButton"
+        android:id="@+id/cancel_button"
+        android:text="CANCEL"
+        android:layout_toStartOf="@id/save_button"
+        android:layout_below="@id/progress_value_right"/>
+</RelativeLayout>

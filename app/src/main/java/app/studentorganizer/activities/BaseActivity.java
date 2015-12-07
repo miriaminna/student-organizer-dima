@@ -13,6 +13,9 @@ import app.studentorganizer.db.DatabaseManager;
 public abstract class BaseActivity extends AppCompatActivity {
     protected DatabaseManager mDatabaseManager;
 
+    public BaseActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
