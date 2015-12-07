@@ -2,29 +2,38 @@ package app.studentorganizer.activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.SubjectListAdapter;
-import app.studentorganizer.db.DatabaseManager;
+import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Subject;
 
-public class SubjectListActivity extends BaseActivity {
+public class SubjectListActivity extends BaseListActivity {
 
-    private DatabaseManager mDatabaseManager;
     private List<Subject> mSubjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSubjects = new ArrayList<>();
         super.onCreate(savedInstanceState);
+        findViewById(R.id.fab).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.out.println("FUCKING SUCCESS!");
+                    }
+                }
+        );
     }
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mSubjects = new ArrayList<>();
         return new SubjectListAdapter(this, mSubjects);
     }
 
@@ -34,17 +43,13 @@ public class SubjectListActivity extends BaseActivity {
     }
 
     @Override
-    protected void initializeDB() {
-        mDatabaseManager = new DatabaseManager(this);
-        mDatabaseManager.open();
-
-        // FIXME : mocking database get
-        mSubjects.addAll(mDatabaseManager.getAllSubjects());
+    public int getContentView() {
+        return R.layout.subject_list;
     }
 
     @Override
-    public int getContentView() {
-        return R.layout.subject_list;
+    public void loadDataFromDB() {
+        mSubjects.addAll(mDatabaseManager.getAllSubjects());
     }
 
     @Override

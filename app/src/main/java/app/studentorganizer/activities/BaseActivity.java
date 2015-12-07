@@ -32,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void initializeToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.navigation_back_25));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
