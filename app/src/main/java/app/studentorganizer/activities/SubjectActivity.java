@@ -14,6 +14,7 @@ import java.util.List;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TaskListAdapter;
 import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
@@ -36,7 +37,7 @@ public class SubjectActivity extends BaseActivity {
             // No subjects with given id found. Finish activity.
             finish();
         } else {
-            initializeView(mSubject);
+            initializeView();
         }
     }
 
@@ -47,37 +48,27 @@ public class SubjectActivity extends BaseActivity {
 
     @Override
     public void loadDataFromDB() {
-        mSubject = mDatabaseManager.getSubjectById(mSubjectId);
+        mSubject = DBFactory.getFactory().getSubjectDAO().getByID(mSubjectId);
     }
 
-    private void initializeView(Subject subject) {
-        // FIXME : not getting color tags out of DB
-        /*((ImageButton) findViewById(R.id.category_icon)).
-                setImageResource(subject.getColorTag().getDrawableId());*/
-        ((TextView) findViewById(R.id.name)).setText(subject.getName());
-        ((TextView) findViewById(R.id.type)).setText(subject.getType().getStringId());
-        if (subject.getTeacher() != null) {
-            ((TextView) findViewById(R.id.teacher_name)).setText(subject.getTeacher().getName());
-            ((TextView) findViewById(R.id.teacher_type)).setText(subject.getTeacher().getType());
-        }
-        List<Task> tasks = subject.getTasks();
-        if (tasks == null) {
-            tasks = new ArrayList<>();
-        }
-        /*Task task1 = new Task();
-        task1.setId(1);
-        task1.setName("Programming - Labs");
-        task1.setDeadline(new LocalDate().plusDays(1));
-        task1.setPoints(30.0);
-        task1.setProgress(10);
-        task1.setTarget(40);
-        task1.setSubject(new Subject());
-        task1.getSubject().setColorTag(ColorTag.GREEN);
-        tasks.add(task1);*/
+    private void initializeView() {
 
+        // Initialize general info
+        ((ImageButton) findViewById(R.id.category_icon)).
+                setImageResource(mSubject.getColorTag().getDrawableId());
+        ((TextView) findViewById(R.id.name)).setText(mSubject.getName());
+        ((TextView) findViewById(R.id.type)).setText(mSubject.getType().getStringId());
+
+        // If no teacher provided display default teacher
+        if (mSubject.getTeacher() != null) {
+            ((TextView) findViewById(R.id.teacher_name)).setText(mSubject.getTeacher().getName());
+            ((TextView) findViewById(R.id.teacher_type)).setText(mSubject.getTeacher().getType());
+        }
+
+        // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goals_list);
-        TaskListAdapter adapter = new TaskListAdapter(tasks, this);
+        TaskListAdapter adapter = new TaskListAdapter(mSubject.getTasks(), this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

@@ -39,6 +39,15 @@ public class DashboardActivity extends BaseActivity {
         );
 
         TextView subjectsButton = (TextView) findViewById(R.id.subjects);
+        subjectsButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DashboardActivity.this, SubjectListActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
 
         TextView teachersButton = (TextView) findViewById(R.id.teachers);
         teachersButton.setOnClickListener(

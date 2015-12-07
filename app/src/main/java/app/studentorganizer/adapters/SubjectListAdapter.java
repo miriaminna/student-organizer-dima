@@ -59,8 +59,7 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
 
         holder.mName.setText(subject.getName());
         holder.mType.setText(subject.getType().toString());
-        // FIXME : not getting color tags out of DB
-        //holder.mCategoryIcon.setImageResource(subject.getColorTag().getDrawableId());
+        holder.mCategoryIcon.setImageResource(subject.getColorTag().getDrawableId());
         holder.mCategoryIcon.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

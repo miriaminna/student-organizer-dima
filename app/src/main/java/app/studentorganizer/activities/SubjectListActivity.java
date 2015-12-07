@@ -9,19 +9,21 @@ import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.SubjectListAdapter;
-import app.studentorganizer.com.ColorTag;
-import app.studentorganizer.com.SubjectType;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Subject;
 
 public class SubjectListActivity extends BaseListActivity {
 
     private List<Subject> mSubjects;
+    private SubjectListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mSubjects = new ArrayList<>();
         super.onCreate(savedInstanceState);
+
+        // todo : add subject creation
         findViewById(R.id.fab).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -33,8 +35,17 @@ public class SubjectListActivity extends BaseListActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadDataFromDB();
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        return new SubjectListAdapter(this, mSubjects);
+        mAdapter = new SubjectListAdapter(this, mSubjects);
+        return mAdapter;
     }
 
     @Override
@@ -49,7 +60,8 @@ public class SubjectListActivity extends BaseListActivity {
 
     @Override
     public void loadDataFromDB() {
-        mSubjects.addAll(mDatabaseManager.getAllSubjects());
+        mSubjects.clear();
+        mSubjects.addAll(DBFactory.getFactory().getSubjectDAO().getAllEntities());
     }
 
     @Override
