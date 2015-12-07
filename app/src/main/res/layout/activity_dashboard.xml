@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        app:title="Student Organizer"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/tasks"
+        android:text="Tasks"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/subjects"
+        android:text="Subjects"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/teachers"
+        android:text="Teachers"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/marks"
+        android:text="Marks"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/my_schedule"
+        android:text="My Schedule"/>
+    <TextView
+        style="@style/DashboardButtonText"
+        android:id="@+id/univ_schedule"
+        android:text="University Schedule"/>
+</LinearLayout>

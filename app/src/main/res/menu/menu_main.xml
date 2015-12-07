@@ -3,10 +3,4 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".MainActivity">
 
-      <item android:id="@+id/search"
-            android:title="search"
-            android:icon="@drawable/search_25"
-            android:orderInCategory="100"
-            app:showAsAction="collapseActionView|ifRoom"
-            app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

@@ -63,8 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.search:
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
