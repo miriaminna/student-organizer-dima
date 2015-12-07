@@ -19,4 +19,16 @@ public enum SubjectType {
         }
     };
     public abstract int getStringId();
+
+    // fixme : bad style - hardcoded strings
+    public static SubjectType parse(String string) {
+        switch (string) {
+            case "CREDIT":
+                return CREDIT;
+            case "EXAM":
+                return EXAM;
+            default:
+                return null;
+        }
+    }
 }

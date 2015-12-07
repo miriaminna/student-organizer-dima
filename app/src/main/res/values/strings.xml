@@ -19,4 +19,11 @@
     <!-- Subject type translations-->
     <string name="subject_type_credit">Credit</string>
     <string name="subject_type_exam">Exam</string>
+
+    <!-- Subject edit strings-->
+    <string name="subject_name_hint">Subject name...</string>
+    <string name="subject_type_hint">Subject type:</string>
+    <string name="subject_tag_hint">Subject color tag:</string>
+
+    <string name="save">Save</string>
 </resources>

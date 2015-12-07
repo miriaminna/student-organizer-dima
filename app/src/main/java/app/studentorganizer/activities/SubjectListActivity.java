@@ -1,5 +1,6 @@
 package app.studentorganizer.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,12 +24,12 @@ public class SubjectListActivity extends BaseListActivity {
         mSubjects = new ArrayList<>();
         super.onCreate(savedInstanceState);
 
-        // todo : add subject creation
         findViewById(R.id.fab).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println("FUCKING SUCCESS!");
+                        Intent intent = new Intent(SubjectListActivity.this, EditSubjectActivity.class);
+                        startActivity(intent);
                     }
                 }
         );
