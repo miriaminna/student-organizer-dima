@@ -5,14 +5,14 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TaskListAdapter;
-import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Task;
 
 
-public class MainActivity extends BaseListActivity {
+public class MainActivity extends BaseListActivity implements OnTaskCheckedInListener {
     private TaskListAdapter mTaskListAdapter;
     private ArrayList<Task> mTasks;
 
@@ -46,5 +46,15 @@ public class MainActivity extends BaseListActivity {
     @Override
     protected RecyclerView.ItemDecoration initializeDecoration() {
         return new BaseItemDecoration(this, R.drawable.list_items_divider);
+    }
+
+    @Override
+    public void onTaskCheckedIn() {
+        // gamno-code
+
+        for (int i = 0; i < mTasks.size(); i++) {
+            mTasks.set(i, mDatabaseManager.updateSimpleTask(mTasks.get(i)));
+        }
+        mTaskListAdapter.notifyDataSetChanged();
     }
 }
