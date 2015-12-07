@@ -10,6 +10,7 @@ import android.widget.TextView;
 import app.studentorganizer.R;
 import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.com.TeacherUtil;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.entities.Teacher;
 
@@ -42,6 +43,6 @@ public class TeacherActivity extends BaseActivity {
 
     @Override
     public void loadDataFromDB() {
-        mTeacher = mDatabaseManager.getAllTeachersTest().get(teacherId);
+        mTeacher = DBFactory.getFactory().getTeacherDAO().getByID(teacherId);
     }
 }

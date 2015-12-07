@@ -8,6 +8,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TeachersListAdapter;
@@ -22,6 +23,15 @@ public class TeachersActivity extends BaseListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mTeachers = new ArrayList<>();
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        loadDataFromDB();
+        System.out.println("Resuming");
+        // TODO: Properly notify after insertion
+//        mTeachersListAdapter.notifyItemInserted(mTeachers.size() - 1);
     }
 
     @Override
@@ -42,7 +52,8 @@ public class TeachersActivity extends BaseListActivity {
 
     @Override
     public void loadDataFromDB() {
-        mTeachers.addAll(mDatabaseManager.getAllTeachersTest());
+        mTeachers.clear();
+        mTeachers.addAll(DBFactory.getFactory().getTeacherDAO().getAllEntities());
     }
 
     @Override
