@@ -31,7 +31,7 @@ public class TeachersActivity extends BaseListActivity {
         loadDataFromDB();
         System.out.println("Resuming");
         // TODO: Properly notify after insertion
-//        mTeachersListAdapter.notifyItemInserted(mTeachers.size() - 1);
+        mTeachersListAdapter.notifyDataSetChanged();
     }
 
     @Override
