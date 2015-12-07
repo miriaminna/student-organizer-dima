@@ -1,40 +1,25 @@
 package app.studentorganizer.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import java.util.ArrayList;
 
 import app.studentorganizer.R;
-import app.studentorganizer.activities.BaseActivity;
 import app.studentorganizer.adapters.TaskListAdapter;
 import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Task;
 
 
-public class MainActivity extends BaseActivity {
-
-    private DatabaseManager mDatabaseManager;
+public class MainActivity extends BaseListActivity {
     private TaskListAdapter mTaskListAdapter;
     private ArrayList<Task> mTasks;
-    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mTasks = new ArrayList<>();
         super.onCreate(savedInstanceState);
-    }
-
-    protected void initializeDB() {
-        mDatabaseManager = new DatabaseManager(this);
-        mDatabaseManager.open();
-        loadTasksFromDatabaseSync();
     }
 
     @Override
@@ -43,17 +28,17 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public int getListView() {
-        return R.id.goals_list;
-    }
-
-    private void loadTasksFromDatabaseSync() {
+    public void loadDataFromDB() {
         mTasks.addAll(mDatabaseManager.getAllTasksTest());
     }
 
     @Override
+    public int getListView() {
+        return R.id.goals_list;
+    }
+
+    @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mTasks = new ArrayList<>();
         mTaskListAdapter = new TaskListAdapter(mTasks, this);
         return mTaskListAdapter;
     }

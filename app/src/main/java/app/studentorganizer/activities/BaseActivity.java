@@ -2,41 +2,33 @@ package app.studentorganizer.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import app.studentorganizer.R;
+import app.studentorganizer.db.DatabaseManager;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected RecyclerView mRecyclerView;
+    protected DatabaseManager mDatabaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
         initializeToolBar();
-        initializeRecyclerView();
         initializeDB();
     }
 
-    protected void initializeRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(getListView());
-        mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(initializeAdapter());
-        mRecyclerView.addItemDecoration(initializeDecoration());
+    protected void initializeDB() {
+        mDatabaseManager = new DatabaseManager(this);
+        mDatabaseManager.open();
+        loadDataFromDB();
     }
 
-    protected abstract RecyclerView.Adapter initializeAdapter();
-    protected abstract RecyclerView.ItemDecoration initializeDecoration();
-    protected abstract void initializeDB();
     public abstract int getContentView();
-    public abstract int getListView();
+    public abstract void loadDataFromDB();
 
     private void initializeToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

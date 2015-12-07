@@ -12,20 +12,18 @@ import app.studentorganizer.adapters.TeachersListAdapter;
 import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.entities.Teacher;
 
-public class TeachersActivity extends BaseActivity {
-
-    private DatabaseManager mDatabaseManager;
+public class TeachersActivity extends BaseListActivity {
     private List<Teacher> mTeachers;
     private TeachersListAdapter mTeachersListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mTeachers = new ArrayList<>();
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mTeachers = new ArrayList<>();
         mTeachersListAdapter = new TeachersListAdapter(mTeachers, this);
         return mTeachersListAdapter;
     }
@@ -36,19 +34,13 @@ public class TeachersActivity extends BaseActivity {
     }
 
     @Override
-    protected void initializeDB() {
-        mDatabaseManager = new DatabaseManager(this);
-        mDatabaseManager.open();
-        loadTeachersFromDatabaseSync();
-    }
-
-    private void loadTeachersFromDatabaseSync() {
-        mTeachers.addAll(mDatabaseManager.getAllTeachersTest());
+    public int getContentView() {
+        return R.layout.teachers;
     }
 
     @Override
-    public int getContentView() {
-        return R.layout.teachers;
+    public void loadDataFromDB() {
+        mTeachers.addAll(mDatabaseManager.getAllTeachersTest());
     }
 
     @Override

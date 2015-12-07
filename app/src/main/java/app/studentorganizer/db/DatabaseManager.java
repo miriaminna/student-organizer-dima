@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.ContentType;
 import app.studentorganizer.com.SubjectType;
+import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.com.TestType;
 import app.studentorganizer.entities.Content;
 import app.studentorganizer.entities.ContentItem;
@@ -175,13 +176,17 @@ public class DatabaseManager {
         ArrayList<Teacher> teachers = new ArrayList<>();
 
         Teacher teacher = new Teacher();
+        teacher.setId(0);
         teacher.setName("Oleksandr Galkin");
-        teacher.setType("Doc.");
+        teacher.setType(TeacherType.DOCENT.toString());
+        teacher.setContacts("email:galkin@unicyb.kiev.ua\nskype:kvak313");
         teachers.add(teacher);
 
         teacher = new Teacher();
+        teacher.setId(1);
         teacher.setName("Oleksandr Maksymets");
-        teacher.setType("Ph.D.");
+        teacher.setType(TeacherType.POSTGRADUATE.toString());
+        teacher.setContacts("email:maksymets@gmail.com");
         teachers.add(teacher);
 
         return teachers;

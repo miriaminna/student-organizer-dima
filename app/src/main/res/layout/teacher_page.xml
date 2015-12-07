@@ -37,7 +37,7 @@
         style="@style/ListItem.FirstLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contacts"
+        android:text="Contacts:"
         android:textStyle="bold"
         android:layout_marginLeft="24dp"
         android:id="@+id/contacts"
@@ -49,16 +49,7 @@
         android:layout_height="wrap_content"
         android:text="Email: mail@gmail.com"
         android:layout_marginLeft="24dp"
-        android:id="@+id/email"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/teacher_icon"/>
-    <TextView
-        style="@style/ListItem.FirstLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Phone: 38012345678"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/Phone"
+        android:id="@+id/contact_list"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/teacher_icon"/>
 </LinearLayout>

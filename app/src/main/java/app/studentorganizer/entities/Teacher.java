@@ -17,6 +17,7 @@ public class Teacher {
 
     public Teacher() {
         mSubjects = new ArrayList<>();
+        mContacts = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -56,7 +57,11 @@ public class Teacher {
     }
 
     public void setContacts(String s) {
-        // TODO for vitalij
+        mContacts = new ArrayList<>();
+        for (String c : s.split("\n")) {
+            String[] cur = c.split(":");
+            mContacts.add(new Pair<>(cur[0], cur[1]));
+        }
     }
 
     public void setContacts(List<Pair<String, String>> contacts) {
@@ -70,11 +75,11 @@ public class Teacher {
 
     public String getContactsAsString() {
         StringBuilder string = new StringBuilder();
-        for (Pair<String,String> pair : mContacts) {
+        for (Pair<String, String> pair : mContacts) {
             string.append(pair.first);
             string.append(':');
             string.append(pair.second);
-            string.append(' ');
+            string.append('\n');
         }
         return string.toString();
     }
