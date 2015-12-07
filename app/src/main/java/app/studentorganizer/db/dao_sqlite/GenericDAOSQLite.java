@@ -19,7 +19,7 @@ public abstract class GenericDAOSQLite<Entity> implements GenericDAO<Entity> {
         ArrayList<Entity> entities = new ArrayList<>();
 
         Cursor cursor = DatabaseManager.getDatabase().query(
-                Database.TEACHERS,
+                getTableName(),
                 getTableColumns(),
                 null, null, null, null, null);
         cursor.moveToFirst();
