@@ -21,35 +21,95 @@
 
     <include layout="@layout/teacher_item"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
 
-    <TextView
-        style="@style/ListItem.FirstLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Subjects: Algebra"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/subject_names"
-        android:textStyle="bold"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/teacher_icon"/>
+            <TextView
+                style="@style/ListItem.FirstLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts"
+                android:textStyle="bold"
+                android:layout_marginStart="24dp"
+                android:id="@+id/contacts"
+                android:layout_marginTop="15dp"/>
+            <TextView
+                style="@style/ListItem.FirstLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: mail@gmail.com"
+                android:layout_marginStart="24dp"
+                android:id="@+id/contact_list"
+                android:layout_marginTop="15dp"/>
 
-    <TextView
-        style="@style/ListItem.FirstLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Contacts:"
-        android:textStyle="bold"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/contacts"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/teacher_icon"/>
-    <TextView
-        style="@style/ListItem.FirstLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email: mail@gmail.com"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/contact_list"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/teacher_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_delete_contact"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:hint="@string/contact_name"
+                    android:id="@+id/contact_name"/>
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:hint="@string/contact_value"
+                    android:id="@+id/contact_value"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    style="@android:style/ButtonBar"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/delete"
+                    android:textColor="@color/black"
+                    android:id="@+id/button_delete"/>
+                <Button
+                    style="@android:style/ButtonBar"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/add"
+                    android:textColor="@color/black"
+                    android:id="@+id/button_add"/>
+            </LinearLayout>
+
+            <TextView
+                style="@style/ListItem.FirstLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subjects"
+                android:layout_marginStart="24dp"
+                android:id="@+id/subject_names"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/subject_list"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scrollbars="vertical"
+                android:paddingBottom="80dp"
+                android:clipToPadding="false"/>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

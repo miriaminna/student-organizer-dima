@@ -79,6 +79,23 @@ public class Teacher extends IDable {
         return string.toString();
     }
 
+    public void addContact(Pair<String, String> contact) {
+        mContacts.add(contact);
+    }
+
+    public void removeContact(Pair<String, String> contact) {
+        List<Pair<String, String>> toRemove = new ArrayList<>();
+        for (Pair<String, String> c: mContacts) {
+            if ((contact.first.equals("") || contact.first.equals(c.first)) &&
+                    (contact.second.equals("") || contact.second.equals(c.second))) {
+                toRemove.add(c);
+            }
+        }
+        for (Pair<String, String> c: toRemove) {
+            mContacts.remove(c);
+        }
+    }
+
     @Override
     public String toString() {
         return getName();
