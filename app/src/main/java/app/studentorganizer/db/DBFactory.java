@@ -78,8 +78,8 @@ public class DBFactory {
 
     public synchronized GenericDAO<Subject> getSubjectDAO() {
         if (mSubjectDAO == null) {
-            //mSubjectDAO = new SubjectDAOSQLite();
-            mSubjectDAO = new SubjectDAOTest();
+            mSubjectDAO = new SubjectDAOSQLite();
+//            mSubjectDAO = new SubjectDAOTest();
         }
         return mSubjectDAO;
     }

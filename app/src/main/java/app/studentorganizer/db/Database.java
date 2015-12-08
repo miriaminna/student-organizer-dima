@@ -73,7 +73,8 @@ public class Database extends SQLiteOpenHelper {
             Database.SUBJECT_ID,
             Database.SUBJECT_NAME,
             Database.SUBJECT_TEACHER_ID,
-            Database.SUBJECT_TYPE
+            Database.SUBJECT_TYPE,
+            Database.SUBJECT_COLOR
     };
 
     // CONTENTS column names

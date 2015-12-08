@@ -25,11 +25,11 @@ public class SubjectActivity extends BaseActivity {
     protected static final int DEFAULT_SUBJECT_ID = -1;
 
     protected Subject mSubject;
-    protected int mSubjectId;
+    protected Long mSubjectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSubjectId = getIntent().getIntExtra(SUBJECT_ID_EXTRA, DEFAULT_SUBJECT_ID);
+        mSubjectId = getIntent().getLongExtra(SUBJECT_ID_EXTRA, DEFAULT_SUBJECT_ID);
 
         super.onCreate(savedInstanceState);
 
@@ -61,16 +61,18 @@ public class SubjectActivity extends BaseActivity {
 
         // If no teacher provided display default teacher
         if (mSubject.getTeacher() != null) {
-            ((TextView) findViewById(R.id.teacher_name)).setText(mSubject.getTeacher().getName());
-            ((TextView) findViewById(R.id.teacher_type)).setText(mSubject.getTeacher().getType());
+            // TODO: Fetch Teacher
+//            ((TextView) findViewById(R.id.teacher_name)).setText(mSubject.getTeacher().getName());
+//            ((TextView) findViewById(R.id.teacher_type)).setText(mSubject.getTeacher().getType());
         }
 
         // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goals_list);
-        TaskListAdapter adapter = new TaskListAdapter(mSubject.getTasks(), this);
+        // TODO: Fetch Tasks
+//        TaskListAdapter adapter = new TaskListAdapter(mSubject.getTasks(), this);
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(adapter);
     }
 }

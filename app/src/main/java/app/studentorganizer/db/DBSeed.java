@@ -2,7 +2,13 @@ package app.studentorganizer.db;
 
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.com.TeacherType;
+import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
 
@@ -13,6 +19,7 @@ public class DBSeed {
     public static void seed() {
         seedTeachers();
         seedTasks();
+        seedSubjects();
     }
 
     public static void seedTeachers() {
@@ -49,5 +56,29 @@ public class DBSeed {
 //        task.setSubject(new Subject());
 //        task.getSubject().setColorTag(ColorTag.BLUE);
         DBFactory.getFactory().getTaskDAO().addEntity(task);
+    }
+
+    public static void seedSubjects() {
+        Subject subject = new Subject();
+        subject.setName("Object-oriented programming");
+        subject.setType(SubjectType.EXAM);
+        subject.setColorTag(ColorTag.BLUE);
+
+        DBFactory.getFactory().getSubjectDAO().addEntity(subject);
+
+        subject = new Subject();
+        subject.setName("Mathematical Analysis");
+        subject.setType(SubjectType.CREDIT);
+        subject.setColorTag(ColorTag.GREEN);
+//        subject.setTasks(DBFactory.getFactory().getTaskDAO().getAllEntities());
+
+        DBFactory.getFactory().getSubjectDAO().addEntity(subject);
+
+        subject = new Subject();
+        subject.setName("Probability Theory");
+        subject.setType(SubjectType.EXAM);
+        subject.setColorTag(ColorTag.ORANGE);
+
+        DBFactory.getFactory().getSubjectDAO().addEntity(subject);
     }
 }
