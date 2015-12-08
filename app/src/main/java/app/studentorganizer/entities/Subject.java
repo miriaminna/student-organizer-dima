@@ -1,5 +1,7 @@
 package app.studentorganizer.entities;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,20 +11,18 @@ import app.studentorganizer.com.SubjectType;
 /**
  * Created by Vitalii on 23-Nov-15.
  */
-public class Subject {
-    protected Integer mId;
-    protected List<Task> mTasks;
+public class Subject extends IDable {
+    protected List<Long> mTasksIds;
     protected String mName;
-    protected Teacher mTeacher;
-    protected Integer mTeacherId;
+    protected Long mTeacherId;
     protected SubjectType mType;
-    protected Content mContent;
-    protected List<Test> mTests;
+    protected Long mContentId;
+    protected List<Long> mTestsIds;
     protected ColorTag mColorTag;
 
     public Subject() {
-        mTasks = new ArrayList<>();
-        mTests = new ArrayList<>();
+        mTasksIds = new ArrayList<>();
+        mTestsIds = new ArrayList<>();
     }
 
     public ColorTag getColorTag() {
@@ -33,28 +33,20 @@ public class Subject {
         mColorTag = colorTag;
     }
 
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
-    }
-
-    public Integer getTeacherId() {
+    public Long getTeacherId() {
         return mTeacherId;
     }
 
-    public void setTeacherId(Integer teacherId) {
+    public void setTeacherId(Long teacherId) {
         mTeacherId = teacherId;
     }
 
-    public List<Task> getTasks() {
-        return mTasks;
+    public List<Long> getTasksIds() {
+        return mTasksIds;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.mTasks = tasks;
+    public void setTasksIds(List<Long> tasksIds) {
+        this.mTasksIds = tasksIds;
     }
 
     public String getName() {
@@ -73,35 +65,35 @@ public class Subject {
         this.mType = type;
     }
 
-    public Content getContent() {
-        return mContent;
+    public Long getContent() {
+        return mContentId;
     }
 
-    public void setContent(Content content) {
-        this.mContent = content;
+    public void setContent(Long content) {
+        this.mContentId = content;
     }
 
-    public List<Test> getTests() {
-        return mTests;
+    public List<Long> getTestsIds() {
+        return mTestsIds;
     }
 
-    public void setTests(List<Test> tests) {
-        this.mTests = tests;
+    public void setTestsIds(List<Long> testsIds) {
+        this.mTestsIds = testsIds;
     }
 
-    public Teacher getTeacher() {
-        return mTeacher;
+    public Long getTeacher() {
+        return mTeacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.mTeacher = teacher;
+    public void setTeacher(Long teacher) {
+        this.mTeacherId = teacher;
     }
 
-    public void addTest(Test test) {
-        mTests.add(test);
+    public void addTestId(Long testId) {
+        mTestsIds.add(testId);
     }
 
-    public void addTask(Task task) {
-        mTasks.add(task);
+    public void addTaskId(Long taskId) {
+        mTasksIds.add(taskId);
     }
 }

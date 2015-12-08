@@ -5,27 +5,20 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.studentorganizer.com.TeacherType;
+
 /**
  * Created by Vitalii on 23-Nov-15.
  */
-public class Teacher {
-    protected Integer mId;
+public class Teacher extends IDable {
     protected String mName;
-    protected String mType;
-    protected List<Subject> mSubjects;
+    protected TeacherType mType;
+    protected List<Long> mSubjectsIds;
     protected List<Pair<String, String>> mContacts;
 
     public Teacher() {
-        mSubjects = new ArrayList<>();
+        mSubjectsIds = new ArrayList<>();
         mContacts = new ArrayList<>();
-    }
-
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
     }
 
     public String getName() {
@@ -36,20 +29,20 @@ public class Teacher {
         this.mName = name;
     }
 
-    public String getType() {
+    public TeacherType getType() {
         return mType;
     }
 
-    public void setType(String type) {
+    public void setType(TeacherType type) {
         mType = type;
     }
 
-    public List<Subject> getSubjects() {
-        return mSubjects;
+    public List<Long> getSubjectsIds() {
+        return mSubjectsIds;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.mSubjects = subjects;
+    public void setSubjectsIds(List<Long> subjectsIds) {
+        this.mSubjectsIds = subjectsIds;
     }
 
     public List<Pair<String, String>> getContacts() {
@@ -60,7 +53,9 @@ public class Teacher {
         mContacts = new ArrayList<>();
         for (String c : s.split("\n")) {
             String[] cur = c.split(":");
-            mContacts.add(new Pair<>(cur[0], cur[1]));
+            if (cur.length == 2) {
+                mContacts.add(new Pair<>(cur[0], cur[1]));
+            }
         }
     }
 
@@ -69,8 +64,8 @@ public class Teacher {
     }
 
 
-    public void addSubject(Subject subject) {
-        mSubjects.add(subject);
+    public void addSubjectId(Long subjectId) {
+        mSubjectsIds.add(subjectId);
     }
 
     public String getContactsAsString() {

@@ -42,7 +42,7 @@ public class NewTeacherActivity extends BaseActivity {
     public void onTeacherAdd(View v) {
         Teacher teacher = new Teacher();
         teacher.setName(((TextView)findViewById(R.id.teacher_name)).getText().toString());
-        teacher.setType(((Spinner) findViewById(R.id.teacher_type)).getSelectedItem().toString());
+        teacher.setType(TeacherType.valueOf(((Spinner) findViewById(R.id.teacher_type)).getSelectedItem().toString()));
 
         System.out.println("Adding teacher");
         DBFactory.getFactory().getTeacherDAO().addEntity(teacher);

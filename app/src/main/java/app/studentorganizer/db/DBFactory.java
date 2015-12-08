@@ -106,8 +106,8 @@ public class DBFactory {
 
     public synchronized GenericDAO<Teacher> getTeacherDAO() {
         if (mTeacherDAO == null) {
-//            mTeacherDAO = new TeacherDAOSQLite();
-            mTeacherDAO = new TeacherDAOTest();
+            mTeacherDAO = new TeacherDAOSQLite();
+//            mTeacherDAO = new TeacherDAOTest();
         }
         return mTeacherDAO;
     }

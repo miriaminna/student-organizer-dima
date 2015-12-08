@@ -9,13 +9,14 @@ import java.util.List;
 import app.studentorganizer.db.Database;
 import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.db.dao.GenericDAO;
+import app.studentorganizer.entities.IDable;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public abstract class GenericDAOSQLite<Entity> implements GenericDAO<Entity> {
+public abstract class GenericDAOSQLite<Entity extends IDable> implements GenericDAO<Entity> {
     @Override
-    public List getAllEntities() {
+    public List<Entity> getAllEntities() {
         ArrayList<Entity> entities = new ArrayList<>();
 
         Cursor cursor = DatabaseManager.getDatabase().query(
@@ -33,31 +34,43 @@ public abstract class GenericDAOSQLite<Entity> implements GenericDAO<Entity> {
     }
 
     @Override
-    public Entity getByID(long id) {
-        // TODO: add get
-        return null;
+    public Entity getByID(Long id) {
+        Cursor cursor = DatabaseManager.getDatabase().query(
+                getTableName(),
+                getTableColumns(),
+                getTableIDColumn() + " = ? ",
+                new String[] { id.toString() },
+                null, null, null
+        );
+        return cursor.moveToFirst() ? parseEntity(cursor) : null;
     }
 
     @Override
     public boolean updateEntity(Entity entity) {
-        // TODO: Make normal update
-//        deleteEntity(entity.getId());
-        addEntity(entity);
-        return true;
-    }
-
-    @Override
-    public boolean deleteEntity(long id) {
-        // TODO: Concatenation is wrong
-        DatabaseManager.getDatabase().delete(
+        return DatabaseManager.getDatabase().update(
                 getTableName(),
-                getTableIDColumn() + " = " + id, null);
-        return true;
+                setValues(entity),
+                getTableIDColumn() + " = ? ",
+                new String[] { entity.getId().toString() }
+        ) != 0;
     }
 
     @Override
-    public long addEntity(Entity entity) {
-        return DatabaseManager.getDatabase().insert(getTableName(), null, setValues(entity));
+    public boolean deleteEntity(Long id) {
+        return DatabaseManager.getDatabase().delete(
+                getTableName(),
+                getTableIDColumn() + " = ? ",
+                new String[] { id.toString() }
+        ) != 0;
+    }
+
+    @Override
+    public Long addEntity(Entity entity) {
+        return DatabaseManager.getDatabase().insert(
+                getTableName(),
+                null,
+                setValues(entity)
+        );
     }
 
     public abstract String[] getTableColumns();

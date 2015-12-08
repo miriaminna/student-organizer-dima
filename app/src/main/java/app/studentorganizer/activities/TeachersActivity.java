@@ -30,7 +30,6 @@ public class TeachersActivity extends BaseListActivity {
         super.onPostResume();
         loadDataFromDB();
         System.out.println("Resuming");
-        // TODO: Properly notify after insertion
         mTeachersListAdapter.notifyDataSetChanged();
     }
 

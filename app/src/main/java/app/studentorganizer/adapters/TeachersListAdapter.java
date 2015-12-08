@@ -34,7 +34,7 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
         public ImageButton mTeacherIcon;
         public TextView mTeacherName;
         public TextView mTeacherType;
-        public Integer mTeacherID;
+        public Long mTeacherID;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,10 +66,9 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Teacher teacher = mTeachers.get(position);
         holder.mTeacherID = teacher.getId();
-        holder.mTeacherIcon.setImageResource(
-                TeacherUtil.getTypeIcon(TeacherType.valueOf(teacher.getType())));
+        holder.mTeacherIcon.setImageResource(teacher.getType().getDrawable());
         holder.mTeacherName.setText(teacher.getName());
-        holder.mTeacherType.setText(teacher.getType());
+        holder.mTeacherType.setText(teacher.getType().toString());
 
         holder.mTeacherIcon.setOnClickListener(holder);
     }

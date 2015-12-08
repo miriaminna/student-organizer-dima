@@ -7,25 +7,15 @@ import app.studentorganizer.com.TestType;
 /**
  * Created by Vitalii on 23-Nov-15.
  */
-public class Test {
-    protected Integer mId;
+public class Test extends IDable {
     protected LocalDate mDate;
-    protected Content mContent;
+    protected Long mContentId;
     protected Double mPoints;
-    protected Subject mSubject;
-    protected Integer mSubjectId;
+    protected Long mSubjectId;
     protected TestType mTestType;
 
     public Test() {
 
-    }
-
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
     }
 
     public TestType getTestType() {
@@ -36,11 +26,11 @@ public class Test {
         mTestType = testType;
     }
 
-    public Integer getSubjectId() {
+    public Long getSubjectId() {
         return mSubjectId;
     }
 
-    public void setSubjectId(Integer subjectId) {
+    public void setSubjectId(Long subjectId) {
         mSubjectId = subjectId;
     }
 
@@ -52,12 +42,12 @@ public class Test {
         this.mDate = date;
     }
 
-    public Content getContent() {
-        return mContent;
+    public Long getContentId() {
+        return mContentId;
     }
 
-    public void setContent(Content content) {
-        this.mContent = content;
+    public void setContentId(Long contentId) {
+        this.mContentId = contentId;
     }
 
     public Double getPoints() {
@@ -66,13 +56,5 @@ public class Test {
 
     public void setPoints(Double points) {
         this.mPoints = points;
-    }
-
-    public Subject getSubject() {
-        return mSubject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.mSubject = subject;
     }
 }

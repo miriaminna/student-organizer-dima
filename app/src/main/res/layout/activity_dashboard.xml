@@ -15,28 +15,41 @@
         android:background="?android:attr/colorPrimary"
         app:title="Student Organizer"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/tasks"
-        android:text="Tasks"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/subjects"
-        android:text="Subjects"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/teachers"
-        android:text="Teachers"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/marks"
-        android:text="Marks"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/my_schedule"
-        android:text="My Schedule"/>
-    <TextView
-        style="@style/DashboardButtonText"
-        android:id="@+id/univ_schedule"
-        android:text="University Schedule"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/tasks"
+                android:text="Tasks"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/subjects"
+                android:text="Subjects"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/teachers"
+                android:text="Teachers"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/marks"
+                android:text="Marks"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/my_schedule"
+                android:text="My Schedule"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/univ_schedule"
+                android:text="University Schedule"/>
+            <TextView
+                style="@style/DashboardButtonText"
+                android:id="@+id/seed"
+                android:text="Seed Database"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

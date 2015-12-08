@@ -7,8 +7,7 @@ import app.studentorganizer.entities.Subject;
 /**
  * Created by henko on 04.12.15.
  */
-public class UnivScheduleEntry {
-    protected int mId;
+public class UnivScheduleEntry extends IDable {
     protected int mDay;
     protected int mLessonNumber;
     protected LocalTime mStart;
@@ -17,22 +16,14 @@ public class UnivScheduleEntry {
     public UnivScheduleEntry() {
     }
 
-    public UnivScheduleEntry(int id, int day, int lessonNumber,
+    public UnivScheduleEntry(Long id, int day, int lessonNumber,
                              LocalTime start, LocalTime end) {
 
-        this.mId = id;
+        setId(id);
         this.mDay = day;
         this.mLessonNumber = lessonNumber;
         this.mStart = start;
         this.mEnd = end;
-    }
-
-    public int getId() {
-        return mId;
-    }
-
-    public void setId(int id) {
-        this.mId = id;
     }
 
     public int getDay() {

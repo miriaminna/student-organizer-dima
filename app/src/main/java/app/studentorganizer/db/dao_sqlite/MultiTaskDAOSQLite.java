@@ -10,15 +10,10 @@ import app.studentorganizer.entities.MultiTask;
  * Created by Vitalii on 07-Dec-15.
  */
 public class MultiTaskDAOSQLite extends GenericDAOSQLite<MultiTask> {
-    private static String[] MULTI_TASK_TABLE_COLUMNS = {
-            Database.MULTI_TASK_ID,
-            Database.MULTI_TASK_NAME,
-            Database.MULTI_TASK_SUBJECT_ID
-    };
 
     @Override
     public String[] getTableColumns() {
-        return MULTI_TASK_TABLE_COLUMNS;
+        return Database.MULTI_TASK_TABLE_COLUMNS;
     }
 
     @Override
@@ -30,9 +25,9 @@ public class MultiTaskDAOSQLite extends GenericDAOSQLite<MultiTask> {
     public MultiTask parseEntity(Cursor cursor) {
         MultiTask task = new MultiTask();
 
-        task.setId(cursor.getInt(0));
+        task.setId(cursor.getLong(0));
         task.setName(cursor.getString(1));
-        task.setSubjectId(cursor.getInt(2));
+        task.setSubjectId(cursor.getLong(2));
 
         return task;
     }

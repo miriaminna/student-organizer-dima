@@ -17,22 +17,23 @@ import app.studentorganizer.entities.Teacher;
 public class TeacherActivity extends BaseActivity {
     public static final String ID_EXTRA = "id";
 
-    private int teacherId;
+    private Long teacherId;
     protected Teacher mTeacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        teacherId = getIntent().getIntExtra(ID_EXTRA, 0);
+        teacherId = getIntent().getLongExtra(ID_EXTRA, 0);
 
         super.onCreate(savedInstanceState);
 
         ((ImageButton)findViewById(R.id.teacher_icon)).setImageResource(
-                TeacherUtil.getTypeIcon(TeacherType.valueOf(mTeacher.getType())));
+                mTeacher.getType().getDrawable());
         ((TextView)findViewById(R.id.teacher_name)).setText(mTeacher.getName());
-        ((TextView)findViewById(R.id.teacher_type)).setText(mTeacher.getType());
+        ((TextView)findViewById(R.id.teacher_type)).setText(mTeacher.getType().toString());
 
-        ((TextView)findViewById(R.id.subject_names)).setText(getString(R.string.subjects)
-                + ": " + mTeacher.getSubjects().toString());
+
+//        ((TextView)findViewById(R.id.subject_names)).setText(getString(R.string.subjects)
+//                + ": " + mTeacher.getSubjects().toString());
         ((TextView)findViewById(R.id.contact_list)).setText(mTeacher.getContactsAsString());
     }
 

@@ -12,17 +12,10 @@ import app.studentorganizer.entities.UnivScheduleEntry;
  * Created by Vitalii on 07-Dec-15.
  */
 public class UniversityScheduleDAOSQLite extends GenericDAOSQLite<UnivScheduleEntry> {
-    private static String[] UNIVERSITY_SCHEDULE_COLUMNS = {
-            Database.UNIVERSITY_SCHEDULE_ID,
-            Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
-            Database.UNIVERSITY_SCHEDULE_DAY,
-            Database.UNIVERSITY_SCHEDULE_START,
-            Database.UNIVERSITY_SCHEDULE_END
-    };
 
     @Override
     public String[] getTableColumns() {
-        return UNIVERSITY_SCHEDULE_COLUMNS;
+        return Database.UNIVERSITY_SCHEDULE_COLUMNS;
     }
 
     @Override
@@ -34,7 +27,7 @@ public class UniversityScheduleDAOSQLite extends GenericDAOSQLite<UnivScheduleEn
     public UnivScheduleEntry parseEntity(Cursor cursor) {
         UnivScheduleEntry univScheduleEntry = new UnivScheduleEntry();
 
-        univScheduleEntry.setId(cursor.getInt(0));
+        univScheduleEntry.setId(cursor.getLong(0));
         univScheduleEntry.setLessonNumber(cursor.getInt(1));
         univScheduleEntry.setDay(cursor.getInt(2));
         univScheduleEntry.setStart(new LocalTime(cursor.getString(3)));

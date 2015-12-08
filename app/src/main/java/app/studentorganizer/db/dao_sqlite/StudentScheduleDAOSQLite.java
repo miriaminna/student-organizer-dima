@@ -10,16 +10,10 @@ import app.studentorganizer.entities.StudentScheduleEntry;
  * Created by Vitalii on 07-Dec-15.
  */
 public class StudentScheduleDAOSQLite extends GenericDAOSQLite<StudentScheduleEntry> {
-    private String[] STUDENT_SCHEDULE_COLUMNS = {
-            Database.STUDENT_SCHEDULE_ID,
-            Database.STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID,
-            Database.STUDENT_SCHEDULE_SUBJECT_ID,
-            Database.STUDENT_SCHEDULE_CLASSROOM
-    };
 
     @Override
     public String[] getTableColumns() {
-        return STUDENT_SCHEDULE_COLUMNS;
+        return Database.STUDENT_SCHEDULE_COLUMNS;
     }
 
     @Override
@@ -31,9 +25,9 @@ public class StudentScheduleDAOSQLite extends GenericDAOSQLite<StudentScheduleEn
     public StudentScheduleEntry parseEntity(Cursor cursor) {
         StudentScheduleEntry studentScheduleEntry = new StudentScheduleEntry();
 
-        studentScheduleEntry.setId(cursor.getInt(0));
-        studentScheduleEntry.setUnivScheduleEntryId(cursor.getInt(1));
-        studentScheduleEntry.setSubjectId(cursor.getInt(2));
+        studentScheduleEntry.setId(cursor.getLong(0));
+        studentScheduleEntry.setUnivScheduleEntryId(cursor.getLong(1));
+        studentScheduleEntry.setSubjectId(cursor.getLong(2));
         studentScheduleEntry.setClassroom(cursor.getInt(3));
 
         return studentScheduleEntry;

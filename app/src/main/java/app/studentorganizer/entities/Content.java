@@ -4,76 +4,32 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.studentorganizer.com.ContentParent;
+
 /**
  * Created by Vitalii on 23-Nov-15.
  */
-public class Content {
-
-    protected Integer mId;
-    protected List<File> mFiles;
+public class Content extends IDable {
+    protected List<String> mFiles;
     protected List<String> mLiterature;
 
-    protected Subject mSubject;
-    protected Integer mSubjectId;
-    protected Task mTask;
-    protected Integer mTaskId;
-    protected Test mTest;
-    protected Integer mTestId;
+    protected ContentParent mParentType;
+    protected Long mParentId;
 
-    public Integer getId() {
-        return mId;
+    public Long getParentId() {
+        return mParentId;
     }
 
-    public void setId(Integer id) {
-        mId = id;
+    public void setParentId(Long parentId) {
+        this.mParentId = parentId;
     }
 
-    public Integer getTestId() {
-        return mTestId;
+    public ContentParent getParentType() {
+        return mParentType;
     }
 
-    public void setTestId(Integer testId) {
-        mTestId = testId;
-    }
-
-    public Integer getTaskId() {
-        return mTaskId;
-    }
-
-    public void setTaskId(Integer taskId) {
-        mTaskId = taskId;
-    }
-
-    public Integer getSubjectId() {
-        return mSubjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
-        mSubjectId = subjectId;
-    }
-
-    public Subject getSubject() {
-        return mSubject;
-    }
-
-    public void setSubject(Subject subject) {
-        mSubject = subject;
-    }
-
-    public Task getTask() {
-        return mTask;
-    }
-
-    public void setTask(Task task) {
-        mTask = task;
-    }
-
-    public Test getTest() {
-        return mTest;
-    }
-
-    public void setTest(Test test) {
-        mTest = test;
+    public void setParentType(ContentParent parentType) {
+        this.mParentType = parentType;
     }
 
     public Content() {
@@ -81,11 +37,11 @@ public class Content {
         mLiterature = new ArrayList<>();
     }
 
-    public List<File> getFiles() {
+    public List<String> getFiles() {
         return mFiles;
     }
 
-    public void setFiles(List<File> mFiles) {
+    public void setFiles(List<String> mFiles) {
         this.mFiles = mFiles;
     }
 
@@ -97,7 +53,7 @@ public class Content {
         this.mLiterature = mLiterature;
     }
 
-    public void addFile(File file) {
+    public void addFile(String file) {
         mFiles.add(file);
     }
 

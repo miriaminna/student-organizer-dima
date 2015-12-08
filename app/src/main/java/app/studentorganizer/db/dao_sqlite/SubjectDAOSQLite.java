@@ -16,16 +16,10 @@ import app.studentorganizer.entities.Subject;
  * Created by Vitalii on 07-Dec-15.
  */
 public class SubjectDAOSQLite extends GenericDAOSQLite<Subject> {
-    private static String[] SUBJECT_TABLE_COLUMNS = {
-            Database.SUBJECT_ID,
-            Database.SUBJECT_NAME,
-            Database.SUBJECT_TEACHER_ID,
-            Database.SUBJECT_TYPE
-    };
 
     @Override
     public String[] getTableColumns() {
-        return SUBJECT_TABLE_COLUMNS;
+        return Database.SUBJECT_TABLE_COLUMNS;
     }
 
     @Override
@@ -37,9 +31,9 @@ public class SubjectDAOSQLite extends GenericDAOSQLite<Subject> {
     public Subject parseEntity(Cursor cursor) {
         Subject subject = new Subject();
 
-        subject.setId(cursor.getInt(0));
+        subject.setId(cursor.getLong(0));
         subject.setName(cursor.getString(1));
-        subject.setTeacherId(cursor.getInt(2));
+        subject.setTeacherId(cursor.getLong(2));
         subject.setType(SubjectType.valueOf(cursor.getString(3)));
         subject.setColorTag(ColorTag.valueOf(cursor.getString(4)));
 

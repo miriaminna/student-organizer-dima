@@ -30,17 +30,38 @@ public class Database extends SQLiteOpenHelper {
     public static final String SIMPLE_TASK_POINTS = "_points";
     public static final String SIMPLE_TASK_PROGRESS = "_progress";
     public static final String SIMPLE_TASK_TARGET = "_target";
+    public static String[] SIMPLE_TASK_TABLE_COLUMNS = {
+            Database.SIMPLE_TASK_ID,
+            Database.SIMPLE_TASK_NAME,
+            Database.SIMPLE_TASK_SUBJECT_ID,
+            Database.SIMPLE_TASK_MULTI_TASK_ID,
+            Database.SIMPLE_TASK_DEADLINE,
+            Database.SIMPLE_TASK_POINTS,
+            Database.SIMPLE_TASK_PROGRESS,
+            Database.SIMPLE_TASK_TARGET
+    };
 
     // MULTI_TASKS column names
     public static final String MULTI_TASK_ID = "_id";
     public static final String MULTI_TASK_NAME = "_name";
     public static final String MULTI_TASK_SUBJECT_ID = "_subject_id";
+    public static String[] MULTI_TASK_TABLE_COLUMNS = {
+            Database.MULTI_TASK_ID,
+            Database.MULTI_TASK_NAME,
+            Database.MULTI_TASK_SUBJECT_ID
+    };
 
     // TEACHERS column names
     public static final String TEACHER_ID = "_id";
     public static final String TEACHER_NAME = "_name";
     public static final String TEACHER_TYPE = "_type";
     public static final String TEACHER_CONTACTS = "_contacts";
+    public static String[] TEACHER_TABLE_COLUMNS = {
+            Database.TEACHER_ID,
+            Database.TEACHER_NAME,
+            Database.TEACHER_TYPE,
+            Database.TEACHER_CONTACTS
+    };
 
     // SUBJECT column names
     public static final String SUBJECT_ID = "_id";
@@ -48,13 +69,22 @@ public class Database extends SQLiteOpenHelper {
     public static final String SUBJECT_TEACHER_ID = "_teacher_id";
     public static final String SUBJECT_TYPE = "_type";
     public static final String SUBJECT_COLOR = "_color";
+    public static String[] SUBJECT_TABLE_COLUMNS = {
+            Database.SUBJECT_ID,
+            Database.SUBJECT_NAME,
+            Database.SUBJECT_TEACHER_ID,
+            Database.SUBJECT_TYPE
+    };
 
     // CONTENTS column names
     public static final String CONTENT_ID = "_id";
-    // TODO: Make one column with id
-    public static final String CONTENT_SUBJECT_ID = "_subject_id";
-    public static final String CONTENT_TASK_ID = "_task_id";
-    public static final String CONTENT_TEST_ID = "_test_id";
+    public static final String CONTENT_PARENT_TYPE = "_parent_type";
+    public static final String CONTENT_PARENT_ID = "_parent_id";
+    public static String[] CONTENTS_TABLE_COLUMNS = {
+            Database.CONTENT_ID,
+            Database.CONTENT_PARENT_TYPE,
+            Database.CONTENT_PARENT_ID,
+    };
 
     // CONTENT_ITEMS column names
     public static final String CONTENT_ITEM_ID = "_id";
@@ -62,12 +92,25 @@ public class Database extends SQLiteOpenHelper {
     public static final String CONTENT_ITEM_TYPE = "_type";
     public static final String CONTENT_ITEM_SOURCE = "_source";
     public static final String CONTENT_ITEM_TEXT = "_text";
+    public static String[] CONTENT_ITEM_TABLE_COLUMNS = {
+            Database.CONTENT_ITEM_ID,
+            Database.CONTENT_ITEM_CONTENT_ID,
+            Database.CONTENT_ITEM_TYPE,
+            Database.CONTENT_ITEM_SOURCE,
+            Database.CONTENT_ITEM_TEXT
+    };
 
     // TESTS column names
     public static final String TEST_ID = "_id";
     public static final String TEST_TYPE = "_type";
     public static final String TEST_SUBJECT_ID = "_subject_id";
     public static final String TEST_DATE = "_date";
+    public static String[] TEST_TABLE_COLUMNS = {
+            Database.TEST_ID,
+            Database.TEST_TYPE,
+            Database.TEST_SUBJECT_ID,
+            Database.TEST_DATE
+    };
 
     // UNIVERSITY_SCHEDULE column names
     public static final String UNIVERSITY_SCHEDULE_ID = "_id";
@@ -75,12 +118,25 @@ public class Database extends SQLiteOpenHelper {
     public static final String UNIVERSITY_SCHEDULE_DAY = "_day";
     public static final String UNIVERSITY_SCHEDULE_START = "_start";
     public static final String UNIVERSITY_SCHEDULE_END = "_end";
+    public static String[] UNIVERSITY_SCHEDULE_COLUMNS = {
+            Database.UNIVERSITY_SCHEDULE_ID,
+            Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
+            Database.UNIVERSITY_SCHEDULE_DAY,
+            Database.UNIVERSITY_SCHEDULE_START,
+            Database.UNIVERSITY_SCHEDULE_END
+    };
 
     // STUDENT_SCHEDULE column names
     public static final String STUDENT_SCHEDULE_ID = "_id";
     public static final String STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID = "_university_schedule_id";
     public static final String STUDENT_SCHEDULE_SUBJECT_ID = "_subject_id";
     public static final String STUDENT_SCHEDULE_CLASSROOM = "_classroom";
+    public static String[] STUDENT_SCHEDULE_COLUMNS = {
+            Database.STUDENT_SCHEDULE_ID,
+            Database.STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID,
+            Database.STUDENT_SCHEDULE_SUBJECT_ID,
+            Database.STUDENT_SCHEDULE_CLASSROOM
+    };
 
     // Table Create Statements
 
@@ -119,9 +175,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CONTENTS =
             "create table " + CONTENTS + "("
             + CONTENT_ID + " integer primary key autoincrement, "
-            + CONTENT_SUBJECT_ID + " integer, "
-            + CONTENT_TASK_ID + " integer, "
-            + CONTENT_TEST_ID + " integer)";
+            + CONTENT_PARENT_TYPE + " text not null, "
+            + CONTENT_PARENT_ID + " integer)";
 
     private static final String CREATE_TABLE_CONTENT_ITEMS =
             "create table " + CONTENT_ITEMS + "("

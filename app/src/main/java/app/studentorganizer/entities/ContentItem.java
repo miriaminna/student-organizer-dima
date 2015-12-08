@@ -5,10 +5,8 @@ import app.studentorganizer.com.ContentType;
 /**
  * Created by dmytroberezin on 12/4/15.
  */
-public class ContentItem {
-    protected Integer mId;
-    protected Content mContent;
-    protected Integer mContentId;
+public class ContentItem extends IDable {
+    protected Long mContentId;
     protected ContentType mType;
     protected String mSource;
     protected String mText;
@@ -16,27 +14,11 @@ public class ContentItem {
     public ContentItem() {
     }
 
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
-    }
-
-    public Content getContent() {
-        return mContent;
-    }
-
-    public void setContent(Content content) {
-        mContent = content;
-    }
-
-    public Integer getContentId() {
+    public Long getContentId() {
         return mContentId;
     }
 
-    public void setContentId(Integer contentId) {
+    public void setContentId(Long contentId) {
         mContentId = contentId;
     }
 
@@ -63,5 +45,4 @@ public class ContentItem {
     public void setText(String text) {
         mText = text;
     }
-
 }

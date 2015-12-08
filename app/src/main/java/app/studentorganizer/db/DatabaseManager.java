@@ -1,30 +1,24 @@
 package app.studentorganizer.db;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DatabaseManager {
     private static Database mDatabaseHelper;
-    private static SQLiteDatabase mDatabase;
 
-    public static Database getDatabaseHelper() {
+    public static Database open(Context context) {
+        if (mDatabaseHelper == null) {
+            mDatabaseHelper = new Database(context);
+//            DBSeed.seed();
+        }
         return mDatabaseHelper;
     }
 
     public static SQLiteDatabase getDatabase() {
-        return mDatabase;
+        return mDatabaseHelper.getWritableDatabase();
     }
 
-    public DatabaseManager(Context context) {
-        mDatabaseHelper = new Database(context);
-    }
-
-    public void open() throws SQLException {
-        mDatabase = mDatabaseHelper.getWritableDatabase();
-    }
-
-    public void close() {
+    public static void close() {
         mDatabaseHelper.close();
     }
 }

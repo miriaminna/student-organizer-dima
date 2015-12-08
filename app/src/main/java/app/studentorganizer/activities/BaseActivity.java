@@ -11,8 +11,6 @@ import app.studentorganizer.R;
 import app.studentorganizer.db.DatabaseManager;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected DatabaseManager mDatabaseManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void initializeDB() {
-        mDatabaseManager = new DatabaseManager(this);
-        mDatabaseManager.open();
+        DatabaseManager.open(this.getApplicationContext());
         loadDataFromDB();
     }
 

@@ -12,30 +12,31 @@ import javax.security.auth.Subject;
  * Created by Vitalii on 23-Nov-15.
  */
 public class MultiTask extends Task {
-    private List<Task> mSubtasks;
+    private List<Long> mSubtasksIds;
 
     public MultiTask() {
     }
 
-    public List<Task> getSubtasks() {
-        return mSubtasks;
+    public List<Long> getSubtasksIds() {
+        return mSubtasksIds;
     }
 
-    public void setSubtasks(List<Task> subtasks) {
-        this.mSubtasks = subtasks;
+    public void setSubtasksIds(List<Long> subtasksIds) {
+        this.mSubtasksIds = subtasksIds;
     }
 
-    public void addSubtask(Task subtask) {
-        this.mSubtasks.add(subtask);
+    public void addSubtaskId(Long subtaskId) {
+        this.mSubtasksIds.add(subtaskId);
     }
 
+    // TODO: Fetch subtasks from DB
     @Override
     public Period getDue() {
         mDeadline = new LocalDate(Long.MAX_VALUE);
-        for (Task task : mSubtasks) {
-            if (task.getDeadline().compareTo(mDeadline) == -1 && !task.isCompleted()) {
-                mDeadline = task.getDeadline();
-            }
+        for (Long task : mSubtasksIds) {
+//            if (task.getDeadline().compareTo(mDeadline) == -1 && !task.isCompleted()) {
+//                mDeadline = task.getDeadline();
+//            }
         }
         return new Period(new LocalDate(), mDeadline);
     }
@@ -43,22 +44,22 @@ public class MultiTask extends Task {
     @Override
     public Integer getProgress() {
         this.mProgress = 0;
-        for (Task task : this.mSubtasks) {
-            this.mProgress += task.isCompleted() ? 1 : 0;
+        for (Long task : this.mSubtasksIds) {
+//            this.mProgress += task.isCompleted() ? 1 : 0;
         }
         return this.mProgress;
     }
 
     @Override
     public Integer getTarget() {
-        return this.mSubtasks.size();
+        return this.mSubtasksIds.size();
     }
 
     @Override
     public Double getPoints() {
         mPoints = .0;
-        for (Task task : mSubtasks) {
-            mPoints += task.getPoints();
+        for (Long task : mSubtasksIds) {
+//            mPoints += task.getPoints();
         }
         return mPoints;
     }

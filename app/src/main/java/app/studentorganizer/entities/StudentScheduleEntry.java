@@ -1,5 +1,7 @@
 package app.studentorganizer.entities;
 
+import android.content.Intent;
+
 import org.joda.time.LocalTime;
 
 import app.studentorganizer.entities.Subject;
@@ -7,56 +9,36 @@ import app.studentorganizer.entities.Subject;
 /**
  * Created by henko on 04.12.15.
  */
-public class StudentScheduleEntry {
-    protected Integer mId;
-    protected UnivScheduleEntry mUnivScheduleEntry;
-    protected Integer mUnivScheduleEntryId;
-    protected Subject mSubject;
-    protected int mSubjectId;
-    protected int mClassroom;
+public class StudentScheduleEntry extends IDable {
+    protected Long mUnivScheduleEntryId;
+    protected Long mSubjectId;
+    protected Integer mClassroom;
 
     public StudentScheduleEntry() {
     }
 
     public StudentScheduleEntry(
-            UnivScheduleEntry univScheduleEntry,
-            Subject subject,
+            Long univScheduleEntryId,
+            Long subjectId,
             int classroom) {
-        mUnivScheduleEntry = univScheduleEntry;
-        mSubject = subject;
-        mSubjectId = (mSubject == null) ? 0 : mSubject.getId();
+        mUnivScheduleEntryId = univScheduleEntryId;
+        mSubjectId = subjectId;
         mClassroom = classroom;
     }
 
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
-    }
-
-    public Integer getUnivScheduleEntryId() {
+    public Long getUnivScheduleEntryId() {
         return mUnivScheduleEntryId;
     }
 
-    public void setUnivScheduleEntryId(Integer univScheduleEntryId) {
+    public void setUnivScheduleEntryId(Long univScheduleEntryId) {
         mUnivScheduleEntryId = univScheduleEntryId;
     }
 
-    public UnivScheduleEntry getUnivScheduleEntry() {
-        return mUnivScheduleEntry;
-    }
-
-    public void setUnivScheduleEntry(UnivScheduleEntry univScheduleEntry) {
-        mUnivScheduleEntry = univScheduleEntry;
-    }
-
-    public int getSubjectId() {
+    public Long getSubjectId() {
         return mSubjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Long subjectId) {
         mSubjectId = subjectId;
     }
 
@@ -66,13 +48,5 @@ public class StudentScheduleEntry {
 
     public void setClassroom(int classroom) {
         mClassroom = classroom;
-    }
-
-    public Subject getSubject() {
-        return mSubject;
-    }
-
-    public void setSubject(Subject mSubject) {
-        this.mSubject = mSubject;
     }
 }

@@ -12,31 +12,15 @@ import app.studentorganizer.entities.Teacher;
 public class TeacherDAOTest extends BaseDAOTest<Teacher> {
     private static final List<Teacher> mTeachers = new ArrayList<>();
 
-    static {
-        Teacher teacher = new Teacher();
-        teacher.setId((int) getNewId());
-        teacher.setName("Oleksandr Galkin");
-        teacher.setType(TeacherType.DOCENT.toString());
-        teacher.setContacts("email:galkin@unicyb.kiev.ua\nskype:kvak313");
-        mTeachers.add(teacher);
-
-        teacher = new Teacher();
-        teacher.setId((int) getNewId());
-        teacher.setName("Oleksandr Maksymets");
-        teacher.setType(TeacherType.POSTGRADUATE.toString());
-        teacher.setContacts("email:maksymets@gmail.com");
-        mTeachers.add(teacher);
-    }
-
     @Override
     public List<Teacher> getAllEntities() {
         return mTeachers;
     }
 
     @Override
-    public Teacher getByID(long id) {
+    public Teacher getByID(Long id) {
         for (Teacher t: mTeachers) {
-            if (t.getId() == id) {
+            if (t.getId().equals(id)) {
                 return t;
             }
         }
@@ -54,9 +38,9 @@ public class TeacherDAOTest extends BaseDAOTest<Teacher> {
     }
 
     @Override
-    public boolean deleteEntity(long id) {
+    public boolean deleteEntity(Long id) {
         for (Teacher t: mTeachers) {
-            if (t.getId() == id) {
+            if (t.getId().equals(id)) {
                 mTeachers.remove(t);
                 return true;
             }
@@ -65,8 +49,8 @@ public class TeacherDAOTest extends BaseDAOTest<Teacher> {
     }
 
     @Override
-    public long addEntity(Teacher teacher) {
-        teacher.setId((int) getNewId());
+    public Long addEntity(Teacher teacher) {
+        teacher.setId(getNewId());
         mTeachers.add(teacher);
         System.out.println("Teachers: " + mTeachers.size());
         return teacher.getId();

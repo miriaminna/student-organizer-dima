@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import app.studentorganizer.R;
+import app.studentorganizer.db.DBSeed;
 
 public class DashboardActivity extends BaseActivity {
     @Override
@@ -56,6 +57,15 @@ public class DashboardActivity extends BaseActivity {
         TextView myScheduleButton = (TextView) findViewById(R.id.my_schedule);
 
         TextView UniversityScheduleButton = (TextView) findViewById(R.id.univ_schedule);
+
+        TextView SeedDatabase = (TextView) findViewById(R.id.seed);
+
+        SeedDatabase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBSeed.seed();
+            }
+        });
     }
 
 }

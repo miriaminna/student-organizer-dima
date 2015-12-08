@@ -8,14 +8,11 @@ import java.util.Objects;
 /**
  * Created by Vitalii on 23-Nov-15.
  */
-public class Task {
-    protected Integer mId;
-    protected Content mContent;
-    protected Subject mSubject;
-    protected Integer mSubjectId;
+public class Task extends IDable {
+    protected Long mContentId;
+    protected Long mSubjectId;
     protected String mName;
-    protected MultiTask mMultiTask;
-    protected Integer mMultiTaskId;
+    protected Long mMultiTaskId;
     protected Integer mProgress;
     protected Integer mTarget;
     protected Double mPoints;
@@ -24,49 +21,32 @@ public class Task {
     public Task() {
     }
 
-    public Task(Subject subject) {
-        mContent = new Content();
-        mSubject = subject;
-    }
-
-    public Integer getId() {
-        return mId;
-    }
-
-    public void setId(Integer id) {
-        mId = id;
-    }
-
-    public Integer getMultiTaskId() {
-        return mMultiTaskId;
-    }
-
-    public void setMultiTaskId(Integer multiTaskId) {
-        mMultiTaskId = multiTaskId;
-    }
-
-    public Integer getSubjectId() {
-        return mSubjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
+    public Task(Long subjectId) {
         mSubjectId = subjectId;
     }
 
-    public MultiTask getMultiTask() {
-        return mMultiTask;
+    public Long getMultiTaskId() {
+        return mMultiTaskId;
     }
 
-    public void setMultiTask(MultiTask multiTask) {
-        mMultiTask = multiTask;
+    public void setMultiTaskId(Long multiTaskId) {
+        mMultiTaskId = multiTaskId;
     }
 
-    public Content getContent() {
-        return mContent;
+    public Long getSubjectId() {
+        return mSubjectId;
     }
 
-    public void setContent(Content content) {
-        this.mContent = content;
+    public void setSubjectId(Long subjectId) {
+        mSubjectId = subjectId;
+    }
+
+    public Long getContentId() {
+        return mContentId;
+    }
+
+    public void setContentId(Long contentId) {
+        this.mContentId = contentId;
     }
 
     public String getName() {
@@ -111,14 +91,6 @@ public class Task {
 
     public LocalDate getDeadline() {
         return this.mDeadline;
-    }
-
-    public Subject getSubject() {
-        return mSubject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.mSubject = subject;
     }
 
     String getProgressString() {

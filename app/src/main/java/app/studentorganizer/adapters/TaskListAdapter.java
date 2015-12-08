@@ -61,8 +61,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Task task = mTasks.get(position);
 
-        holder.mCategoryIcon.setImageResource(
-                TaskUtil.getCategoryIconId(task.getSubject().getColorTag()));
+        // TODO: Fetch subject
+//        holder.mCategoryIcon.setImageResource(
+//                TaskUtil.getCategoryIconId(task.getSubject().getColorTag()));
         holder.mTaskName.setText(task.getName());
         holder.mCheckInDue.setText(TaskUtil.getCheckInDue(task.getDeadline(), mContext));
         holder.mTaskProgress.setText(
