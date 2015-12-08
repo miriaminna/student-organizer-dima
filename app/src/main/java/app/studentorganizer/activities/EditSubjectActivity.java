@@ -54,10 +54,10 @@ public class EditSubjectActivity extends BaseActivity {
         public void onClick(View v) {
             Subject subject = new Subject();
             subject.setName(((TextView) findViewById(R.id.name)).getText().toString());
-            subject.setType(SubjectType.parse(
+            subject.setType(SubjectType.valueOf(
                     ((Spinner) findViewById(R.id.subject_type)).
                             getSelectedItem().toString()));
-            subject.setColorTag(ColorTag.parse(
+            subject.setColorTag(ColorTag.valueOf(
                     ((Spinner) findViewById(R.id.subject_color_tag)).
                             getSelectedItem().toString()));
 

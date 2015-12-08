@@ -25,18 +25,4 @@ public enum ColorTag {
         }
     };
     public abstract int getDrawableId();
-
-    // fixme : bad style - hardcoded strings
-    public static ColorTag parse(String string) {
-        switch (string) {
-            case "ORANGE":
-                return ORANGE;
-            case "BLUE":
-                return BLUE;
-            case "GREEN":
-                return GREEN;
-            default:
-                return null;
-        }
-    }
 }

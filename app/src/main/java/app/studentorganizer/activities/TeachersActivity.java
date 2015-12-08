@@ -12,7 +12,6 @@ import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TeachersListAdapter;
-import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.entities.Teacher;
 
 public class TeachersActivity extends BaseListActivity {
@@ -61,7 +60,7 @@ public class TeachersActivity extends BaseListActivity {
     }
 
     public void onTeacherNew(View v) {
-        Intent intent = new Intent(this, NewTeacherActivity.class);
+        Intent intent = new Intent(this, EditTeacherActivity.class);
         startActivity(intent);
     }
 }

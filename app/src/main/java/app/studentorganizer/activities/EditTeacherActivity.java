@@ -1,6 +1,5 @@
 package app.studentorganizer.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,7 +14,7 @@ import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Teacher;
 
-public class NewTeacherActivity extends BaseActivity {
+public class EditTeacherActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class NewTeacherActivity extends BaseActivity {
 
     @Override
     public int getContentView() {
-        return R.layout.new_teacher_layout;
+        return R.layout.teacher_edit_layout;
     }
 
     @Override

@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.TeacherActivity"></activity>
-        <activity android:name=".activities.NewTeacherActivity"></activity>
+        <activity android:name=".activities.EditTeacherActivity"></activity>
         <activity android:name=".activities.EditSubjectActivity"></activity>
     </application>
 
