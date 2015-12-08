@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.studentorganizer">
+    package="app.studentorganizer" >
 
     <uses-sdk android:minSdkVersion="21" />
 
@@ -16,10 +16,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.DashboardActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,17 +32,19 @@
         <activity
             android:name=".activities.TeachersActivity"
             android:label="@string/teachers" />
-        <activity android:name=".activities.SubjectActivity"></activity>
-        <activity android:name=".activities.SubjectListActivity">
+        <activity android:name=".activities.SubjectActivity" />
+        <activity android:name=".activities.SubjectListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TeacherActivity"></activity>
-        <activity android:name=".activities.EditTeacherActivity"></activity>
-        <activity android:name=".activities.EditSubjectActivity"></activity>
+        <activity android:name=".activities.TeacherActivity" />
+        <activity android:name=".activities.EditTeacherActivity" />
+        <activity android:name=".activities.EditSubjectActivity" />
+        <activity android:name=".activities.UniScheduleActivity" >
+        </activity>
     </application>
 
 </manifest>

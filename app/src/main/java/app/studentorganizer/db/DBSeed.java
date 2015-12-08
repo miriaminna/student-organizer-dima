@@ -1,16 +1,19 @@
 package app.studentorganizer.db;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.DayConstants;
 import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
+import app.studentorganizer.entities.UnivScheduleEntry;
 
 /**
  * Created by Vitalii on 08-Dec-15.
@@ -20,6 +23,7 @@ public class DBSeed {
         seedTeachers();
         seedTasks();
         seedSubjects();
+        seedUniSchedule();
     }
 
     public static void seedTeachers() {
@@ -83,5 +87,23 @@ public class DBSeed {
         subject.setTeacherId(2L);
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
+    }
+
+    private static void seedUniSchedule() {
+        UnivScheduleEntry univSchedule = new UnivScheduleEntry();
+        univSchedule.setDay(DayConstants.MONDAY);
+        univSchedule.setLessonNumber(1);
+        univSchedule.setStart(new LocalTime(8, 40));
+        univSchedule.setEnd(new LocalTime(10, 15));
+
+        DBFactory.getFactory().getUnivScheduleDAO().addEntity(univSchedule);
+
+        univSchedule = new UnivScheduleEntry();
+        univSchedule.setDay(DayConstants.MONDAY);
+        univSchedule.setLessonNumber(2);
+        univSchedule.setStart(new LocalTime(10, 35));
+        univSchedule.setEnd(new LocalTime(12, 10));
+
+        DBFactory.getFactory().getUnivScheduleDAO().addEntity(univSchedule);
     }
 }

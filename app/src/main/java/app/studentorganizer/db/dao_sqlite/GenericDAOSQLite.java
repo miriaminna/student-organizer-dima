@@ -58,11 +58,13 @@ public abstract class GenericDAOSQLite<Entity extends IDable> implements Generic
 
     @Override
     public Long addEntity(Entity entity) {
-        return DatabaseManager.getDatabase().insert(
+        Long id = DatabaseManager.getDatabase().insert(
                 getTableName(),
                 null,
                 setValues(entity)
         );
+        entity.setId(id);
+        return id;
     }
 
     protected List<Entity> getListFromCursor(Cursor cursor) {

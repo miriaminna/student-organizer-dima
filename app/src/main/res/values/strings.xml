@@ -41,4 +41,6 @@
     <string name="delete">Delete</string>
     <string name="add">Add</string>
     <string name="add_delete_contact">Add/Delete Contact</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>

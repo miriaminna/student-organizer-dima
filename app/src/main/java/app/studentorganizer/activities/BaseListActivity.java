@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import app.studentorganizer.R;
+import app.studentorganizer.decorations.BaseItemDecoration;
 
 public abstract class BaseListActivity extends BaseActivity {
     protected RecyclerView mRecyclerView;
@@ -30,6 +31,8 @@ public abstract class BaseListActivity extends BaseActivity {
     }
 
     protected abstract RecyclerView.Adapter initializeAdapter();
-    protected abstract RecyclerView.ItemDecoration initializeDecoration();
+    protected RecyclerView.ItemDecoration initializeDecoration() {
+        return new BaseItemDecoration(this, R.drawable.list_items_divider);
+    }
     public abstract int getListView();
 }

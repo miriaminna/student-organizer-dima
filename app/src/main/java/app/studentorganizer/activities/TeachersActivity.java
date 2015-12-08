@@ -47,11 +47,6 @@ public class TeachersActivity extends BaseListActivity {
     }
 
     @Override
-    protected RecyclerView.ItemDecoration initializeDecoration() {
-        return new BaseItemDecoration(this, R.drawable.list_items_divider);
-    }
-
-    @Override
     public int getContentView() {
         return R.layout.teachers;
     }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        style="@style/ListItem.FirstLine"
+        android:id="@+id/pair_num"
+        android:text="Pair 1: "
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        style="@style/EditText"
+        android:id="@+id/pair_start"
+        android:layout_width="60dp"
+        android:text="08:40"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/pair_num"/>
+
+    <TextView
+        style="@style/ListItem.FirstLine"
+        android:id="@+id/dash1"
+        android:text="-"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_alignTop="@+id/pair_start"
+        android:layout_toEndOf="@+id/pair_start"/>
+
+    <TextView
+        style="@style/EditText"
+        android:id="@+id/pair_end"
+        android:layout_width="60dp"
+        android:text="10:15"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/dash1"/>
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="X"
+        android:textSize="20sp"
+        android:id="@+id/button_delete"
+        android:layout_alignBottom="@+id/dash1"
+        android:layout_toEndOf="@+id/pair_end"
+        android:layout_marginStart="35dp" />
+</RelativeLayout>

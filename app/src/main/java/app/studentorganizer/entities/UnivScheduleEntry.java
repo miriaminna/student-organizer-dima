@@ -14,6 +14,8 @@ public class UnivScheduleEntry extends IDable {
     protected LocalTime mEnd;
 
     public UnivScheduleEntry() {
+        mStart = new LocalTime();
+        mEnd = new LocalTime();
     }
 
     public UnivScheduleEntry(Long id, int day, int lessonNumber,
