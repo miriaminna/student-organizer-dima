@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="Teacher Name:"/>
+                android:text="@string/teacher_name"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="Teacher's Degree:"/>
+                android:text="@string/teacher_degree"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

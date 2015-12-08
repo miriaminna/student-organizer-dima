@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">StudentOrganizer</string>
-    <string name="teachers">Teachers</string>
-    <string name="subjects">Subjects</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -26,4 +24,15 @@
     <string name="subject_tag_hint">Subject color tag:</string>
 
     <string name="save">Save</string>
+
+    <!-- Dashboard strings -->
+    <string name="tasks">Tasks</string>
+    <string name="teachers">Teachers</string>
+    <string name="subjects">Subjects</string>
+    <string name="marks">Marks</string>
+    <string name="my_schedule">My Schedule</string>
+    <string name="uni_schedule">University Schedule</string>
+    <string name="seed_database">Seed Database</string>
+    <string name="teacher_name">Teacher Name:</string>
+    <string name="teacher_degree">Teacher\'s Degree:</string>
 </resources>

@@ -25,31 +25,31 @@
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/tasks"
-                android:text="Tasks"/>
+                android:text="@string/tasks"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/subjects"
-                android:text="Subjects"/>
+                android:text="@string/subjects"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/teachers"
-                android:text="Teachers"/>
+                android:text="@string/teachers"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/marks"
-                android:text="Marks"/>
+                android:text="@string/marks"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/my_schedule"
-                android:text="My Schedule"/>
+                android:text="@string/my_schedule"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/univ_schedule"
-                android:text="University Schedule"/>
+                android:text="@string/uni_schedule"/>
             <TextView
                 style="@style/DashboardButtonText"
                 android:id="@+id/seed"
-                android:text="Seed Database"/>
+                android:text="@string/seed_database"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
