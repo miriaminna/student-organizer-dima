@@ -10,6 +10,7 @@ import app.studentorganizer.db.dao_sqlite.TaskDAOSQLite;
 import app.studentorganizer.db.dao_sqlite.TeacherDAOSQLite;
 import app.studentorganizer.db.dao_sqlite.TestDAOSQLite;
 import app.studentorganizer.db.dao_sqlite.UniversityScheduleDAOSQLite;
+import app.studentorganizer.db.dao_test.SubjectDAOTest;
 import app.studentorganizer.db.dao_test.TaskDAOTest;
 import app.studentorganizer.db.dao_test.TeacherDAOTest;
 import app.studentorganizer.entities.Content;
@@ -77,7 +78,8 @@ public class DBFactory {
 
     public synchronized GenericDAO<Subject> getSubjectDAO() {
         if (mSubjectDAO == null) {
-            mSubjectDAO = new SubjectDAOSQLite();
+            //mSubjectDAO = new SubjectDAOSQLite();
+            mSubjectDAO = new SubjectDAOTest();
         }
         return mSubjectDAO;
     }
