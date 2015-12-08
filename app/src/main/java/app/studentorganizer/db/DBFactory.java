@@ -84,8 +84,8 @@ public class DBFactory {
 
     public synchronized GenericDAO<Task> getTaskDAO() {
         if (mTaskDAO == null) {
-//            mTaskDAO = new TaskDAOSQLite();
-            mTaskDAO = new TaskDAOTest();
+            mTaskDAO = new TaskDAOSQLite();
+//            mTaskDAO = new TaskDAOTest();
         }
         return mTaskDAO;
     }
