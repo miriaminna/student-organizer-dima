@@ -78,4 +78,9 @@ public class Teacher extends IDable {
         }
         return string.toString();
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

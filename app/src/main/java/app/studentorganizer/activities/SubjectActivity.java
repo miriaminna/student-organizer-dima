@@ -60,11 +60,9 @@ public class SubjectActivity extends BaseActivity {
         ((TextView) findViewById(R.id.type)).setText(mSubject.getType().getStringId());
 
         // If no teacher provided display default teacher
-        if (mSubject.getTeacher() != null) {
-            // TODO: Fetch Teacher
+        // TODO: Fetch Teacher
 //            ((TextView) findViewById(R.id.teacher_name)).setText(mSubject.getTeacher().getName());
 //            ((TextView) findViewById(R.id.teacher_type)).setText(mSubject.getTeacher().getType());
-        }
 
         // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

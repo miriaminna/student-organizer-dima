@@ -7,12 +7,15 @@ import org.joda.time.LocalDate;
 
 import app.studentorganizer.com.TestType;
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.TestDAO;
 import app.studentorganizer.entities.Test;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class TestDAOSQLite extends GenericDAOSQLite<Test> {
+public class TestDAOSQLite
+        extends GenericDAOSQLite<Test>
+        implements TestDAO {
 
     @Override
     public String[] getTableColumns() {

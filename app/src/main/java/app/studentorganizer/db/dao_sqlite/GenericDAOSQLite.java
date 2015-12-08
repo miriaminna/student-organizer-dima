@@ -17,20 +17,12 @@ import app.studentorganizer.entities.IDable;
 public abstract class GenericDAOSQLite<Entity extends IDable> implements GenericDAO<Entity> {
     @Override
     public List<Entity> getAllEntities() {
-        ArrayList<Entity> entities = new ArrayList<>();
-
         Cursor cursor = DatabaseManager.getDatabase().query(
                 getTableName(),
                 getTableColumns(),
                 null, null, null, null, null);
-        cursor.moveToFirst();
 
-        while (!cursor.isAfterLast()) {
-            entities.add(parseEntity(cursor));
-            cursor.moveToNext();
-        }
-
-        return entities;
+        return getListFromCursor(cursor);
     }
 
     @Override
@@ -60,7 +52,7 @@ public abstract class GenericDAOSQLite<Entity extends IDable> implements Generic
         return DatabaseManager.getDatabase().delete(
                 getTableName(),
                 getTableIDColumn() + " = ? ",
-                new String[] { id.toString() }
+                new String[]{id.toString()}
         ) != 0;
     }
 
@@ -71,6 +63,17 @@ public abstract class GenericDAOSQLite<Entity extends IDable> implements Generic
                 null,
                 setValues(entity)
         );
+    }
+
+    protected List<Entity> getListFromCursor(Cursor cursor) {
+        ArrayList<Entity> entities = new ArrayList<>();
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            entities.add(parseEntity(cursor));
+            cursor.moveToNext();
+        }
+        return entities;
     }
 
     public abstract String[] getTableColumns();

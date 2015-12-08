@@ -15,6 +15,7 @@ public class MultiTask extends Task {
     private List<Long> mSubtasksIds;
 
     public MultiTask() {
+        mSubtasksIds = new ArrayList<>();
     }
 
     public List<Long> getSubtasksIds() {
@@ -62,5 +63,10 @@ public class MultiTask extends Task {
 //            mPoints += task.getPoints();
         }
         return mPoints;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " (multi)";
     }
 }

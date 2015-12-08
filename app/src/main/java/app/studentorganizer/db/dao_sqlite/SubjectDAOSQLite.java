@@ -10,12 +10,15 @@ import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.db.Database;
 import app.studentorganizer.db.DatabaseManager;
+import app.studentorganizer.db.dao.SubjectDAO;
 import app.studentorganizer.entities.Subject;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class SubjectDAOSQLite extends GenericDAOSQLite<Subject> {
+public class SubjectDAOSQLite
+        extends GenericDAOSQLite<Subject>
+        implements SubjectDAO {
 
     @Override
     public String[] getTableColumns() {
@@ -50,5 +53,17 @@ public class SubjectDAOSQLite extends GenericDAOSQLite<Subject> {
         values.put(Database.SUBJECT_COLOR, subject.getColorTag().name());
 
         return values;
+    }
+
+    @Override
+    public List<Subject> getByTeacherId(Long teacherId) {
+        Cursor cursor = DatabaseManager.getDatabase().query(
+                getTableName(),
+                getTableColumns(),
+                Database.SUBJECT_TEACHER_ID + " = ? ",
+                new String[] { teacherId.toString() },
+                null, null, null);
+
+        return getListFromCursor(cursor);
     }
 }

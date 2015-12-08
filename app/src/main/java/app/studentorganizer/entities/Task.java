@@ -100,4 +100,9 @@ public class Task extends IDable {
     Boolean isCompleted() {
         return mProgress.equals(mTarget);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

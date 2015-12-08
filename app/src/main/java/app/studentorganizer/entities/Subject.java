@@ -81,19 +81,16 @@ public class Subject extends IDable {
         this.mTestsIds = testsIds;
     }
 
-    public Long getTeacher() {
-        return mTeacherId;
-    }
-
-    public void setTeacher(Long teacher) {
-        this.mTeacherId = teacher;
-    }
-
     public void addTestId(Long testId) {
         mTestsIds.add(testId);
     }
 
     public void addTaskId(Long taskId) {
         mTasksIds.add(taskId);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

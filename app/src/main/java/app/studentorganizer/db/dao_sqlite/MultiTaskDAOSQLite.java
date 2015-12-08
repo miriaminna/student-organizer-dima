@@ -4,12 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.MultiTaskDAO;
 import app.studentorganizer.entities.MultiTask;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class MultiTaskDAOSQLite extends GenericDAOSQLite<MultiTask> {
+public class MultiTaskDAOSQLite
+        extends GenericDAOSQLite<MultiTask>
+        implements MultiTaskDAO {
 
     @Override
     public String[] getTableColumns() {

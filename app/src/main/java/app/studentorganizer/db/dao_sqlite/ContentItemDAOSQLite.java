@@ -5,13 +5,16 @@ import android.database.Cursor;
 
 import app.studentorganizer.com.ContentType;
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.ContentItemDAO;
 import app.studentorganizer.db.dao.GenericDAO;
 import app.studentorganizer.entities.ContentItem;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class ContentItemDAOSQLite extends GenericDAOSQLite<ContentItem> {
+public class ContentItemDAOSQLite
+        extends GenericDAOSQLite<ContentItem>
+        implements ContentItemDAO {
 
     @Override
     public String[] getTableColumns() {

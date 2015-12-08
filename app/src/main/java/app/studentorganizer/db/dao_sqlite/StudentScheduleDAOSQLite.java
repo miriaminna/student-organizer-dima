@@ -4,12 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.StudentScheduleDAO;
 import app.studentorganizer.entities.StudentScheduleEntry;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class StudentScheduleDAOSQLite extends GenericDAOSQLite<StudentScheduleEntry> {
+public class StudentScheduleDAOSQLite
+        extends GenericDAOSQLite<StudentScheduleEntry>
+        implements StudentScheduleDAO {
 
     @Override
     public String[] getTableColumns() {

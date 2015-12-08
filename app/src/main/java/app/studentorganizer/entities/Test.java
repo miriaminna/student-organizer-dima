@@ -15,7 +15,6 @@ public class Test extends IDable {
     protected TestType mTestType;
 
     public Test() {
-
     }
 
     public TestType getTestType() {
@@ -56,5 +55,10 @@ public class Test extends IDable {
 
     public void setPoints(Double points) {
         this.mPoints = points;
+    }
+
+    @Override
+    public String toString() {
+        return getTestType().toString();
     }
 }

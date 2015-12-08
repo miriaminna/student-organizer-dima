@@ -6,13 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.db.dao.TaskDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class TaskDAOTest extends BaseDAOTest<Task> {
+public class TaskDAOTest
+        extends BaseDAOTest<Task>
+        implements TaskDAO {
+
     private static final List<Task> mTasks = new ArrayList<>();
 
     @Override
@@ -33,7 +37,7 @@ public class TaskDAOTest extends BaseDAOTest<Task> {
     @Override
     public boolean updateEntity(Task task) {
         for (Task t: mTasks) {
-            if (t.getId() == id) {
+            if (t.getId().equals(task.getId())) {
                 t.setProgress(task.getProgress());
                 return true;
             }

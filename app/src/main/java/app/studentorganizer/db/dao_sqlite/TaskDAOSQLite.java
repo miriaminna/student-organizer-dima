@@ -8,13 +8,16 @@ import org.joda.time.LocalDate;
 
 import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.TaskDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class TaskDAOSQLite extends GenericDAOSQLite<Task> {
+public class TaskDAOSQLite
+        extends GenericDAOSQLite<Task>
+        implements TaskDAO {
     @Override
     public String[] getTableColumns() {
         return Database.SIMPLE_TASK_TABLE_COLUMNS;

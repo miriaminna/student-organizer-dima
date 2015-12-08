@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.com.TeacherType;
+import app.studentorganizer.db.dao.TeacherDAO;
 import app.studentorganizer.entities.Teacher;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class TeacherDAOTest extends BaseDAOTest<Teacher> {
+public class TeacherDAOTest
+        extends BaseDAOTest<Teacher>
+        implements TeacherDAO {
+
     private static final List<Teacher> mTeachers = new ArrayList<>();
 
     @Override

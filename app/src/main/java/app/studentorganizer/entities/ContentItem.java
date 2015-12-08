@@ -11,9 +11,6 @@ public class ContentItem extends IDable {
     protected String mSource;
     protected String mText;
 
-    public ContentItem() {
-    }
-
     public Long getContentId() {
         return mContentId;
     }
@@ -44,5 +41,10 @@ public class ContentItem extends IDable {
 
     public void setText(String text) {
         mText = text;
+    }
+
+    @Override
+    public String toString() {
+        return getType().toString();
     }
 }

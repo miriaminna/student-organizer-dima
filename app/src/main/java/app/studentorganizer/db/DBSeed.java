@@ -63,6 +63,7 @@ public class DBSeed {
         subject.setName("Object-oriented programming");
         subject.setType(SubjectType.EXAM);
         subject.setColorTag(ColorTag.BLUE);
+        subject.setTeacherId(0L);
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
 
@@ -70,6 +71,7 @@ public class DBSeed {
         subject.setName("Mathematical Analysis");
         subject.setType(SubjectType.CREDIT);
         subject.setColorTag(ColorTag.GREEN);
+        subject.setTeacherId(1L);
 //        subject.setTasks(DBFactory.getFactory().getTaskDAO().getAllEntities());
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
@@ -78,6 +80,7 @@ public class DBSeed {
         subject.setName("Probability Theory");
         subject.setType(SubjectType.EXAM);
         subject.setColorTag(ColorTag.ORANGE);
+        subject.setTeacherId(2L);
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
     }

@@ -22,6 +22,14 @@ public class TeachersActivity extends BaseListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mTeachers = new ArrayList<>();
         super.onCreate(savedInstanceState);
+
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeachersActivity.this, EditTeacherActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,10 +65,5 @@ public class TeachersActivity extends BaseListActivity {
     @Override
     public int getListView() {
         return R.id.teachers_list;
-    }
-
-    public void onTeacherNew(View v) {
-        Intent intent = new Intent(this, EditTeacherActivity.class);
-        startActivity(intent);
     }
 }

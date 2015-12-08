@@ -6,12 +6,15 @@ import android.database.Cursor;
 import org.joda.time.LocalTime;
 
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.UniversityScheduleDAO;
 import app.studentorganizer.entities.UnivScheduleEntry;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class UniversityScheduleDAOSQLite extends GenericDAOSQLite<UnivScheduleEntry> {
+public class UniversityScheduleDAOSQLite
+        extends GenericDAOSQLite<UnivScheduleEntry>
+        implements UniversityScheduleDAO {
 
     @Override
     public String[] getTableColumns() {

@@ -12,7 +12,6 @@ import app.studentorganizer.com.ContentParent;
 public class Content extends IDable {
     protected List<String> mFiles;
     protected List<String> mLiterature;
-
     protected ContentParent mParentType;
     protected Long mParentId;
 
@@ -59,5 +58,11 @@ public class Content extends IDable {
 
     public void addLiterature(String lit) {
         mLiterature.add(lit);
+    }
+
+
+    @Override
+    public String toString() {
+        return getParentType().toString() + "'s content";
     }
 }

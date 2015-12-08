@@ -7,11 +7,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import app.studentorganizer.R;
 import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.com.TeacherUtil;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.db.DatabaseManager;
+import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Teacher;
 
 public class TeacherActivity extends BaseActivity {
@@ -31,10 +36,11 @@ public class TeacherActivity extends BaseActivity {
         ((TextView)findViewById(R.id.teacher_name)).setText(mTeacher.getName());
         ((TextView)findViewById(R.id.teacher_type)).setText(mTeacher.getType().toString());
 
-
-//        ((TextView)findViewById(R.id.subject_names)).setText(getString(R.string.subjects)
-//                + ": " + mTeacher.getSubjects().toString());
-        ((TextView)findViewById(R.id.contact_list)).setText(mTeacher.getContactsAsString());
+        List<Subject> subjects = DBFactory.getFactory().getSubjectDAO()
+                .getByTeacherId(mTeacher.getId());
+        ((TextView) findViewById(R.id.subject_names)).setText(getString(R.string.subjects)
+                + ": " + subjects.toString());
+                ((TextView) findViewById(R.id.contact_list)).setText(mTeacher.getContactsAsString());
     }
 
     @Override

@@ -57,4 +57,9 @@ public class UnivScheduleEntry extends IDable {
     public void setEnd(LocalTime snd) {
         this.mEnd = snd;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

@@ -5,12 +5,15 @@ import android.database.Cursor;
 
 import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.dao.TeacherDAO;
 import app.studentorganizer.entities.Teacher;
 
 /**
  * Created by Vitalii on 07-Dec-15.
  */
-public class TeacherDAOSQLite extends GenericDAOSQLite<Teacher> {
+public class TeacherDAOSQLite
+        extends GenericDAOSQLite<Teacher>
+        implements TeacherDAO {
 
     @Override
     public String[] getTableColumns() {
