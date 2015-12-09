@@ -20,7 +20,7 @@ public class EditTeacherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.save_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Teacher teacher = new Teacher();

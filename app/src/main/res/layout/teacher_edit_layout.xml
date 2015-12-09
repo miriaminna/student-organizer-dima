@@ -58,12 +58,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/teacher_type"
                 android:entries="@array/degrees"
-                android:layout_marginLeft="24dp" />
+                android:layout_marginStart="24dp" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/save_button"
+                android:text="@string/save"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
     </ScrollView>
-
-    <include layout="@layout/action_button"/>
 
 </RelativeLayout>
