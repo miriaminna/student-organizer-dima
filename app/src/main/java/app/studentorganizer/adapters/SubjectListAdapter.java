@@ -62,12 +62,16 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
             mType = (TextView) itemView.findViewById(R.id.type);
             mDeleteButton = (ImageButton) itemView.findViewById(R.id.subject_delete);
 
-            mDeleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SubjectListAdapter.this.mListener.onDelete(mSubjectId);
-                }
-            });
+            if (mListener != null) {
+                mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SubjectListAdapter.this.mListener.onDelete(mSubjectId);
+                    }
+                });
+            } else {
+                mDeleteButton.setVisibility(View.GONE);
+            }
         }
     }
 

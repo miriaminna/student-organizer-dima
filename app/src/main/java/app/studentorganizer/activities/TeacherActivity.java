@@ -62,7 +62,7 @@ public class TeacherActivity extends BaseListActivity {
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mAdapter = new SubjectListAdapter(this, mSubjects);
+        mAdapter = new SubjectListAdapter(this, mSubjects, null);
         return mAdapter;
     }
 
