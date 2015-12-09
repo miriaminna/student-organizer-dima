@@ -20,7 +20,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageButton
             style="@style/ListItem.Avatar"
@@ -50,64 +51,63 @@
             layout="@layout/teacher_item"
             android:layout_below="@id/category_icon"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/teacher_view"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:background="@color/white">
             <LinearLayout
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <TextView
-                style="@style/ListItem.FirstLine"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Tasks"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="24dp"
-                android:gravity="center"
-                android:id="@+id/tasks"
-                android:textColor="@color/white"
-                android:background="@drawable/square_boards_blue"
-                android:layout_below="@+id/teacher_type"
-                android:layout_alignParentStart="true"/>
                 <TextView
-                    style="@style/ListItem.FirstLine"
-                    android:layout_width="100dp"
-                    android:layout_marginTop="0dp"
+                    style="@style/DashboardButtonText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Materials"
-                    android:gravity="center"
-                    android:id="@+id/materials"
-                    android:textColor="@color/white"
-                    android:background="@drawable/square_boards_blue"
-                    android:layout_below="@+id/teacher_type"
+                    android:text="Tasks"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="0dp"
+                    android:id="@+id/tasks"
+                    android:background="@drawable/dashboard_button_background"
                     android:layout_alignParentStart="true"/>
                 <TextView
-                    style="@style/ListItem.FirstLine"
+                    style="@style/DashboardButtonText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Materials"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:id="@+id/materials"
+                    android:background="@drawable/dashboard_button_background"
+                    android:layout_alignParentStart="true"/>
+                <TextView
+                    style="@style/DashboardButtonText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Tests"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="24dp"
-                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/tests"
-                    android:textColor="@color/white"
-                    android:background="@drawable/square_boards_blue"
-                    android:layout_below="@+id/teacher_type"
+                    android:background="@drawable/dashboard_button_background"
                     android:layout_alignParentStart="true"/>
             </LinearLayout>
 
             <!--<include layout="@layout/list_mock"/>-->
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/goals_list"
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
+                android:layout_below="@+id/tabs"
                 android:paddingBottom="80dp"
                 android:clipToPadding="false"/>
-        </LinearLayout>
+
+            <include layout="@layout/action_button"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 
