@@ -11,6 +11,13 @@
         <item>CREDIT</item>
     </string-array>
 
+
+    <string-array name="test_type">
+        <item>CREDIT</item>
+        <item>EXAM</item>
+        <item>MODULE</item>
+    </string-array>
+
     <string-array name="subject_color_tag">
         <item>ORANGE</item>
         <item>BLUE</item>

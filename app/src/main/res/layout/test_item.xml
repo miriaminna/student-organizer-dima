@@ -12,17 +12,17 @@
 
     <TextView
         style="@style/ListItem.FirstLine"
-        android:id="@+id/task_name"
-        android:text="Programming - labs"
+        android:id="@+id/test_name"
+        android:text="Algebra test"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/category_icon"/>
 
     <TextView
         style="@style/ListItem.SecondLine"
-        android:id="@+id/task_deadline"
+        android:id="@+id/test_type"
         android:textColor="@color/grey"
-        android:text="Dues in 3 months"
-        android:layout_below="@id/task_name"
+        android:text="Exam, 12.05.2015"
+        android:layout_below="@id/test_name"
         android:layout_toEndOf="@+id/category_icon" />
 
 
@@ -54,7 +54,7 @@
         android:progressDrawable="@drawable/progress_bar_drawable"
         android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/task_deadline"
-        android:layout_alignStart="@+id/task_deadline"/>
+        android:layout_below="@+id/test_type"
+        android:layout_alignStart="@+id/test_type"/>
 
 </RelativeLayout>

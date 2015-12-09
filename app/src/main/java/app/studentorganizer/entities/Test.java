@@ -10,7 +10,8 @@ import app.studentorganizer.com.TestType;
 public class Test extends IDable {
     protected LocalDate mDate;
     protected Long mContentId;
-    protected Double mPoints;
+    protected Integer mResult;
+    protected Integer mPoints;
     protected Long mSubjectId;
     protected TestType mTestType;
 
@@ -49,12 +50,20 @@ public class Test extends IDable {
         this.mContentId = contentId;
     }
 
-    public Double getPoints() {
+    public Integer getPoints() {
         return mPoints;
     }
 
-    public void setPoints(Double points) {
+    public void setPoints(Integer points) {
         this.mPoints = points;
+    }
+
+    public Integer getResult() {
+        return mResult;
+    }
+
+    public void setResult(Integer result) {
+        mResult = result;
     }
 
     @Override

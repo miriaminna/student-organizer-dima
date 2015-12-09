@@ -15,43 +15,46 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.studentorganizer.OnTaskCheckedInListener;
+import app.studentorganizer.OnTestCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.com.TaskUtil;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Task;
+import app.studentorganizer.entities.Test;
 
-public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
+public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<Task> mTasks;
+    private List<Test> mTests;
 
-    public TaskListAdapter(List<Task> tasks, Context context) {
+    public TestListAdapter(List<Test> tests, Context context) {
         mContext = context;
-        mTasks = tasks;
+        mTests = tests;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageButton mCategoryIcon;
-        public TextView mTaskName;
-        public TextView mCheckInDue;
-        public TextView mTaskProgress;
+        public TextView mTestName;
+        public TextView mTestType;
+        public TextView mTestProgress;
         public ImageButton mCheckInButton;
         public ProgressBar mProgressBar;
 
         public ViewHolder(View v) {
             super(v);
             mCategoryIcon = (ImageButton)v.findViewById(R.id.category_icon);
-            mTaskName = (TextView)v.findViewById(R.id.task_name);
-            mCheckInDue = (TextView)v.findViewById(R.id.task_deadline);
-            mTaskProgress = (TextView)v.findViewById(R.id.task_progress);
+            mTestName = (TextView)v.findViewById(R.id.test_name);
+            mTestType = (TextView)v.findViewById(R.id.test_type);
+            mTestProgress = (TextView)v.findViewById(R.id.task_progress);
             mCheckInButton = (ImageButton)v.findViewById(R.id.check_in_button);
             mProgressBar = (ProgressBar)v.findViewById(R.id.progressBar);
         }
     }
 
     @Override
-    public TaskListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TestListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.list_item,
+                R.layout.test_item,
                 parent,
                 false);
         return new ViewHolder(v);
@@ -59,17 +62,19 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Task task = mTasks.get(position);
+        final Test test = mTests.get(position);
 
         // TODO: Fetch subject
 //        holder.mCategoryIcon.setImageResource(
 //                TaskUtil.getCategoryIconId(task.getSubject().getColorTag()));
-        holder.mTaskName.setText(task.getName());
-        holder.mCheckInDue.setText(TaskUtil.getCheckInDue(task.getDeadline(), mContext));
-        holder.mTaskProgress.setText(
-                String.valueOf(task.getProgress() + " / " + task.getTarget()));
+        holder.mTestName.setText(
+                DBFactory.getFactory().getSubjectDAO().getByID(test.getSubjectId()).getName()
+                + " test");
+        holder.mTestType.setText(test.getTestType().name() + ", " + test.getDate().toString());
+        holder.mTestProgress.setText(
+                String.valueOf(test.getResult() + " / " + test.getPoints()));
         holder.mProgressBar.setProgress(
-                (int) (((1.0 * task.getProgress()) / task.getTarget()) * 100));
+                (int) (((1.0 * test.getResult()) / test.getPoints()) * 100));
         holder.mProgressBar.setProgressDrawable(
                 mContext.getDrawable(R.drawable.progress_bar_drawable));
         holder.mCheckInButton.setOnClickListener(
@@ -96,13 +101,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                                 (TextView) dView.findViewById(R.id.progress_value_right);
 
                         leftValue.setText("0");
-                        rightValue.setText(String.valueOf(task.getTarget()));
-                        textView.setText(String.valueOf(task.getProgress()));
+                        rightValue.setText(String.valueOf(test.getPoints()));
+                        textView.setText(String.valueOf(test.getResult()));
 
-                        seekBar.setMax(task.getTarget());
+                        seekBar.setMax(test.getPoints());
                         seekBar.setLeft(0);
-                        seekBar.setRight(task.getTarget());
-                        seekBar.setProgress(task.getProgress());
+                        seekBar.setRight(test.getPoints());
+                        seekBar.setProgress(test.getResult());
 
                         seekBar.setOnSeekBarChangeListener(
                                 new SeekBar.OnSeekBarChangeListener() {
@@ -132,9 +137,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                                 new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        task.setProgress(
-                                                Integer.valueOf(textView.getText().toString()));
-                                        ((OnTaskCheckedInListener) mContext).onTaskCheckedIn(task);
+                                        test.setResult(Integer.valueOf(textView.getText().toString()));
+                                        ((OnTestCheckedInListener) mContext).onTestCheckedIn(test);
                                         dialog.dismiss();
                                     }
                                 }
@@ -157,6 +161,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mTasks.size();
+        return mTests.size();
     }
 }

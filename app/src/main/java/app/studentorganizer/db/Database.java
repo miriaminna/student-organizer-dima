@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "Student.db";
 
     // Table Names
@@ -106,11 +106,15 @@ public class Database extends SQLiteOpenHelper {
     public static final String TEST_TYPE = "_type";
     public static final String TEST_SUBJECT_ID = "_subject_id";
     public static final String TEST_DATE = "_date";
+    public static final String TEST_RESULT = "_result";
+    public static final String TEST_POINTS = "_points";
     public static String[] TEST_TABLE_COLUMNS = {
             Database.TEST_ID,
             Database.TEST_TYPE,
             Database.TEST_SUBJECT_ID,
-            Database.TEST_DATE
+            Database.TEST_DATE,
+            Database.TEST_RESULT,
+            Database.TEST_POINTS
     };
 
     // UNIVERSITY_SCHEDULE column names
@@ -192,7 +196,9 @@ public class Database extends SQLiteOpenHelper {
             + TEST_ID + " integer primary key autoincrement, "
             + TEST_TYPE + " text not null, "
             + TEST_SUBJECT_ID + " integer, "
-            + TEST_DATE + " text not null)";
+            + TEST_DATE + " text not null, "
+            + TEST_RESULT + " integer, "
+            + TEST_POINTS + " integer)";
 
     private static final String CREATE_TABLE_UNIVERSITY_SCHEDULE =
             "create table " + UNIVERSITY_SCHEDULE + "("

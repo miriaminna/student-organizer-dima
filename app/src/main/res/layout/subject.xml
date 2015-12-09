@@ -71,7 +71,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="0dp"
                     android:id="@+id/tasks"
-                    android:background="@drawable/dashboard_button_background"
+                    android:background="@drawable/dashboard_button_background_active"
                     android:layout_alignParentStart="true"/>
                 <TextView
                     style="@style/DashboardButtonText"

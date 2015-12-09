@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -14,8 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.OnTaskCheckedInListener;
+import app.studentorganizer.OnTestCheckedInListener;
+import app.studentorganizer.OnTestCreatedListener;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TaskListAdapter;
+import app.studentorganizer.adapters.TestListAdapter;
 import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.com.SubjectTab;
@@ -28,12 +32,15 @@ import app.studentorganizer.entities.Test;
 
 public class SubjectActivity extends BaseActivity implements
         OnTaskCheckedInListener,
-        OnTaskCreatedListener {
+        OnTaskCreatedListener,
+        OnTestCheckedInListener,
+        OnTestCreatedListener {
 
     protected RecyclerView mRecyclerView;
     protected Subject mSubject;
     protected Long mSubjectId;
-    protected TaskListAdapter mAdapter;
+    protected TaskListAdapter mTasksAdapter;
+    protected TestListAdapter mTestsAdapter;
 
     protected SubjectTab mSubjectTab;
 
@@ -67,6 +74,9 @@ public class SubjectActivity extends BaseActivity implements
         mSubject = DBFactory.getFactory().getSubjectDAO().getByID(mSubjectId);
         // Fetch tasks, materials and tests
         mTasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
+        mTasksAdapter = new TaskListAdapter(mTasks, this);
+        mTests = DBFactory.getFactory().getTestDAO().getBySubjectId(mSubjectId);
+        mTestsAdapter = new TestListAdapter(mTests, this);
     }
 
     private void initializeView() {
@@ -96,6 +106,40 @@ public class SubjectActivity extends BaseActivity implements
             teacherIcon.setImageResource(teacher.getType().getDrawable());
         }
 
+        final TextView tasksTab = (TextView) findViewById(R.id.tasks);
+        final TextView materialsTab = (TextView) findViewById(R.id.materials);
+        final TextView testsTab = (TextView) findViewById(R.id.tests);
+
+        tasksTab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mSubjectTab = SubjectTab.TASKS;
+                        onSubjectTabChanged();
+                    }
+                }
+        );
+
+        materialsTab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mSubjectTab = SubjectTab.MATERIALS;
+                        onSubjectTabChanged();
+                    }
+                }
+        );
+
+        testsTab.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mSubjectTab = SubjectTab.TESTS;
+                        onSubjectTabChanged();
+                    }
+                }
+        );
+
         // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
@@ -103,10 +147,7 @@ public class SubjectActivity extends BaseActivity implements
 
         mSubjectTab = SubjectTab.TASKS;
 
-
         onSubjectTabChanged();
-        mAdapter = new TaskListAdapter(mTasks, this);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -120,10 +161,14 @@ public class SubjectActivity extends BaseActivity implements
     }
 
     private void onSubjectTabChanged() {
+        ((TextView) findViewById(R.id.tasks)).setBackgroundResource(R.drawable.dashboard_button_background);
+        ((TextView) findViewById(R.id.materials)).setBackgroundResource(R.drawable.dashboard_button_background);
+        ((TextView) findViewById(R.id.tests)).setBackgroundResource(R.drawable.dashboard_button_background);
         switch (mSubjectTab) {
             case TASKS:
-                mAdapter = new TaskListAdapter(mTasks, this);
-                mRecyclerView.setAdapter(mAdapter);
+                ((TextView) findViewById(R.id.tasks)).setBackgroundResource(R.drawable.dashboard_button_background_active);
+
+                mRecyclerView.setAdapter(mTasksAdapter);
                 // mAdapter.notifyDataSetChanged();
 
                 findViewById(R.id.fab).setOnClickListener(
@@ -141,21 +186,54 @@ public class SubjectActivity extends BaseActivity implements
 
                 break;
             case MATERIALS:
+                ((TextView) findViewById(R.id.materials)).setBackgroundResource(R.drawable.dashboard_button_background_active);
                 break;
             case TESTS:
+                ((TextView) findViewById(R.id.tests)).setBackgroundResource(R.drawable.dashboard_button_background_active);
+
+                mRecyclerView.setAdapter(mTestsAdapter);
+
+                findViewById(R.id.fab).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(
+                                        SubjectActivity.this,
+                                        EditTestActivity.class);
+                                intent.putExtra(SubjectCommon.SUBJECT_ID_EXTRA, mSubjectId);
+                                ;
+                                startActivity(intent);
+                            }
+                        }
+                );
                 break;
         }
     }
 
+
     @Override
     public void onTaskCheckedIn(Task task) {
         DBFactory.getFactory().getTaskDAO().updateEntity(task);
-        mAdapter.notifyDataSetChanged();
+        mTasksAdapter.notifyDataSetChanged();
     }
 
+    // does Dima really needed this?
     @Override
     public void onTaskCreated(Task task) {
         mTasks.add(task);
-        mAdapter.notifyDataSetChanged();
+        mTasksAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onTestCheckedIn(Test test) {
+        DBFactory.getFactory().getTestDAO().updateEntity(test);
+        mTestsAdapter.notifyDataSetChanged();
+    }
+
+    // does Dima really needed this?
+    @Override
+    public void onTestCreated(Test test) {
+        mTests.add(test);
+        mTestsAdapter.notifyDataSetChanged();
     }
 }

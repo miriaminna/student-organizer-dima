@@ -2,15 +2,12 @@ package app.studentorganizer.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.joda.time.LocalDate;
 
 import app.studentorganizer.R;
 import app.studentorganizer.com.SubjectCommon;
-import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Task;
 
@@ -56,6 +53,13 @@ public class EditTaskActivity extends BaseActivity {
                             finish();
                          }
                     });
+        findViewById(R.id.cancel_button).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
 
     }

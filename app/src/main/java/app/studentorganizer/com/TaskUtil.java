@@ -22,7 +22,7 @@ public class TaskUtil {
 
     public static String getCheckInDue(LocalDate deadline, Context context) {
         StringBuilder s = new StringBuilder();
-        s.append(context.getResources().getString(R.string.dues));
+        s.append(context.getResources().getString(R.string.dues_in));
         s.append(" ");
         Period checkInDue = new Period(new LocalDate(), deadline);
         if (checkInDue.getMonths() > 0) {
@@ -52,6 +52,8 @@ public class TaskUtil {
             s.append(checkInDue.getHours() == 1
                     ? context.getResources().getString(R.string.hr)
                     : context.getResources().getString(R.string.hrs));
+        } else {
+            return deadline.toString();
         }
         return s.toString();
     }

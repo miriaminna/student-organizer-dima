@@ -42,6 +42,7 @@
         </activity>
         <activity android:name=".activities.TeacherActivity" />
         <activity android:name=".activities.EditTaskActivity" />
+        <activity android:name=".activities.EditTestActivity" />
         <activity android:name=".activities.EditTeacherActivity" />
         <activity android:name=".activities.EditSubjectActivity" />
         <activity android:name=".activities.UniScheduleActivity" >
