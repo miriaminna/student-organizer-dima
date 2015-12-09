@@ -47,7 +47,4 @@ public class EditTeacherActivity extends BaseActivity {
     @Override
     public void loadDataFromDB() {
     }
-
-    public void onTeacherAdd(View v) {
-    }
 }

@@ -17,24 +17,35 @@ import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TaskListAdapter;
 import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.SubjectCommon;
+import app.studentorganizer.com.SubjectTab;
 import app.studentorganizer.db.DBFactory;
+import app.studentorganizer.entities.Content;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
+import app.studentorganizer.entities.Test;
 
-public class SubjectActivity extends BaseActivity implements OnTaskCheckedInListener {
+public class SubjectActivity extends BaseActivity implements
+        OnTaskCheckedInListener,
+        OnTaskCreatedListener {
 
-    public static final String SUBJECT_ID_EXTRA = "_SUBJECT_ID";
-
-    protected static final int DEFAULT_SUBJECT_ID = -1;
-
+    protected RecyclerView mRecyclerView;
     protected Subject mSubject;
     protected Long mSubjectId;
     protected TaskListAdapter mAdapter;
 
+    protected SubjectTab mSubjectTab;
+
+    protected List<Task> mTasks;
+    protected List<Content> mContents;
+    protected List<Test> mTests;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSubjectId = getIntent().getLongExtra(SUBJECT_ID_EXTRA, DEFAULT_SUBJECT_ID);
+        mSubjectId = getIntent().getLongExtra(
+                SubjectCommon.SUBJECT_ID_EXTRA,
+                SubjectCommon.DEFAULT_SUBJECT_ID);
 
         super.onCreate(savedInstanceState);
 
@@ -54,6 +65,8 @@ public class SubjectActivity extends BaseActivity implements OnTaskCheckedInList
     @Override
     public void loadDataFromDB() {
         mSubject = DBFactory.getFactory().getSubjectDAO().getByID(mSubjectId);
+        // Fetch tasks, materials and tests
+        mTasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
     }
 
     private void initializeView() {
@@ -69,7 +82,7 @@ public class SubjectActivity extends BaseActivity implements OnTaskCheckedInList
         if (teacher != null) {
             ((TextView) findViewById(R.id.teacher_name)).setText(teacher.getName());
             // TODO: get teacher type string from strings.xml
-            ((TextView) findViewById(R.id.teacher_type)).setText(teacher.getType().toString());
+            ((TextView) findViewById(R.id.teacher_type)).setText(teacher.getType().name());
             // Show teacher activity when teacher clicked
             ImageButton teacherIcon = (ImageButton) findViewById(R.id.teacher_icon);
             teacherIcon.setOnClickListener(new View.OnClickListener() {
@@ -85,18 +98,64 @@ public class SubjectActivity extends BaseActivity implements OnTaskCheckedInList
 
         // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goals_list);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        mRecyclerView.setLayoutManager(layoutManager);
 
-        // Fetch tasks
-        List<Task> tasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
-        mAdapter = new TaskListAdapter(tasks, this);
-        recyclerView.setAdapter(mAdapter);
+        mSubjectTab = SubjectTab.TASKS;
+
+
+        onSubjectTabChanged();
+        mAdapter = new TaskListAdapter(mTasks, this);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        loadDataFromDB();
+        System.out.println("Resuming");
+        mSubjectTab = SubjectTab.TASKS;
+        onSubjectTabChanged();
+    }
+
+    private void onSubjectTabChanged() {
+        switch (mSubjectTab) {
+            case TASKS:
+                mAdapter = new TaskListAdapter(mTasks, this);
+                mRecyclerView.setAdapter(mAdapter);
+                // mAdapter.notifyDataSetChanged();
+
+                findViewById(R.id.fab).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(
+                                        SubjectActivity.this,
+                                        EditTaskActivity.class);
+                                intent.putExtra(SubjectCommon.SUBJECT_ID_EXTRA, mSubjectId);;
+                                startActivity(intent);
+                            }
+                        }
+                );
+
+                break;
+            case MATERIALS:
+                break;
+            case TESTS:
+                break;
+        }
     }
 
     @Override
     public void onTaskCheckedIn(Task task) {
         DBFactory.getFactory().getTaskDAO().updateEntity(task);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onTaskCreated(Task task) {
+        mTasks.add(task);
         mAdapter.notifyDataSetChanged();
     }
 }

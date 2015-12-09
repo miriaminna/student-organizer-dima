@@ -14,6 +14,7 @@ import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.activities.SubjectActivity;
+import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.StudentScheduleEntry;
 import app.studentorganizer.entities.Subject;
@@ -56,7 +57,7 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, SubjectActivity.class);
-                    intent.putExtra(SubjectActivity.SUBJECT_ID_EXTRA, subject.getId());
+                    intent.putExtra(SubjectCommon.SUBJECT_ID_EXTRA, subject.getId());
                     mContext.startActivity(intent);
                 }
             });
