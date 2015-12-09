@@ -62,4 +62,15 @@ public class TaskDAOTest
         mTasks.add(task);
         return task.getId();
     }
+
+    @Override
+    public List<Task> getBySubjectId(Long subjectId) {
+        List<Task> tasks = new ArrayList<>();
+        for (Task t : mTasks) {
+            if (t.getSubjectId().equals(subjectId)) {
+                tasks.add(t);
+            }
+        }
+        return tasks;
+    }
 }

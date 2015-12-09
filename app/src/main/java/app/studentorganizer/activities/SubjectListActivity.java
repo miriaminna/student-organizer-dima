@@ -14,7 +14,7 @@ import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Subject;
 
-public class SubjectListActivity extends BaseListActivity {
+public class SubjectListActivity extends BaseListActivity implements SubjectListAdapter.OnDeleteListener {
 
     private List<Subject> mSubjects;
     private SubjectListAdapter mAdapter;
@@ -45,7 +45,7 @@ public class SubjectListActivity extends BaseListActivity {
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mAdapter = new SubjectListAdapter(this, mSubjects);
+        mAdapter = new SubjectListAdapter(this, mSubjects, this);
         return mAdapter;
     }
 
@@ -68,5 +68,13 @@ public class SubjectListActivity extends BaseListActivity {
     @Override
     public int getListView() {
         return R.id.subject_list;
+    }
+
+
+    @Override
+    public void onDelete(Long subjectId) {
+        DBFactory.getFactory().getSubjectDAO().deleteEntity(subjectId);
+        loadDataFromDB();
+        mAdapter.notifyDataSetChanged();
     }
 }

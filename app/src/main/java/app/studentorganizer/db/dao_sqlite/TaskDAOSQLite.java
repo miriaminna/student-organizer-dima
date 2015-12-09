@@ -6,8 +6,11 @@ import android.database.Cursor;
 import org.joda.time.LocalDate;
 
 
+import java.util.List;
+
 import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.db.dao.TaskDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
@@ -57,5 +60,17 @@ public class TaskDAOSQLite
         values.put(Database.SIMPLE_TASK_TARGET, task.getTarget());
 
         return values;
+    }
+
+    @Override
+    public List<Task> getBySubjectId(Long subjectId) {
+        Cursor cursor = DatabaseManager.getDatabase().query(
+                getTableName(),
+                getTableColumns(),
+                Database.SIMPLE_TASK_SUBJECT_ID + " = ? ",
+                new String[]{subjectId.toString()},
+                null, null, null
+        );
+        return getListFromCursor(cursor);
     }
 }

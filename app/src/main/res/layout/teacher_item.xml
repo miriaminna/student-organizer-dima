@@ -8,8 +8,7 @@
         style="@style/ListItem.Avatar"
         android:id="@+id/teacher_icon"
         android:layout_marginTop="12dp"
-        android:background="@drawable/round_shape_orange"
-        android:layout_below="@+id/category_icon"/>
+        android:background="@drawable/round_shape_orange"/>
 
     <TextView
         style="@style/ListItem.FirstLine"

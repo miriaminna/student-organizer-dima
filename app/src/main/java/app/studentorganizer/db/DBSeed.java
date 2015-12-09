@@ -30,12 +30,14 @@ public class DBSeed {
 
     public static void seedTeachers() {
         Teacher teacher = new Teacher();
+        teacher.setId(0L);
         teacher.setName("Oleksandr Galkin");
         teacher.setType(TeacherType.DOCENT);
         teacher.setContacts("email:galkin@unicyb.kiev.ua\nskype:kvak313");
         DBFactory.getFactory().getTeacherDAO().addEntity(teacher);
 
         teacher = new Teacher();
+        teacher.setId(1L);
         teacher.setName("Oleksandr Maksymets");
         teacher.setType(TeacherType.POSTGRADUATE);
         teacher.setContacts("email:maksymets@gmail.com");
@@ -49,6 +51,8 @@ public class DBSeed {
         task.setPoints(30.0);
         task.setProgress(10);
         task.setTarget(40);
+        task.setId(0L);
+        task.setSubjectId(1L);
 //        task.setSubject(new Subject());
 //        task.getSubject().setColorTag(ColorTag.GREEN);
         DBFactory.getFactory().getTaskDAO().addEntity(task);
@@ -59,6 +63,8 @@ public class DBSeed {
         task.setPoints(30.0);
         task.setProgress(75);
         task.setTarget(100);
+        task.setId(1L);
+        task.setSubjectId(2L);
 //        task.setSubject(new Subject());
 //        task.getSubject().setColorTag(ColorTag.BLUE);
         DBFactory.getFactory().getTaskDAO().addEntity(task);
@@ -78,6 +84,9 @@ public class DBSeed {
         subject.setType(SubjectType.CREDIT);
         subject.setColorTag(ColorTag.GREEN);
         subject.setTeacherId(1L);
+        List<Long> ids = new ArrayList<>();
+        ids.add(0L);
+        subject.setTasksIds(ids);
 //        subject.setTasks(DBFactory.getFactory().getTaskDAO().getAllEntities());
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
@@ -87,6 +96,9 @@ public class DBSeed {
         subject.setType(SubjectType.EXAM);
         subject.setColorTag(ColorTag.ORANGE);
         subject.setTeacherId(2L);
+        ids = new ArrayList<>();
+        ids.add(1L);
+        subject.setTasksIds(ids);
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
     }

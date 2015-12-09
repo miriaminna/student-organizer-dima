@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.TaskListActivity"
             android:label="@string/app_name" />
         <activity
             android:name=".activities.TeachersActivity"
