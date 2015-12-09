@@ -16,6 +16,7 @@ import app.studentorganizer.R;
 import app.studentorganizer.activities.TeacherActivity;
 import app.studentorganizer.com.TeacherType;
 import app.studentorganizer.com.TeacherUtil;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Teacher;
 
 /**
@@ -35,12 +36,14 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
         public TextView mTeacherName;
         public TextView mTeacherType;
         public Long mTeacherID;
+        public ImageButton mDeleteButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mTeacherIcon = (ImageButton)itemView.findViewById(R.id.teacher_icon);
             mTeacherName = (TextView)itemView.findViewById(R.id.teacher_name);
             mTeacherType = (TextView)itemView.findViewById(R.id.teacher_type);
+            mDeleteButton = (ImageButton)itemView.findViewById(R.id.button_delete);
         }
 
 
@@ -71,6 +74,15 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
         holder.mTeacherType.setText(teacher.getType().toString());
 
         holder.mTeacherIcon.setOnClickListener(holder);
+
+        holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBFactory.getFactory().getTeacherDAO().deleteEntity(teacher.getId());
+                mTeachers.remove(teacher);
+                TeachersListAdapter.this.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

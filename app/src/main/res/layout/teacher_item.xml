@@ -26,4 +26,13 @@
         android:id="@+id/teacher_type"
         android:layout_below="@+id/teacher_name"
         android:layout_alignStart="@+id/teacher_name"/>
+
+    <ImageButton
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_black"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:contentDescription="Delete Teacher" />
 </RelativeLayout>

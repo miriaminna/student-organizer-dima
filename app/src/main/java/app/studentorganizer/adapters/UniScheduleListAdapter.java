@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -126,7 +127,7 @@ public class UniScheduleListAdapter extends RecyclerView.Adapter<UniScheduleList
         public TextView mPairNum;
         public TextView mPairStart;
         public TextView mPairEnd;
-        public TextView mDeleteButton;
+        public ImageButton mDeleteButton;
 
 
         public ViewHolder(View itemView) {
@@ -135,7 +136,7 @@ public class UniScheduleListAdapter extends RecyclerView.Adapter<UniScheduleList
             mPairNum = ((TextView)itemView.findViewById(R.id.pair_num));
             mPairStart = ((TextView)itemView.findViewById(R.id.pair_start));
             mPairEnd = ((TextView)itemView.findViewById(R.id.pair_end));
-            mDeleteButton = ((TextView)itemView.findViewById(R.id.button_delete));
+            mDeleteButton = ((ImageButton)itemView.findViewById(R.id.button_delete));
         }
     }
 }

@@ -2,10 +2,12 @@ package app.studentorganizer.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -48,19 +50,23 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
                 .getByID(scheduleEntry.getUnivScheduleEntryId());
 
         holder.mClassroom.setText(String.format("%d", scheduleEntry.getClassroom()));
-        holder.mName.setText(subject.getName());
-        holder.mName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, SubjectActivity.class);
-                intent.putExtra(SubjectActivity.SUBJECT_ID_EXTRA, subject.getId());
-                mContext.startActivity(intent);
-            }
-        });
-        holder.mPair.setText(String.format("%d", univScheduleEntry.getLessonNumber()));
-        holder.mTime.setText(String.format("%s-%s",
-                univScheduleEntry.getStart().toString("HH:mm"),
-                univScheduleEntry.getEnd().toString("HH:mm")));
+        if (subject != null) {
+            holder.mName.setText(subject.getName());
+            holder.mName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, SubjectActivity.class);
+                    intent.putExtra(SubjectActivity.SUBJECT_ID_EXTRA, subject.getId());
+                    mContext.startActivity(intent);
+                }
+            });
+        }
+        if (univScheduleEntry != null) {
+            holder.mPair.setText(String.format("%d", univScheduleEntry.getLessonNumber()));
+            holder.mTime.setText(String.format("%s-%s",
+                    univScheduleEntry.getStart().toString("HH:mm"),
+                    univScheduleEntry.getEnd().toString("HH:mm")));
+        }
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +89,7 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
         public TextView mTime;
         public TextView mName;
         public TextView mClassroom;
-        public TextView mDeleteButton;
+        public ImageButton mDeleteButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -92,7 +98,7 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
             mTime = (TextView) itemView.findViewById(R.id.time);
             mName = (TextView) itemView.findViewById(R.id.name);
             mClassroom = (TextView) itemView.findViewById(R.id.classroom);
-            mDeleteButton = (TextView) itemView.findViewById(R.id.button_delete);
+            mDeleteButton = (ImageButton) itemView.findViewById(R.id.button_delete);
         }
     }
 }

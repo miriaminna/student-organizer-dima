@@ -7,39 +7,36 @@
         style="@style/CalendarDayTitle"
         android:layout_width="30dp"
         android:id="@+id/pair"
-        android:text="1"/>
+        android:text="0"/>
 
     <TextView
         style="@style/CalendarDayTitle"
         android:id="@+id/time"
         android:layout_width="110dp"
-        android:text="08:40-10:15"
+        android:text="Hs:ms-Hf:mf"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/pair"/>
     <TextView
         style="@style/CalendarDayTitle"
         android:id="@+id/name"
-        android:text="Programming Languages"
+        android:text="Sunject Name"
         android:layout_width="140dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/time"/>
     <TextView
         style="@style/CalendarDayTitle"
         android:id="@+id/classroom"
-        android:text="235"
+        android:text="aud"
         android:layout_marginStart="10dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@id/name"/>
 
-    <TextView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:background="@color/red"
-        android:gravity="center"
-        android:text="X"
-        android:textSize="20sp"
+    <ImageButton
         android:id="@+id/button_delete"
-        android:layout_alignBaseline="@+id/classroom"
-        android:layout_alignBottom="@+id/classroom"
-        android:layout_alignParentEnd="true" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_black"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:contentDescription="Delete subject" />
 </RelativeLayout>
