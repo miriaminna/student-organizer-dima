@@ -34,12 +34,8 @@ public class EditTeacherActivity extends BaseActivity {
             }
         });
 
-        List<String> items = new ArrayList<>();
-        for (TeacherType t : TeacherType.values()) {
-            items.add(t.toString());
-        }
         ((Spinner)findViewById(R.id.teacher_type)).setAdapter(
-                new ArrayAdapter<>(this, R.layout.spinner_item, items)
+                new ArrayAdapter<>(this, R.layout.spinner_item, TeacherType.values())
         );
     }
 

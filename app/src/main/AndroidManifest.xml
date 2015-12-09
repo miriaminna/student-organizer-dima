@@ -45,6 +45,10 @@
         <activity android:name=".activities.EditSubjectActivity" />
         <activity android:name=".activities.UniScheduleActivity" >
         </activity>
+        <activity android:name=".activities.MyScheduleActivity" >
+        </activity>
+        <activity android:name=".activities.EditStudentScheduleActivity" >
+        </activity>
     </application>
 
 </manifest>

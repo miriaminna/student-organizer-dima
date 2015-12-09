@@ -43,4 +43,8 @@
     <string name="add_delete_contact">Add/Delete Contact</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="choose_weekday">Choose weekday</string>
+    <string name="choose_pair">Choose Pair</string>
+    <string name="choose_subject">Choose Subject</string>
+    <string name="enter_classroom">Enter Classroom</string>
 </resources>

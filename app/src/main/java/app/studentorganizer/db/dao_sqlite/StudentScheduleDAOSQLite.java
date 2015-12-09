@@ -31,7 +31,8 @@ public class StudentScheduleDAOSQLite
         studentScheduleEntry.setId(cursor.getLong(0));
         studentScheduleEntry.setUnivScheduleEntryId(cursor.getLong(1));
         studentScheduleEntry.setSubjectId(cursor.getLong(2));
-        studentScheduleEntry.setClassroom(cursor.getInt(3));
+        studentScheduleEntry.setDay(cursor.getInt(3));
+        studentScheduleEntry.setClassroom(cursor.getInt(4));
 
         return studentScheduleEntry;
     }
@@ -46,6 +47,9 @@ public class StudentScheduleDAOSQLite
         values.put(
                 Database.STUDENT_SCHEDULE_SUBJECT_ID,
                 studentScheduleEntry.getSubjectId());
+        values.put(
+                Database.STUDENT_SCHEDULE_DAY,
+                studentScheduleEntry.getDay());
         values.put(
                 Database.STUDENT_SCHEDULE_CLASSROOM,
                 studentScheduleEntry.getClassroom());

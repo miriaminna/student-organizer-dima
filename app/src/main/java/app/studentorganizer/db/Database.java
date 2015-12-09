@@ -116,13 +116,11 @@ public class Database extends SQLiteOpenHelper {
     // UNIVERSITY_SCHEDULE column names
     public static final String UNIVERSITY_SCHEDULE_ID = "_id";
     public static final String UNIVERSITY_SCHEDULE_LESSON_NUMBER = "_lesson_number";
-    public static final String UNIVERSITY_SCHEDULE_DAY = "_day";
     public static final String UNIVERSITY_SCHEDULE_START = "_start";
     public static final String UNIVERSITY_SCHEDULE_END = "_end";
     public static String[] UNIVERSITY_SCHEDULE_COLUMNS = {
             Database.UNIVERSITY_SCHEDULE_ID,
             Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
-            Database.UNIVERSITY_SCHEDULE_DAY,
             Database.UNIVERSITY_SCHEDULE_START,
             Database.UNIVERSITY_SCHEDULE_END
     };
@@ -131,11 +129,13 @@ public class Database extends SQLiteOpenHelper {
     public static final String STUDENT_SCHEDULE_ID = "_id";
     public static final String STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID = "_university_schedule_id";
     public static final String STUDENT_SCHEDULE_SUBJECT_ID = "_subject_id";
+    public static final String STUDENT_SCHEDULE_DAY = "_day";
     public static final String STUDENT_SCHEDULE_CLASSROOM = "_classroom";
     public static String[] STUDENT_SCHEDULE_COLUMNS = {
             Database.STUDENT_SCHEDULE_ID,
             Database.STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID,
             Database.STUDENT_SCHEDULE_SUBJECT_ID,
+            Database.STUDENT_SCHEDULE_DAY,
             Database.STUDENT_SCHEDULE_CLASSROOM
     };
 
@@ -198,7 +198,6 @@ public class Database extends SQLiteOpenHelper {
             "create table " + UNIVERSITY_SCHEDULE + "("
                     + UNIVERSITY_SCHEDULE_ID + " integer primary key autoincrement, "
                     + UNIVERSITY_SCHEDULE_LESSON_NUMBER + " integer, "
-                    + UNIVERSITY_SCHEDULE_DAY + " integer, "
                     + UNIVERSITY_SCHEDULE_START + " text not null, "
                     + UNIVERSITY_SCHEDULE_END + " text not null)";
 
@@ -207,6 +206,7 @@ public class Database extends SQLiteOpenHelper {
                     + STUDENT_SCHEDULE_ID + " integer primary key autoincrement, "
                     + STUDENT_SCHEDULE_UNIVERSITY_SCHEDULE_ID + " integer, "
                     + STUDENT_SCHEDULE_SUBJECT_ID + " integer, "
+                    + STUDENT_SCHEDULE_DAY + " integer, "
                     + STUDENT_SCHEDULE_CLASSROOM + " integer)";
 
     public Database(Context context) {

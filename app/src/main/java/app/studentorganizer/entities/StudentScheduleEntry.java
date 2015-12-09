@@ -10,6 +10,7 @@ import app.studentorganizer.entities.Subject;
  * Created by henko on 04.12.15.
  */
 public class StudentScheduleEntry extends IDable {
+    protected int mDay;
     protected Long mUnivScheduleEntryId;
     protected Long mSubjectId;
     protected Integer mClassroom;
@@ -26,6 +27,13 @@ public class StudentScheduleEntry extends IDable {
         mClassroom = classroom;
     }
 
+    public int getDay() {
+        return mDay;
+    }
+
+    public void setDay(int day) {
+        this.mDay = day;
+    }
     public Long getUnivScheduleEntryId() {
         return mUnivScheduleEntryId;
     }

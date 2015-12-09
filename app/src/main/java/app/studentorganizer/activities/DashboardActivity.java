@@ -64,6 +64,13 @@ public class DashboardActivity extends BaseActivity {
         TextView marksButton = (TextView) findViewById(R.id.marks);
 
         TextView myScheduleButton = (TextView) findViewById(R.id.my_schedule);
+        myScheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, MyScheduleActivity.class);
+                DashboardActivity.this.startActivity(intent);
+            }
+        });
 
         TextView UniversityScheduleButton = (TextView) findViewById(R.id.univ_schedule);
         UniversityScheduleButton.setOnClickListener(new View.OnClickListener() {

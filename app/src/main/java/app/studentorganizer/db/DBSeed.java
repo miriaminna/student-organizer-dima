@@ -10,6 +10,7 @@ import app.studentorganizer.com.ColorTag;
 import app.studentorganizer.com.DayConstants;
 import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.com.TeacherType;
+import app.studentorganizer.entities.StudentScheduleEntry;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
@@ -24,6 +25,7 @@ public class DBSeed {
         seedTasks();
         seedSubjects();
         seedUniSchedule();
+        seedMySchedule();
     }
 
     public static void seedTeachers() {
@@ -91,7 +93,6 @@ public class DBSeed {
 
     private static void seedUniSchedule() {
         UnivScheduleEntry univSchedule = new UnivScheduleEntry();
-        univSchedule.setDay(DayConstants.MONDAY);
         univSchedule.setLessonNumber(1);
         univSchedule.setStart(new LocalTime(8, 40));
         univSchedule.setEnd(new LocalTime(10, 15));
@@ -99,11 +100,36 @@ public class DBSeed {
         DBFactory.getFactory().getUnivScheduleDAO().addEntity(univSchedule);
 
         univSchedule = new UnivScheduleEntry();
-        univSchedule.setDay(DayConstants.MONDAY);
         univSchedule.setLessonNumber(2);
         univSchedule.setStart(new LocalTime(10, 35));
         univSchedule.setEnd(new LocalTime(12, 10));
 
         DBFactory.getFactory().getUnivScheduleDAO().addEntity(univSchedule);
+    }
+
+    private static void seedMySchedule() {
+        StudentScheduleEntry studentSchedule = new StudentScheduleEntry();
+        studentSchedule.setDay(DayConstants.MONDAY);
+        studentSchedule.setClassroom(205);
+        studentSchedule.setSubjectId(
+                DBFactory.getFactory().getSubjectDAO().getAllEntities().get(0).getId()
+        );
+        studentSchedule.setUnivScheduleEntryId(
+                DBFactory.getFactory().getUnivScheduleDAO().getAllEntities().get(0).getId()
+        );
+
+        DBFactory.getFactory().getStudentScheduleDAO().addEntity(studentSchedule);
+
+        studentSchedule = new StudentScheduleEntry();
+        studentSchedule.setDay(DayConstants.TUESDAY);
+        studentSchedule.setClassroom(306);
+        studentSchedule.setSubjectId(
+                DBFactory.getFactory().getSubjectDAO().getAllEntities().get(1).getId()
+        );
+        studentSchedule.setUnivScheduleEntryId(
+                DBFactory.getFactory().getUnivScheduleDAO().getAllEntities().get(1).getId()
+        );
+
+        DBFactory.getFactory().getStudentScheduleDAO().addEntity(studentSchedule);
     }
 }

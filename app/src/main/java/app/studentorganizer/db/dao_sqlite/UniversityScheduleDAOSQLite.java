@@ -32,9 +32,8 @@ public class UniversityScheduleDAOSQLite
 
         univScheduleEntry.setId(cursor.getLong(0));
         univScheduleEntry.setLessonNumber(cursor.getInt(1));
-        univScheduleEntry.setDay(cursor.getInt(2));
-        univScheduleEntry.setStart(new LocalTime(cursor.getString(3)));
-        univScheduleEntry.setEnd(new LocalTime(cursor.getString(4)));
+        univScheduleEntry.setStart(new LocalTime(cursor.getString(2)));
+        univScheduleEntry.setEnd(new LocalTime(cursor.getString(3)));
 
         return univScheduleEntry;
     }
@@ -46,9 +45,6 @@ public class UniversityScheduleDAOSQLite
         values.put(
                 Database.UNIVERSITY_SCHEDULE_LESSON_NUMBER,
                 univScheduleEntry.getLessonNumber());
-        values.put(
-                Database.UNIVERSITY_SCHEDULE_DAY,
-                univScheduleEntry.getDay());
         values.put(
                 Database.UNIVERSITY_SCHEDULE_START,
                 univScheduleEntry.getStart().toString());

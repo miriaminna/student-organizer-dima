@@ -14,109 +14,12 @@
         android:layout_marginTop="10dp"
         android:text="Monday"/>
 
-    <RelativeLayout
-        android:id="@+id/line1"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/schedule_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/month_title">
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:layout_width="30dp"
-            android:id="@+id/pair1"
-            android:text="1"/>
-
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/time1"
-            android:layout_width="110dp"
-            android:text="08:40-10:15"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/pair1"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/name1"
-            android:text="Programming Languages"
-            android:layout_width="140dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/time1"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/aud1"
-            android:text="235"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line1">
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:layout_width="30dp"
-            android:id="@+id/pair2"
-            android:text="2"
-            android:background="@drawable/square_boards_green"/>
-
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/time2"
-            android:layout_width="110dp"
-            android:text="10:35-12:10"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/pair2"
-            android:background="@drawable/square_boards_green"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/name2"
-            android:text="Algebra"
-            android:layout_width="140dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/time2"
-            android:background="@drawable/square_boards_green"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/aud2"
-            android:text="42"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/square_boards_green"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/line3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line2">
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:layout_width="30dp"
-            android:id="@+id/pair3"
-            android:text="3"/>
-
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/time3"
-            android:layout_width="110dp"
-            android:text="12:20-13:55"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/pair3"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/name3"
-            android:text="Operating Systems"
-            android:layout_width="140dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/time3"/>
-        <TextView
-            style="@style/CalendarDayTitle"
-            android:id="@+id/aud3"
-            android:text="308"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
-
+        android:layout_height="200dp"
+        android:scrollbars="vertical"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
+        android:layout_below="@id/month_title"/>
 </RelativeLayout>
