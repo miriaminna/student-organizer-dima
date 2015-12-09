@@ -13,6 +13,7 @@ import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.activities.SubjectActivity;
+import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.entities.Subject;
 
 /**
@@ -49,7 +50,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, SubjectActivity.class);
-                intent.putExtra(SubjectActivity.SUBJECT_ID_EXTRA, mark.first.getId());
+                intent.putExtra(SubjectCommon.SUBJECT_ID_EXTRA, mark.first.getId());
                 mContext.startActivity(intent);
             }
         });
