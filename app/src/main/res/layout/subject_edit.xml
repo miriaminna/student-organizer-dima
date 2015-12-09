@@ -77,6 +77,28 @@
                 android:layout_marginStart="@dimen/margin_med"
                 android:entries="@array/subject_color_tag"/>
 
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/teacher_item"
+                    android:id="@+id/teacher_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"/>
+                <ImageButton
+                    android:id="@+id/teacher_select_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20"
+                    style="@style/ListItem.FirstLine"
+                    android:background="@drawable/edit_black"
+                    android:contentDescription="Add/change teacher" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/save_button"
                 android:layout_gravity="center"

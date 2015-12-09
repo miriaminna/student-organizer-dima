@@ -13,7 +13,7 @@ import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Task;
 
 
-public class MainActivity extends BaseListActivity implements OnTaskCheckedInListener {
+public class TaskListActivity extends BaseListActivity implements OnTaskCheckedInListener {
     private TaskListAdapter mTaskListAdapter;
     private ArrayList<Task> mTasks;
 
@@ -50,13 +50,8 @@ public class MainActivity extends BaseListActivity implements OnTaskCheckedInLis
     }
 
     @Override
-    public void onTaskCheckedIn() {
-        // gamno-code
-
-        for (int i = 0; i < mTasks.size(); i++) {
-            DBFactory.getFactory().getTaskDAO().updateEntity(mTasks.get(i));
-//            mTasks.set(i, );
-        }
+    public void onTaskCheckedIn(Task task) {
+        DBFactory.getFactory().getTaskDAO().updateEntity(task);
         mTaskListAdapter.notifyDataSetChanged();
     }
 }

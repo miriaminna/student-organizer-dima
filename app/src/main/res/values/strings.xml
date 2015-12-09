@@ -35,4 +35,5 @@
     <string name="seed_database">Seed Database</string>
     <string name="teacher_name">Teacher Name:</string>
     <string name="teacher_degree">Teacher\'s Degree:</string>
+    <string name="teacher_select">Select teacher:</string>
 </resources>

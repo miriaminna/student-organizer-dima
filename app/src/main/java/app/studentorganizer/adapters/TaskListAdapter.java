@@ -134,7 +134,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                                     public void onClick(View view) {
                                         task.setProgress(
                                                 Integer.valueOf(textView.getText().toString()));
-                                        ((OnTaskCheckedInListener) mContext).onTaskCheckedIn();
+                                        ((OnTaskCheckedInListener) mContext).onTaskCheckedIn(task);
                                         dialog.dismiss();
                                     }
                                 }
