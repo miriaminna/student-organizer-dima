@@ -1,18 +1,13 @@
 package app.studentorganizer.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import java.util.List;
 
 import app.studentorganizer.R;
-import app.studentorganizer.activities.TeacherActivity;
 import app.studentorganizer.entities.Teacher;
 
 /**
@@ -29,7 +24,7 @@ public class TeacherSelectAdapter extends TeachersListAdapter {
 
     public TeacherSelectAdapter(List<Teacher> teachers, Context context,
                                 OnTeacherSelectListener mListener) {
-        super(teachers, context);
+        super(teachers, context, false);
         this.mListener = mListener;
     }
 

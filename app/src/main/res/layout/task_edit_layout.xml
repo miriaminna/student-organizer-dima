@@ -40,9 +40,9 @@
             android:layout_below="@+id/task_name"/>
 
         <TextView
+            android:id="@+id/task_deadline"
             android:layout_width="100dp"
             style="@style/EditText"
-            android:id="@+id/task_deadline"
             android:layout_marginRight="8dp"
             android:text="2015-03-15"
             android:layout_below="@+id/start_date_label"/>
