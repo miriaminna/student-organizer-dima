@@ -171,6 +171,8 @@ public class SubjectActivity extends BaseActivity implements
         mSubjectTab = SubjectTab.TASKS;
 
         onSubjectTabChanged();
+        mAdapter = new TaskListAdapter(mTasks, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -181,7 +183,9 @@ public class SubjectActivity extends BaseActivity implements
         System.out.println("Resuming");
         /*mSubjectTab = SubjectTab.TASKS;
         onSubjectTabChanged();*/
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void onSubjectTabChanged() {
