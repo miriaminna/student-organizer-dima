@@ -76,7 +76,7 @@ public class EditTaskActivity extends BaseActivity implements DatePickerDialog.O
         // Initially set current date to date view
         Calendar calendar = Calendar.getInstance();
         setDateView(calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.MONTH) + 1,
                     calendar.get(Calendar.DAY_OF_MONTH));
 
         // Start calendar dialog
