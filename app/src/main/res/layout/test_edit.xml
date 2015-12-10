@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.EditTaskActivity"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        app:title="Add Test"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/InputLabel"
+            android:id="@+id/name_label"
+            android:paddingLeft="8dp"
+            android:text="Name"/>
+        <EditText
+            style="@style/EditText"
+            android:layout_width="200dp"
+            android:id="@+id/test_name"
+            android:layout_below="@+id/name_label"/>
+
+        <TextView
+            style="@style/InputLabel"
+            android:id="@+id/start_date_label"
+            android:paddingLeft="8dp"
+            android:text="Date"
+            android:layout_below="@+id/test_name"/>
+
+        <TextView
+            android:layout_width="100dp"
+            style="@style/EditText"
+            android:id="@+id/test_date"
+            android:layout_marginRight="8dp"
+            android:text="2015-03-15"
+            android:layout_below="@+id/start_date_label"/>
+
+
+        <TextView
+            style="@style/InputLabel"
+            android:id="@+id/points_label"
+            android:paddingLeft="8dp"
+            android:text="Points"
+            android:layout_below="@+id/test_date"/>
+        <EditText
+            style="@style/EditText"
+            android:id="@+id/test_points"
+            android:layout_width="100dp"
+            android:text="20"
+            android:layout_below="@+id/points_label"/>
+
+
+        <TextView
+            style="@style/InputLabel"
+            android:id="@+id/type_label"
+            android:paddingLeft="8dp"
+            android:text="Type"
+            android:layout_below="@+id/test_points"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/test_type"
+            android:entries="@array/test_type"
+            android:layout_below="@id/type_label"/>
+
+        <TextView
+            style="@style/DialogButton"
+            android:id="@+id/save_button"
+            android:text="SAVE"
+            android:layout_below="@id/test_type"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            style="@style/DialogButton"
+            android:id="@+id/cancel_button"
+            android:text="CANCEL"
+            android:layout_toStartOf="@id/save_button"
+            android:layout_below="@id/test_type"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
+

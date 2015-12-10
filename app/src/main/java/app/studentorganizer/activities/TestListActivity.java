@@ -13,26 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.R;
-import app.studentorganizer.adapters.;
+import app.studentorganizer.adapters.TestListAdapter;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.entities.Test;
 
-public class TestListActivity extends BaseListActivity implements TestListAdapter. {
+public class TestListActivity extends BaseListActivity implements TestListAdapter.OnDeleteListener {
 
-    private List<Subject> mSubjects;
-    private SubjectListAdapter mAdapter;
+    private List<Test> mTests;
+    private TestListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSubjects = new ArrayList<>();
+        mTests = new ArrayList<>();
         super.onCreate(savedInstanceState);
 
         findViewById(R.id.fab).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(SubjectListActivity.this, EditSubjectActivity.class);
+                        Intent intent = new Intent(TestListActivity.this, EditT);
                         startActivity(intent);
                     }
                 }
@@ -49,7 +49,7 @@ public class TestListActivity extends BaseListActivity implements TestListAdapte
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mAdapter = new SubjectListAdapter(this, mSubjects, this);
+        mAdapter = new TestListAdapter(this, mTests, this);
         return mAdapter;
     }
 
@@ -60,18 +60,18 @@ public class TestListActivity extends BaseListActivity implements TestListAdapte
 
     @Override
     public int getContentView() {
-        return R.layout.subject_list;
+        return R.layout.test_list;
     }
 
     @Override
     public void loadDataFromDB() {
-        mSubjects.clear();
-        mSubjects.addAll(DBFactory.getFactory().getSubjectDAO().getAllEntities());
+        mTests.clear();
+        mTests.addAll(DBFactory.getFactory().getTestDAO().getAllEntities());
     }
 
     @Override
     public int getListView() {
-        return R.id.subject_list;
+        return R.id.test_list;
     }
 
 

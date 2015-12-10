@@ -26,7 +26,7 @@ public class TestActivity extends BaseActivity implements OnTaskCheckedInListene
 
     public static final String TEST_ID_EXTRA = "_TEST_ID";
 
-    protected static final int DEFAULT_SUBJECT_ID = -1;
+    protected static final int DEFAULT_TEST_ID = -1;
 
     protected Test mTest;
     protected Long mTestId;
@@ -34,7 +34,7 @@ public class TestActivity extends BaseActivity implements OnTaskCheckedInListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mTestId = getIntent().getLongExtra(TEST_ID_EXTRA, DEFAULT_SUBJECT_ID);
+        mTestId = getIntent().getLongExtra(TEST_ID_EXTRA, DEFAULT_TEST_ID);
 
         super.onCreate(savedInstanceState);
 
@@ -48,7 +48,7 @@ public class TestActivity extends BaseActivity implements OnTaskCheckedInListene
 
     @Override
     public int getContentView() {
-        return R.layout.subject;
+        return R.layout.test;
     }
 
     @Override
@@ -60,28 +60,11 @@ public class TestActivity extends BaseActivity implements OnTaskCheckedInListene
 
         // Initialize general info
         ((ImageButton) findViewById(R.id.category_icon)).
-                setImageResource(m.getColorTag().getDrawableId());
-        ((TextView) findViewById(R.id.name)).setText(mSubject.getName());
-        ((TextView) findViewById(R.id.type)).setText(mSubject.getType().getStringId());
+                setImageResource(mTest.getSubjectId().intValue());
+        ((TextView) findViewById(R.id.subject)).setText(DBFactory.getFactory().getSubjectDAO().getByID(mTest.getSubjectId()).getName());
+        ((TextView) findViewById(R.id.date)).setText(mTest.getDate().toString());
+        ((TextView) findViewById(R.id.type)).setText(mTest.getTestType().toString());
 
-        // If no teacher provided display default teacher
-        final Teacher teacher = DBFactory.getFactory().getTeacherDAO().getByID(mSubject.getTeacherId());
-        if (teacher != null) {
-            ((TextView) findViewById(R.id.teacher_name)).setText(teacher.getName());
-            // TODO: get teacher type string from strings.xml
-            ((TextView) findViewById(R.id.teacher_type)).setText(teacher.getType().toString());
-            // Show teacher activity when teacher clicked
-            ImageButton teacherIcon = (ImageButton) findViewById(R.id.teacher_icon);
-            teacherIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(SubjectActivity.this, TeacherActivity.class);
-                    intent.putExtra(TeacherActivity.ID_EXTRA, teacher.getId());
-                    startActivity(intent);
-                }
-            });
-            teacherIcon.setImageResource(teacher.getType().getDrawable());
-        }
 
         // Setup tasks recycler view
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -89,9 +72,9 @@ public class TestActivity extends BaseActivity implements OnTaskCheckedInListene
         recyclerView.setLayoutManager(layoutManager);
 
         // Fetch tasks
-        List<Task> tasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
-        mAdapter = new TaskListAdapter(tasks, this);
-        recyclerView.setAdapter(mAdapter);
+       // List<Task> content = DBFactory.getFactory().getContentsDAO().getByID(mTest.getContentId());
+//        mAdapter = new ContentListAdapter(content, this);
+//        recyclerView.setAdapter(mAdapter);
     }
 
     @Override

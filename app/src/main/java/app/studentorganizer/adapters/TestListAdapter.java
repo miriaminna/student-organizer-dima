@@ -13,6 +13,8 @@ import java.util.List;
 
 import app.studentorganizer.R;
 import app.studentorganizer.activities.TestListActivity;
+import app.studentorganizer.activities.TestActivity;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Test;
 
 /**
@@ -28,17 +30,18 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.ViewHo
     private List<Test> mTests;
     private OnDeleteListener mListener;
 
-    public TestListAdapter(Context context, List<Test> subjects, OnDeleteListener listener) {
+    public TestListAdapter(Context context, List<Test> tests, OnDeleteListener listener) {
         this.mContext = context;
-        this.mTests = subjects;
+        this.mTests = tests;
         this.mListener = listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageButton mCategoryIcon;
-        public TextView mName;
+        public TextView mSubject;
         public TextView mType;
+        public TextView mDate;
         public ImageButton mDeleteButton;
 
         public Long mTestId;
@@ -52,20 +55,21 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.ViewHo
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, TestActivity.class);
-                            intent.putExtra(TestListActivity.SUBJECT_ID_EXTRA, mSubjectId);
+                            intent.putExtra(TestActivity.TEST_ID_EXTRA, mTestId);
                             mContext.startActivity(intent);
                         }
                     }
             );
-            mName = (TextView) itemView.findViewById(R.id.name);
+            mSubject = (TextView) itemView.findViewById(R.id.subject);
             mType = (TextView) itemView.findViewById(R.id.type);
-            mDeleteButton = (ImageButton) itemView.findViewById(R.id.subject_delete);
+            mDate = (TextView) itemView.findViewById(R.id.date);
+            mDeleteButton = (ImageButton) itemView.findViewById(R.id.test_delete);
 
             if (mListener != null) {
                 mDeleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SubjectListAdapter.this.mListener.onDelete(mSubjectId);
+                        TestListAdapter.this.mListener.onDelete(mTestId);
                     }
                 });
             } else {
@@ -86,16 +90,16 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Subject subject = mSubjects.get(position);
+        final Test test = mTests.get(position);
 
-        holder.mSubjectId = subject.getId();
-        holder.mName.setText(subject.getName());
-        holder.mType.setText(subject.getType().toString());
-        holder.mCategoryIcon.setImageResource(subject.getColorTag().getDrawableId());
+        holder.mTestId = test.getId();
+        holder.mSubject.setText(DBFactory.getFactory().getSubjectDAO().getByID(test.getSubjectId()).getName());
+        holder.mType.setText(test.getTestType().toString());
+        holder.mDate.setText(test.getDate().toString());
     }
 
     @Override
     public int getItemCount() {
-        return mSubjects.size();
+        return mTests.size();
     }
 }

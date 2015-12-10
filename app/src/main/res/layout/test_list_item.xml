@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageButton
+        style="@style/ListItem.Avatar"
+        android:id="@+id/category_icon"
+        android:background="@drawable/round_shape_blue"/>
+
+    <TextView
+        style="@style/ListItem.FirstLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Algebra"
+        android:paddingTop="2dp"
+        android:layout_toEndOf="@+id/category_icon"
+        android:id="@+id/subject"/>
+    <TextView
+        android:layout_below="@id/subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="19.04.16"
+        android:paddingTop="2dp"
+        android:layout_toEndOf="@+id/category_icon"
+        android:id="@+id/date"/>
+    <TextView
+        style="@style/ListItem.SecondLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exam"
+        android:id="@+id/type"
+        android:layout_below="@+id/date"
+        android:layout_alignStart="@+id/date"/>
+
+    <ImageButton
+        android:id="@+id/test_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_black"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:contentDescription="Delete subject" />
+</RelativeLayout>
