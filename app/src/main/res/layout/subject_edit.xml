@@ -145,18 +145,30 @@
                             android:src="@drawable/date_pick_20"/>
 
                     </LinearLayout>
-                <TextView
-                    style="@style/DialogButton"
-                    android:id="@+id/cancel_button"
-                    android:text="CANCEL"
-                    android:layout_toStartOf="@id/save_button"
-                    android:layout_gravity="center_horizontal"/>
-                <TextView
-                    style="@style/DialogButton"
-                    android:id="@+id/save_button"
-                    android:text="SAVE"
-                    android:layout_alignParentEnd="true"
-                    android:layout_gravity="right"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/DialogButton"
+                            android:id="@+id/cancel_button"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:text="CANCEL"
+                            android:layout_toStartOf="@id/save_button"
+                            android:layout_gravity="center_horizontal"/>
+                        <TextView
+                            style="@style/DialogButton"
+                            android:id="@+id/save_button"
+                            android:layout_width="match_parent"
+                            android:layout_weight="50"
+                            android:text="SAVE"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
