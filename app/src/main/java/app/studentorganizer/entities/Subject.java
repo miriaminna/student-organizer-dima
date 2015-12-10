@@ -2,6 +2,8 @@ package app.studentorganizer.entities;
 
 import android.util.Log;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class Subject extends IDable {
     protected Long mContentId;
     protected List<Long> mTestsIds;
     protected ColorTag mColorTag;
+    protected LocalDate mStartDate;
+    protected LocalDate mEndDate;
 
     public Subject() {
         mTasksIds = new ArrayList<>();
@@ -87,6 +91,22 @@ public class Subject extends IDable {
 
     public void addTaskId(Long taskId) {
         mTasksIds.add(taskId);
+    }
+
+    public LocalDate getStartDate() {
+        return mStartDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.mStartDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return mEndDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.mEndDate = endDate;
     }
 
     @Override
