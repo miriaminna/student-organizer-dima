@@ -17,6 +17,7 @@ import java.util.List;
 import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
 import app.studentorganizer.com.TaskUtil;
+import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Task;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
@@ -65,7 +66,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 //        holder.mCategoryIcon.setImageResource(
 //                TaskUtil.getCategoryIconId(task.getSubject().getColorTag()));
         holder.mTaskName.setText(task.getName());
-        holder.mCheckInDue.setText(TaskUtil.getCheckInDue(task.getDeadline(), mContext));
+        holder.mCheckInDue.setText(TaskUtil.getCheckInDue(task.getDeadline(), mContext)
+            + ", " + DBFactory.getFactory().getSubjectDAO().getByID(task.getSubjectId()).getName());
         holder.mTaskProgress.setText(
                 String.valueOf(task.getProgress() + " / " + task.getTarget()));
         holder.mProgressBar.setProgress(
