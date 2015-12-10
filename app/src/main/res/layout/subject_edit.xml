@@ -81,7 +81,8 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_med">
 
                 <include layout="@layout/teacher_item"
                     android:id="@+id/teacher_view"
@@ -94,8 +95,71 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="20"
                     style="@style/ListItem.FirstLine"
-                    android:background="@drawable/edit_black"
+                    android:background="@drawable/edit_black_50"
                     android:contentDescription="Add/change teacher" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Start date: "
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/subject_start_date"
+                        android:layout_width="100dp"
+                        style="@style/EditText"
+                        android:layout_marginEnd="8dp"
+                        android:text="2015-03-15"/>
+
+                    <ImageView
+                        android:id="@+id/subject_start_date_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@color/white"
+                        android:paddingBottom="2dp"
+                        android:src="@drawable/date_pick_20"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="End date:   "
+                        android:textColor="@android:color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/subject_end_date"
+                        android:layout_width="100dp"
+                        style="@style/EditText"
+                        android:layout_marginEnd="8dp"
+                        android:text="2015-03-15"/>
+
+                    <ImageView
+                        android:id="@+id/subject_end_date_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@color/white"
+                        android:paddingBottom="2dp"
+                        android:src="@drawable/date_pick_20"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
