@@ -78,6 +78,13 @@ public class EditSubjectActivity extends BaseActivity {
 
         initializeDatePicker(mStartDateText, startDatePicker);
         initializeDatePicker(mEndDateText, endDatePicker);
+
+        findViewById(R.id.cancel_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initializeDatePicker(final TextView dateText, View pickerButton) {
