@@ -1,22 +1,32 @@
 package app.studentorganizer.entities;
 
+import app.studentorganizer.com.ContentParent;
 import app.studentorganizer.com.ContentType;
 
 /**
  * Created by dmytroberezin on 12/4/15.
  */
 public class ContentItem extends IDable {
-    protected Long mContentId;
+    protected Long mParentId;
+    protected ContentParent mParentType;
     protected ContentType mType;
     protected String mSource;
     protected String mText;
 
-    public Long getContentId() {
-        return mContentId;
+    public ContentParent getParentType() {
+        return mParentType;
     }
 
-    public void setContentId(Long contentId) {
-        mContentId = contentId;
+    public void setParentType(ContentParent parentType) {
+        this.mParentType = parentType;
+    }
+
+    public Long getParentId() {
+        return mParentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.mParentId = parentId;
     }
 
     public ContentType getType() {
