@@ -26,6 +26,7 @@ public class UniScheduleActivity extends BaseListActivity {
             @Override
             public void onClick(View v) {
                 UnivScheduleEntry entry = new UnivScheduleEntry();
+                entry.setLessonNumber(mUnivScheduleEntries.size() + 1);
                 DBFactory.getFactory().getUnivScheduleDAO().addEntity(entry);
                 mUnivScheduleEntries.add(entry);
                 mUniScheduleListAdapter.notifyDataSetChanged();
