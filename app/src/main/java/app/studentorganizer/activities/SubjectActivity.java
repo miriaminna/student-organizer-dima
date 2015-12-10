@@ -29,6 +29,7 @@ import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
 import app.studentorganizer.entities.Test;
+import app.studentorganizer.util.DateUtils;
 
 public class SubjectActivity extends BaseActivity implements
         OnTaskCheckedInListener,
@@ -114,6 +115,7 @@ public class SubjectActivity extends BaseActivity implements
             findViewById(R.id.button_delete).setVisibility(View.GONE);
         }
 
+        // Initialize tabs
         final TextView tasksTab = (TextView) findViewById(R.id.tasks);
         final TextView materialsTab = (TextView) findViewById(R.id.materials);
         final TextView testsTab = (TextView) findViewById(R.id.tests);
@@ -148,7 +150,7 @@ public class SubjectActivity extends BaseActivity implements
                 }
         );
 
-        // Setup tasks recycler view
+        // Setup recycler views for tasks and materials
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -173,6 +175,16 @@ public class SubjectActivity extends BaseActivity implements
         onSubjectTabChanged();
         mAdapter = new TaskListAdapter(mTasks, this);
         mRecyclerView.setAdapter(mAdapter);
+
+        // Setup start and end dates
+        if (mSubject.getStartDate() != null) {
+            ((TextView) findViewById(R.id.subject_start_date)).setText(
+                    DateUtils.localDateToString(mSubject.getStartDate()));
+        }
+        if (mSubject.getEndDate() != null) {
+            ((TextView) findViewById(R.id.subject_end_date)).setText(
+                    DateUtils.localDateToString(mSubject.getEndDate()));
+        }
     }
 
 
@@ -197,6 +209,7 @@ public class SubjectActivity extends BaseActivity implements
                 ((TextView) findViewById(R.id.tasks)).
                         setBackgroundResource(R.drawable.dashboard_button_background_active);
 
+                mAdapter = new TaskListAdapter(mTasks, this);
                 mRecyclerView.setAdapter(mAdapter);
                 // mAdapter.notifyDataSetChanged();
 
@@ -217,6 +230,7 @@ public class SubjectActivity extends BaseActivity implements
             case MATERIALS:
                 ((TextView) findViewById(R.id.materials)).
                         setBackgroundResource(R.drawable.dashboard_button_background_active);
+                
                 mAdapter = new ContentItemAdapter(mContents, this);
                 mRecyclerView.setAdapter(mAdapter);
 
@@ -271,8 +285,8 @@ public class SubjectActivity extends BaseActivity implements
     // does Dima really needed this?
     @Override
     public void onTaskCreated(Task task) {
-        mTasks.add(task);
-        mAdapter.notifyDataSetChanged();
+        /*mTasks.add(task);
+        mAdapter.notifyDataSetChanged();*/
     }
 
     @Override
@@ -284,7 +298,7 @@ public class SubjectActivity extends BaseActivity implements
     // does Dima really needed this?
     @Override
     public void onTestCreated(Test test) {
-        mTests.add(test);
-        mAdapter.notifyDataSetChanged();
+        /*mTests.add(test);
+        mAdapter.notifyDataSetChanged();*/
     }
 }

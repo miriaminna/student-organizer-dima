@@ -3,17 +3,22 @@ package app.studentorganizer.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import app.studentorganizer.R;
@@ -23,6 +28,7 @@ import app.studentorganizer.com.SubjectType;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Teacher;
+import app.studentorganizer.util.DateUtils;
 
 public class EditSubjectActivity extends BaseActivity {
 
@@ -31,6 +37,9 @@ public class EditSubjectActivity extends BaseActivity {
     protected ColorTag mColorTag;
     protected Context mContext;
 
+
+    protected TextView mStartDateText;
+    protected TextView mEndDateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +64,42 @@ public class EditSubjectActivity extends BaseActivity {
                 if (mTeacherSelector == null) {
                     mTeacherSelector = new TeacherSelector
                             (EditSubjectActivity.this,
-                            DBFactory.getFactory().getTeacherDAO().getAllEntities(),
-                            findViewById(R.id.teacher_view));
+                                    DBFactory.getFactory().getTeacherDAO().getAllEntities(),
+                                    findViewById(R.id.teacher_view));
                 }
                 mTeacherSelector.showDialog();
+            }
+        });
+
+        mStartDateText = (TextView) findViewById(R.id.subject_start_date);
+        mEndDateText = (TextView) findViewById(R.id.subject_end_date);
+        View startDatePicker = findViewById(R.id.subject_start_date_button);
+        View endDatePicker = findViewById(R.id.subject_end_date_button);
+
+        initializeDatePicker(mStartDateText, startDatePicker);
+        initializeDatePicker(mEndDateText, endDatePicker);
+    }
+
+    private void initializeDatePicker(final TextView dateText, View pickerButton) {
+        pickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                DatePickerDialog.OnDateSetListener startListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        if (dateText != null) {
+                            dateText.setText(DateUtils.dateToString(year, monthOfYear + 1, dayOfMonth));
+                        }
+                    }
+                };
+                new DatePickerDialog(
+                        EditSubjectActivity.this,
+                        startListener,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)
+                ).show();
             }
         });
     }
@@ -141,6 +182,9 @@ public class EditSubjectActivity extends BaseActivity {
             if (mTeacherSelector != null) {
                 subject.setTeacherId(EditSubjectActivity.this.mTeacherSelector.getTeacherId());
             }
+
+            subject.setStartDate(LocalDate.parse(mStartDateText.getText().toString()));
+            subject.setEndDate(LocalDate.parse(mEndDateText.getText().toString()));
 
             DBFactory.getFactory().getSubjectDAO().addEntity(subject);
 
