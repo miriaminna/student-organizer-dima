@@ -3,7 +3,9 @@ package app.studentorganizer.adapters;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
@@ -46,44 +48,27 @@ public class UniScheduleListAdapter extends RecyclerView.Adapter<UniScheduleList
         return new ViewHolder(v);
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void getTime(final UnivScheduleEntry entry, final boolean isStart) {
-        View dView = ((Activity)mContext)
-                .getLayoutInflater()
-                .inflate(R.layout.time_chooser_dialog, null);
-
-        final AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setCancelable(false)
-                .setView(dView)
-                .create();
-
-        final TimePicker picker = (TimePicker) dView.findViewById(R.id.timePicker);
-
-        Button okButton = (Button) dView.findViewById(R.id.button_ok);
-        Button cancelButton = (Button) dView.findViewById(R.id.button_cancel);
-
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LocalTime time = new LocalTime(picker.getHour(), picker.getMinute());
-                if (isStart) {
-                    entry.setStart(time);
-                } else {
-                    entry.setEnd(time);
-                }
-                DBFactory.getFactory().getUnivScheduleDAO().updateEntity(entry);
-//                System.out.println(time.toString("HH:mm"));
-                UniScheduleListAdapter.this.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
+        LocalTime time = new LocalTime();
+        final AlertDialog dialog = new TimePickerDialog(
+                mContext,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        LocalTime time = new LocalTime(hourOfDay, minute);
+                        if (isStart) {
+                            entry.setStart(time);
+                        } else {
+                            if (entry.getStart().isBefore(time)) {
+                                entry.setEnd(time);
+                            }
+                        }
+                        DBFactory.getFactory().getUnivScheduleDAO().updateEntity(entry);
+                        UniScheduleListAdapter.this.notifyDataSetChanged();
+                    }
+                },
+                0, 0, true
+        );
 
         dialog.show();
     }
