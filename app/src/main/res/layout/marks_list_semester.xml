@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
         android:background="?android:attr/colorPrimary"
-        app:title="Teachers"
+        app:title="Marks"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <LinearLayout

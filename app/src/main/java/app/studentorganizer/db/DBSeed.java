@@ -75,6 +75,8 @@ public class DBSeed {
         subject.setName("Object-oriented programming");
         subject.setType(SubjectType.EXAM);
         subject.setColorTag(ColorTag.BLUE);
+        subject.setStartDate(new LocalDate(2015, 9, 1));
+        subject.setEndDate(new LocalDate(2015, 12, 25));
         subject.setTeacherId(0L);
 
         DBFactory.getFactory().getSubjectDAO().addEntity(subject);
@@ -84,6 +86,8 @@ public class DBSeed {
         subject.setType(SubjectType.CREDIT);
         subject.setColorTag(ColorTag.GREEN);
         subject.setTeacherId(1L);
+        subject.setStartDate(new LocalDate(2015, 2, 15));
+        subject.setEndDate(new LocalDate(2015, 5, 30));
         List<Long> ids = new ArrayList<>();
         ids.add(0L);
         subject.setTasksIds(ids);
@@ -96,6 +100,8 @@ public class DBSeed {
         subject.setType(SubjectType.EXAM);
         subject.setColorTag(ColorTag.ORANGE);
         subject.setTeacherId(2L);
+        subject.setStartDate(new LocalDate(2015, 9, 1));
+        subject.setEndDate(new LocalDate(2016, 1, 15));
         ids = new ArrayList<>();
         ids.add(1L);
         subject.setTasksIds(ids);
