@@ -16,6 +16,7 @@ import app.studentorganizer.R;
 import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Task;
+import app.studentorganizer.util.DateUtils;
 
 public class EditTaskActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -31,7 +32,7 @@ public class EditTaskActivity extends BaseActivity implements DatePickerDialog.O
                 SubjectCommon.SUBJECT_ID_EXTRA,
                 SubjectCommon.DEFAULT_SUBJECT_ID);
 
-        if (mSubjectId == -1) {
+        if (mSubjectId == SubjectCommon.DEFAULT_SUBJECT_ID) {
             finish();
         } else {
             initializeView();
@@ -113,12 +114,7 @@ public class EditTaskActivity extends BaseActivity implements DatePickerDialog.O
     // Updates date view if the view is initialized
     protected void setDateView(int year, int monthOfYear, int dayOfMonth) {
         if (mDateView != null) {
-            mDateView.setText(
-                    new StringBuilder().
-                            append(year).append('-').
-                            append(monthOfYear).append('-').
-                            append(dayOfMonth)
-            );
+            mDateView.setText(DateUtils.dateToString(year, monthOfYear, dayOfMonth));
         }
     }
 }
