@@ -48,7 +48,7 @@
         <activity android:name=".activities.MyScheduleActivity"></activity>
         <activity android:name=".activities.EditStudentScheduleActivity"></activity>
         <activity android:name=".activities.MarksActivity"></activity>
-        <activity android:name=".activities.EditContentActivity"></activity>
+        <activity android:name=".activities.EditContentItemActivity"></activity>
     </application>
 
 </manifest>

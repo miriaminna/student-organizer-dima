@@ -5,22 +5,22 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.R;
+import app.studentorganizer.adapters.ContentItemAdapter;
 import app.studentorganizer.adapters.TaskListAdapter;
-import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.ContentParent;
 import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.com.SubjectTab;
 import app.studentorganizer.db.DBFactory;
-import app.studentorganizer.entities.Content;
+import app.studentorganizer.entities.ContentItem;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
@@ -33,12 +33,12 @@ public class SubjectActivity extends BaseActivity implements
     protected RecyclerView mRecyclerView;
     protected Subject mSubject;
     protected Long mSubjectId;
-    protected TaskListAdapter mAdapter;
+    protected RecyclerView.Adapter mAdapter;
 
     protected SubjectTab mSubjectTab;
 
     protected List<Task> mTasks;
-    protected List<Content> mContents;
+    protected List<ContentItem> mContents;
     protected List<Test> mTests;
 
     @Override
@@ -46,6 +46,9 @@ public class SubjectActivity extends BaseActivity implements
         mSubjectId = getIntent().getLongExtra(
                 SubjectCommon.SUBJECT_ID_EXTRA,
                 SubjectCommon.DEFAULT_SUBJECT_ID);
+
+        mTasks = new ArrayList<>();
+        mContents = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
 
@@ -66,7 +69,11 @@ public class SubjectActivity extends BaseActivity implements
     public void loadDataFromDB() {
         mSubject = DBFactory.getFactory().getSubjectDAO().getByID(mSubjectId);
         // Fetch tasks, materials and tests
-        mTasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
+        mTasks.clear();
+        mTasks.addAll(DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId));
+        mContents.clear();
+        mContents.addAll(DBFactory.getFactory().getContentItemDAO().
+                getByParent(mSubjectId, ContentParent.SUBJECT));
     }
 
     private void initializeView() {
@@ -103,6 +110,21 @@ public class SubjectActivity extends BaseActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.tasks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSubjectTab = SubjectTab.TASKS;
+                onSubjectTabChanged();
+            }
+        });
+        findViewById(R.id.materials).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSubjectTab = SubjectTab.MATERIALS;
+                onSubjectTabChanged();
+            }
+        });
+
         mSubjectTab = SubjectTab.TASKS;
 
 
@@ -117,8 +139,9 @@ public class SubjectActivity extends BaseActivity implements
         super.onPostResume();
         loadDataFromDB();
         System.out.println("Resuming");
-        mSubjectTab = SubjectTab.TASKS;
-        onSubjectTabChanged();
+        /*mSubjectTab = SubjectTab.TASKS;
+        onSubjectTabChanged();*/
+        mAdapter.notifyDataSetChanged();
     }
 
     private void onSubjectTabChanged() {
@@ -143,6 +166,25 @@ public class SubjectActivity extends BaseActivity implements
 
                 break;
             case MATERIALS:
+                mAdapter = new ContentItemAdapter(mContents, this);
+                mRecyclerView.setAdapter(mAdapter);
+
+                findViewById(R.id.fab).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(
+                                        SubjectActivity.this,
+                                        EditContentItemActivity.class);
+
+                                intent.putExtra(EditContentItemActivity.PARENT_ID_EXTRA, mSubjectId);
+                                intent.putExtra(EditContentItemActivity.PARENT_TYPE_EXTRA,
+                                        ContentParent.SUBJECT.toString());
+
+                                startActivity(intent);
+                            }
+                        }
+                );
                 break;
             case TESTS:
                 break;
