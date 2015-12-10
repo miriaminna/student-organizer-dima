@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+    <TextView
+        style="@style/DialogTitle"
+        android:id="@+id/title"
+        android:paddingLeft="10dp"
+        android:text="Color tag"/>
+
+    <LinearLayout
+        android:id="@+id/category_icons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/title">
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/orange"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/round_shape_orange"/>
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/green"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/round_shape_green"/>
+        <ImageButton
+            style="@style/ListItem.Avatar"
+            android:id="@+id/blue"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/round_shape_blue"/>
+    </LinearLayout>
+
+    <TextView
+        style="@style/DialogButton"
+        android:id="@+id/cancel_button"
+        android:text="CANCEL"
+        android:layout_toStartOf="@id/save_button"
+        android:layout_below="@id/category_icons"/>
+
+    <TextView
+        style="@style/DialogButton"
+        android:id="@+id/save_button"
+        android:text="SAVE"
+        android:layout_below="@id/category_icons"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

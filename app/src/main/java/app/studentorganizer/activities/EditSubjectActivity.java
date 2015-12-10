@@ -1,6 +1,8 @@
 package app.studentorganizer.activities;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,25 +27,25 @@ import app.studentorganizer.entities.Teacher;
 public class EditSubjectActivity extends BaseActivity {
 
     protected TeacherSelector mTeacherSelector;
+    protected SubjectType mSubjectType;
+    protected ColorTag mColorTag;
+    protected Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // sorry mama
+        mContext = this;
 
-        List<String> subjectTypes = new ArrayList<>();
-        for (SubjectType type : SubjectType.values()) {
-            subjectTypes.add(type.toString());
-        }
-        ((Spinner) findViewById(R.id.subject_type)).setAdapter(
-                new ArrayAdapter<>(this, R.layout.spinner_item, subjectTypes)
-        );
-        List<String> subjectTags = new ArrayList<>();
-        for (ColorTag tag : ColorTag.values()) {
-            subjectTags.add(tag.toString());
-        }
-        ((Spinner) findViewById(R.id.subject_color_tag)).setAdapter(
-                new ArrayAdapter<>(this, R.layout.spinner_item, subjectTags)
-        );
+        mSubjectType = SubjectType.CREDIT;
+        mColorTag = ColorTag.ORANGE;
+
+        findViewById(R.id.color_tag).setOnClickListener(new ColorPicker());
+
+        Spinner subjectType = ((Spinner)findViewById(R.id.subject_type));
+        String[] s = new String[] {SubjectType.CREDIT.name(), SubjectType.EXAM.name() };
+        subjectType.setAdapter(new ArrayAdapter<>(mContext, R.layout.spinner_item, s));
 
         findViewById(R.id.save_button).setOnClickListener(new SubjectSaver());
 
@@ -130,12 +132,9 @@ public class EditSubjectActivity extends BaseActivity {
         public void onClick(View v) {
             Subject subject = new Subject();
             subject.setName(((TextView) findViewById(R.id.name)).getText().toString());
-            subject.setType(SubjectType.valueOf(
-                    ((Spinner) findViewById(R.id.subject_type)).
-                            getSelectedItem().toString()));
-            subject.setColorTag(ColorTag.valueOf(
-                    ((Spinner) findViewById(R.id.subject_color_tag)).
-                            getSelectedItem().toString()));
+            subject.setType(
+                    SubjectType.valueOf(((Spinner)findViewById(R.id.subject_type)).getSelectedItem().toString()));
+            subject.setColorTag(mColorTag);
 
             // fixme : debug
             // TODO : validate so that teacher always would be selected
@@ -146,6 +145,99 @@ public class EditSubjectActivity extends BaseActivity {
             DBFactory.getFactory().getSubjectDAO().addEntity(subject);
 
             finish();
+        }
+    }
+
+    private class ColorPicker implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            final ColorTag old = mColorTag;
+            View dialogView = getLayoutInflater().inflate(R.layout.pick_color_tag_dialog, null);
+
+            final ImageButton orange = (ImageButton)dialogView.findViewById(R.id.orange);
+            final ImageButton green = (ImageButton)dialogView.findViewById(R.id.green);
+            final ImageButton blue = (ImageButton)dialogView.findViewById(R.id.blue);
+
+            orange.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mColorTag = ColorTag.ORANGE;
+                            onStateChanged(orange, green, blue);
+                        }
+                    }
+            );
+
+            green.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mColorTag = ColorTag.GREEN;
+                            onStateChanged(orange, green, blue);
+                        }
+                    }
+            );
+
+            blue.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mColorTag = ColorTag.BLUE;
+                            onStateChanged(orange, green, blue);
+                        }
+                    }
+            );
+
+            TextView cancelButton = (TextView) dialogView.findViewById(R.id.cancel_button);
+            TextView saveButton = (TextView) dialogView.findViewById(R.id.save_button);
+
+            final AlertDialog dialog =  new AlertDialog.Builder(mContext)
+                    .setCancelable(false)
+                    .create();
+
+            cancelButton.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mColorTag = old;
+                            dialog.cancel();
+                        }
+                    }
+            );
+
+            saveButton.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ImageButton colorTag = ((ImageButton)findViewById(R.id.color_tag));
+                            colorTag.setBackgroundResource(mColorTag.getDrawableId());
+                            dialog.dismiss();
+                        }
+                    }
+            );
+
+            dialog.setView(dialogView);
+            dialog.show();
+        }
+
+        private void onStateChanged(
+                final ImageButton orange,
+                final ImageButton green,
+                final ImageButton blue) {
+            orange.setBackgroundResource(R.drawable.round_shape);
+            green.setBackgroundResource(R.drawable.round_shape);
+            blue.setBackgroundResource(R.drawable.round_shape);
+            switch (mColorTag) {
+                case ORANGE:
+                    orange.setBackgroundResource(R.drawable.round_shape_selected);
+                    break;
+                case GREEN:
+                    green.setBackgroundResource(R.drawable.round_shape_selected);
+                    break;
+                case BLUE:
+                    blue.setBackgroundResource(R.drawable.round_shape_selected);
+                    break;
+            }
         }
     }
 }
