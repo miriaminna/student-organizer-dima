@@ -50,7 +50,15 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
         final UnivScheduleEntry univScheduleEntry = DBFactory.getFactory().getUnivScheduleDAO()
                 .getByID(scheduleEntry.getUnivScheduleEntryId());
 
+        int bg_resource = position % 3 == 0
+                ? R.drawable.square_boards_blue
+                : position % 3 == 1
+                    ? R.drawable.square_boards_green
+                    : R.drawable.square_boards_orange;
+
         holder.mClassroom.setText(String.format("%d", scheduleEntry.getClassroom()));
+        holder.mClassroom.setBackgroundResource(bg_resource);
+
         if (subject != null) {
             holder.mName.setText(subject.getName());
             holder.mName.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +70,16 @@ public class MyScheduleListAdapter extends RecyclerView.Adapter<MyScheduleListAd
                 }
             });
         }
+        holder.mName.setBackgroundResource(bg_resource);
+
         if (univScheduleEntry != null) {
             holder.mPair.setText(String.format("%d", univScheduleEntry.getLessonNumber()));
             holder.mTime.setText(String.format("%s-%s",
                     univScheduleEntry.getStart().toString("HH:mm"),
                     univScheduleEntry.getEnd().toString("HH:mm")));
         }
+        holder.mPair.setBackgroundResource(bg_resource);
+        holder.mTime.setBackgroundResource(bg_resource);
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

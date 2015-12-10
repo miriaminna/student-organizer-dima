@@ -9,8 +9,6 @@ import android.widget.Adapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.joda.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +16,15 @@ import app.studentorganizer.OnTaskCheckedInListener;
 import app.studentorganizer.OnTestCheckedInListener;
 import app.studentorganizer.OnTestCreatedListener;
 import app.studentorganizer.R;
+import app.studentorganizer.adapters.ContentItemAdapter;
 import app.studentorganizer.adapters.TaskListAdapter;
 import app.studentorganizer.adapters.TestListAdapter;
 import app.studentorganizer.com.ColorTag;
+import app.studentorganizer.com.ContentParent;
 import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.com.SubjectTab;
 import app.studentorganizer.db.DBFactory;
-import app.studentorganizer.entities.Content;
+import app.studentorganizer.entities.ContentItem;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 import app.studentorganizer.entities.Teacher;
@@ -39,13 +39,12 @@ public class SubjectActivity extends BaseActivity implements
     protected RecyclerView mRecyclerView;
     protected Subject mSubject;
     protected Long mSubjectId;
-    protected TaskListAdapter mTasksAdapter;
-    protected TestListAdapter mTestsAdapter;
+    protected RecyclerView.Adapter mAdapter;
 
     protected SubjectTab mSubjectTab;
 
     protected List<Task> mTasks;
-    protected List<Content> mContents;
+    protected List<ContentItem> mContents;
     protected List<Test> mTests;
 
     @Override
@@ -53,6 +52,10 @@ public class SubjectActivity extends BaseActivity implements
         mSubjectId = getIntent().getLongExtra(
                 SubjectCommon.SUBJECT_ID_EXTRA,
                 SubjectCommon.DEFAULT_SUBJECT_ID);
+
+        mTasks = new ArrayList<>();
+        mContents = new ArrayList<>();
+        mTests = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
 
@@ -73,10 +76,13 @@ public class SubjectActivity extends BaseActivity implements
     public void loadDataFromDB() {
         mSubject = DBFactory.getFactory().getSubjectDAO().getByID(mSubjectId);
         // Fetch tasks, materials and tests
-        mTasks = DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId);
-        mTasksAdapter = new TaskListAdapter(mTasks, this);
-        mTests = DBFactory.getFactory().getTestDAO().getBySubjectId(mSubjectId);
-        mTestsAdapter = new TestListAdapter(mTests, this);
+        mTasks.clear();
+        mTasks.addAll(DBFactory.getFactory().getTaskDAO().getBySubjectId(mSubjectId));
+        mContents.clear();
+        mContents.addAll(DBFactory.getFactory().getContentItemDAO().
+                getByParent(mSubjectId, ContentParent.SUBJECT));
+        mTests.clear();
+        mTests.addAll(DBFactory.getFactory().getTestDAO().getBySubjectId(mSubjectId));
     }
 
     private void initializeView() {
@@ -147,9 +153,26 @@ public class SubjectActivity extends BaseActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.tasks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSubjectTab = SubjectTab.TASKS;
+                onSubjectTabChanged();
+            }
+        });
+        findViewById(R.id.materials).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSubjectTab = SubjectTab.MATERIALS;
+                onSubjectTabChanged();
+            }
+        });
+
         mSubjectTab = SubjectTab.TASKS;
 
         onSubjectTabChanged();
+        mAdapter = new TaskListAdapter(mTasks, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -158,8 +181,11 @@ public class SubjectActivity extends BaseActivity implements
         super.onPostResume();
         loadDataFromDB();
         System.out.println("Resuming");
-        mSubjectTab = SubjectTab.TASKS;
-        onSubjectTabChanged();
+        /*mSubjectTab = SubjectTab.TASKS;
+        onSubjectTabChanged();*/
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void onSubjectTabChanged() {
@@ -168,9 +194,10 @@ public class SubjectActivity extends BaseActivity implements
         ((TextView) findViewById(R.id.tests)).setBackgroundResource(R.drawable.dashboard_button_background);
         switch (mSubjectTab) {
             case TASKS:
-                ((TextView) findViewById(R.id.tasks)).setBackgroundResource(R.drawable.dashboard_button_background_active);
+                ((TextView) findViewById(R.id.tasks)).
+                        setBackgroundResource(R.drawable.dashboard_button_background_active);
 
-                mRecyclerView.setAdapter(mTasksAdapter);
+                mRecyclerView.setAdapter(mAdapter);
                 // mAdapter.notifyDataSetChanged();
 
                 findViewById(R.id.fab).setOnClickListener(
@@ -188,12 +215,34 @@ public class SubjectActivity extends BaseActivity implements
 
                 break;
             case MATERIALS:
-                ((TextView) findViewById(R.id.materials)).setBackgroundResource(R.drawable.dashboard_button_background_active);
+                ((TextView) findViewById(R.id.materials)).
+                        setBackgroundResource(R.drawable.dashboard_button_background_active);
+                mAdapter = new ContentItemAdapter(mContents, this);
+                mRecyclerView.setAdapter(mAdapter);
+
+                findViewById(R.id.fab).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(
+                                        SubjectActivity.this,
+                                        EditContentItemActivity.class);
+
+                                intent.putExtra(EditContentItemActivity.PARENT_ID_EXTRA, mSubjectId);
+                                intent.putExtra(EditContentItemActivity.PARENT_TYPE_EXTRA,
+                                        ContentParent.SUBJECT.toString());
+
+                                startActivity(intent);
+                            }
+                        }
+                );
                 break;
             case TESTS:
-                ((TextView) findViewById(R.id.tests)).setBackgroundResource(R.drawable.dashboard_button_background_active);
+                ((TextView) findViewById(R.id.tests)).
+                        setBackgroundResource(R.drawable.dashboard_button_background_active);
 
-                mRecyclerView.setAdapter(mTestsAdapter);
+                mAdapter = new TestListAdapter(mTests, this);
+                mRecyclerView.setAdapter(mAdapter);
 
                 findViewById(R.id.fab).setOnClickListener(
                         new View.OnClickListener() {
@@ -216,26 +265,26 @@ public class SubjectActivity extends BaseActivity implements
     @Override
     public void onTaskCheckedIn(Task task) {
         DBFactory.getFactory().getTaskDAO().updateEntity(task);
-        mTasksAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     // does Dima really needed this?
     @Override
     public void onTaskCreated(Task task) {
         mTasks.add(task);
-        mTasksAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onTestCheckedIn(Test test) {
         DBFactory.getFactory().getTestDAO().updateEntity(test);
-        mTestsAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     // does Dima really needed this?
     @Override
     public void onTestCreated(Test test) {
         mTests.add(test);
-        mTestsAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 }

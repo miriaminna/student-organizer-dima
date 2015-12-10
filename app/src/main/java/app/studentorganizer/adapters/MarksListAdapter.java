@@ -2,12 +2,15 @@ package app.studentorganizer.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.joda.time.LocalDate;
 
 import java.util.List;
 
@@ -42,9 +45,18 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Pair<Subject, Double> mark = mMarks.get(position);
 
+        int bg_resource = mark.first.getEndDate().isBefore(new LocalDate())
+                ? R.drawable.square_boards_green
+                : R.drawable.square_boards_orange;
+
         holder.mType.setText(mark.first.getType().toString().substring(0, 1));
+        holder.mType.setBackgroundResource(bg_resource);
+
         holder.mName.setText(mark.first.getName());
+        holder.mName.setBackgroundResource(bg_resource);
+
         holder.mMark.setText(String.format("%.2f", mark.second));
+        holder.mMark.setBackgroundResource(bg_resource);
 
         holder.mName.setOnClickListener(new View.OnClickListener() {
             @Override

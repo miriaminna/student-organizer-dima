@@ -3,6 +3,8 @@ package app.studentorganizer.db.dao_sqlite;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,8 @@ public class SubjectDAOSQLite
         subject.setTeacherId(cursor.getLong(2));
         subject.setType(SubjectType.valueOf(cursor.getString(3)));
         subject.setColorTag(ColorTag.valueOf(cursor.getString(4)));
+        subject.setStartDate(new LocalDate(cursor.getString(5)));
+        subject.setEndDate(new LocalDate(cursor.getString(6)));
 
         return subject;
     }
@@ -51,6 +55,8 @@ public class SubjectDAOSQLite
         values.put(Database.SUBJECT_TEACHER_ID, subject.getTeacherId());
         values.put(Database.SUBJECT_TYPE, subject.getType().name());
         values.put(Database.SUBJECT_COLOR, subject.getColorTag().name());
+        values.put(Database.SUBJECT_START_DATE, subject.getStartDate().toString());
+        values.put(Database.SUBJECT_END_DATE, subject.getEndDate().toString());
 
         return values;
     }

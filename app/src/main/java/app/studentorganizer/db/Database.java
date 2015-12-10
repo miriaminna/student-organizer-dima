@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "Student.db";
 
     // Table Names
@@ -15,7 +15,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String MULTI_TASKS = "multi_tasks";
     public static final String TEACHERS = "teachers";
     public static final String SUBJECTS = "subjects";
-    public static final String CONTENTS = "content";
+    //public static final String CONTENTS = "content";
     public static final String CONTENT_ITEMS = "content_items";
     public static final String TESTS = "tests";
     public static final String UNIVERSITY_SCHEDULE = "university_schedule";
@@ -69,33 +69,29 @@ public class Database extends SQLiteOpenHelper {
     public static final String SUBJECT_TEACHER_ID = "_teacher_id";
     public static final String SUBJECT_TYPE = "_type";
     public static final String SUBJECT_COLOR = "_color";
+    public static final String SUBJECT_START_DATE = "_start_date";
+    public static final String SUBJECT_END_DATE = "_end_date";
     public static String[] SUBJECT_TABLE_COLUMNS = {
             Database.SUBJECT_ID,
             Database.SUBJECT_NAME,
             Database.SUBJECT_TEACHER_ID,
             Database.SUBJECT_TYPE,
-            Database.SUBJECT_COLOR
-    };
-
-    // CONTENTS column names
-    public static final String CONTENT_ID = "_id";
-    public static final String CONTENT_PARENT_TYPE = "_parent_type";
-    public static final String CONTENT_PARENT_ID = "_parent_id";
-    public static String[] CONTENTS_TABLE_COLUMNS = {
-            Database.CONTENT_ID,
-            Database.CONTENT_PARENT_TYPE,
-            Database.CONTENT_PARENT_ID,
+            Database.SUBJECT_COLOR,
+            Database.SUBJECT_START_DATE,
+            Database.SUBJECT_END_DATE
     };
 
     // CONTENT_ITEMS column names
     public static final String CONTENT_ITEM_ID = "_id";
-    public static final String CONTENT_ITEM_CONTENT_ID = "_content_id";
+    public static final String CONTENT_ITEM_PARENT_ID = "_parent_id";
+    public static final String CONTENT_ITEM_PARENT_TYPE = "_parent_type";
     public static final String CONTENT_ITEM_TYPE = "_type";
     public static final String CONTENT_ITEM_SOURCE = "_source";
     public static final String CONTENT_ITEM_TEXT = "_text";
     public static String[] CONTENT_ITEM_TABLE_COLUMNS = {
             Database.CONTENT_ITEM_ID,
-            Database.CONTENT_ITEM_CONTENT_ID,
+            Database.CONTENT_ITEM_PARENT_ID,
+            Database.CONTENT_ITEM_PARENT_TYPE,
             Database.CONTENT_ITEM_TYPE,
             Database.CONTENT_ITEM_SOURCE,
             Database.CONTENT_ITEM_TEXT
@@ -175,18 +171,15 @@ public class Database extends SQLiteOpenHelper {
             + SUBJECT_NAME + " text not null, "
             + SUBJECT_TEACHER_ID + " integer, "
             + SUBJECT_TYPE + " text not null, "
-            + SUBJECT_COLOR + " text not null)";
-
-    private static final String CREATE_TABLE_CONTENTS =
-            "create table " + CONTENTS + "("
-            + CONTENT_ID + " integer primary key autoincrement, "
-            + CONTENT_PARENT_TYPE + " text not null, "
-            + CONTENT_PARENT_ID + " integer)";
+            + SUBJECT_COLOR + " text not null, "
+            + SUBJECT_START_DATE + " text not null, "
+            + SUBJECT_END_DATE + " text not null)";
 
     private static final String CREATE_TABLE_CONTENT_ITEMS =
             "create table " + CONTENT_ITEMS + "("
             + CONTENT_ITEM_ID + " integer primary key autoincrement, "
-            + CONTENT_ITEM_CONTENT_ID + " integer, "
+            + CONTENT_ITEM_PARENT_ID + " integer, "
+            + CONTENT_ITEM_PARENT_TYPE + " text not null, "
             + CONTENT_ITEM_TYPE + " text not null, "
             + CONTENT_ITEM_SOURCE + " text, "
             + CONTENT_ITEM_TEXT + " text)";
@@ -226,7 +219,6 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SUBJECTS);
         db.execSQL(CREATE_TABLE_TEACHERS);
         db.execSQL(CREATE_TABLE_TESTS);
-        db.execSQL(CREATE_TABLE_CONTENTS);
         db.execSQL(CREATE_TABLE_CONTENT_ITEMS);
         db.execSQL(CREATE_TABLE_UNIVERSITY_SCHEDULE);
         db.execSQL(CREATE_TABLE_STUDENT_SCHEDULE);
@@ -239,7 +231,6 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + SUBJECTS);
         db.execSQL("DROP TABLE IF EXISTS " + TEACHERS);
         db.execSQL("DROP TABLE IF EXISTS " + TESTS);
-        db.execSQL("DROP TABLE IF EXISTS " + CONTENTS);
         db.execSQL("DROP TABLE IF EXISTS " + CONTENT_ITEMS);
         db.execSQL("DROP TABLE IF EXISTS " + UNIVERSITY_SCHEDULE);
         db.execSQL("DROP TABLE IF EXISTS " + STUDENT_SCHEDULE);
