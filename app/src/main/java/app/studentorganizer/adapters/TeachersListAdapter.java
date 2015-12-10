@@ -25,10 +25,12 @@ import app.studentorganizer.entities.Teacher;
 public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapter.ViewHolder> {
     private Context mContext;
     private List<Teacher> mTeachers;
+    private boolean mEnableDelete;
 
-    public TeachersListAdapter(List<Teacher> teachers, Context context) {
+    public TeachersListAdapter(List<Teacher> teachers, Context context, boolean enableDelete) {
         mTeachers = teachers;
         mContext = context;
+        this.mEnableDelete = enableDelete;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -44,6 +46,11 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
             mTeacherName = (TextView)itemView.findViewById(R.id.teacher_name);
             mTeacherType = (TextView)itemView.findViewById(R.id.teacher_type);
             mDeleteButton = (ImageButton)itemView.findViewById(R.id.button_delete);
+            if (!mEnableDelete) {
+                mDeleteButton.setVisibility(View.GONE);
+            } else {
+                mDeleteButton.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -75,14 +82,16 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
 
         holder.mTeacherIcon.setOnClickListener(holder);
 
-        holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DBFactory.getFactory().getTeacherDAO().deleteEntity(teacher.getId());
-                mTeachers.remove(teacher);
-                TeachersListAdapter.this.notifyDataSetChanged();
-            }
-        });
+        if (mEnableDelete) {
+            holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBFactory.getFactory().getTeacherDAO().deleteEntity(teacher.getId());
+                    mTeachers.remove(teacher);
+                    TeachersListAdapter.this.notifyDataSetChanged();
+                }
+            });
+        }
     }
 
     @Override

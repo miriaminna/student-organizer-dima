@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.studentorganizer.db.DBFactory;
-import app.studentorganizer.decorations.BaseItemDecoration;
 import app.studentorganizer.R;
 import app.studentorganizer.adapters.TeachersListAdapter;
 import app.studentorganizer.entities.Teacher;
@@ -42,7 +41,7 @@ public class TeachersActivity extends BaseListActivity {
 
     @Override
     protected RecyclerView.Adapter initializeAdapter() {
-        mTeachersListAdapter = new TeachersListAdapter(mTeachers, this);
+        mTeachersListAdapter = new TeachersListAdapter(mTeachers, this, true);
         return mTeachersListAdapter;
     }
 

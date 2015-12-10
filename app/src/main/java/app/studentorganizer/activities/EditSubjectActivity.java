@@ -114,6 +114,9 @@ public class EditSubjectActivity extends BaseActivity {
                         setText(teacher.getName());
                 ((TextView) mTeacherView.findViewById(R.id.teacher_type)).
                         setText(teacher.getType().toString());
+
+                // Disable teacher deletion from subject edit activity
+                mTeacherView.findViewById(R.id.button_delete).setVisibility(View.GONE);
             }
         }
 
@@ -135,7 +138,7 @@ public class EditSubjectActivity extends BaseActivity {
                             getSelectedItem().toString()));
 
             // fixme : debug
-            // TODO : validate so that teacher allways would be selected
+            // TODO : validate so that teacher always would be selected
             if (mTeacherSelector != null) {
                 subject.setTeacherId(EditSubjectActivity.this.mTeacherSelector.getTeacherId());
             }

@@ -1,18 +1,27 @@
 package app.studentorganizer.activities;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.joda.time.LocalDate;
+
+import java.util.Calendar;
 
 import app.studentorganizer.R;
 import app.studentorganizer.com.SubjectCommon;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Task;
 
-public class EditTaskActivity extends BaseActivity {
-    public long mSubjectId;
+public class EditTaskActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
+
+    protected long mSubjectId;
+
+    protected TextView mDateView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +70,28 @@ public class EditTaskActivity extends BaseActivity {
                     }
                 });
 
+        mDateView = (TextView) findViewById(R.id.task_deadline);
 
+        // Initially set current date to date view
+        Calendar calendar = Calendar.getInstance();
+        setDateView(calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH));
+
+        // Start calendar dialog
+        findViewById(R.id.start_date_pick).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                new DatePickerDialog(
+                        EditTaskActivity.this,
+                        EditTaskActivity.this,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)
+                ).show();
+            }
+        });
     }
 
     @Override
@@ -71,5 +101,24 @@ public class EditTaskActivity extends BaseActivity {
 
     @Override
     public void loadDataFromDB() {
+    }
+
+    // Called when date in DatePickerDialog is chosen
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        // Update date in view
+        setDateView(year, monthOfYear + 1, dayOfMonth);
+    }
+
+    // Updates date view if the view is initialized
+    protected void setDateView(int year, int monthOfYear, int dayOfMonth) {
+        if (mDateView != null) {
+            mDateView.setText(
+                    new StringBuilder().
+                            append(year).append('-').
+                            append(monthOfYear).append('-').
+                            append(dayOfMonth)
+            );
+        }
     }
 }

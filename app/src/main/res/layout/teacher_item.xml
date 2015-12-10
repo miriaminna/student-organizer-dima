@@ -34,5 +34,6 @@
         android:background="@drawable/delete_black"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="25dp"
-        android:contentDescription="Delete Teacher" />
+        android:contentDescription="Delete Teacher"
+        android:visibility="gone"/>
 </RelativeLayout>

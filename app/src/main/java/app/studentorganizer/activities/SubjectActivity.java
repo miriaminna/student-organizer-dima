@@ -104,6 +104,8 @@ public class SubjectActivity extends BaseActivity implements
                 }
             });
             teacherIcon.setImageResource(teacher.getType().getDrawable());
+            // Hide delete button
+            findViewById(R.id.button_delete).setVisibility(View.GONE);
         }
 
         final TextView tasksTab = (TextView) findViewById(R.id.tasks);

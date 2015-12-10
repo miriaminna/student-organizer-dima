@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:background="@color/white"
-android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        app:title="Teachers"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +29,7 @@ android:orientation="vertical">
             android:text="GPA = "
             />
     </LinearLayout>
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="332dp"
         android:layout_height="40dp"
         android:layout_marginLeft="16dp"
@@ -41,12 +53,10 @@ android:orientation="vertical">
             android:layout_height="40dp"
             android:src="@drawable/circled_right"
             android:background="@null"/>
-    </LinearLayout>
-
-    <include layout="@layout/marks_list_semester_item"/>
+    </LinearLayout>-->
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/goals_list"
+        android:id="@+id/marks_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
