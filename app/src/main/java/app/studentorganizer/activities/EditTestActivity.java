@@ -51,7 +51,8 @@ public class EditTestActivity extends BaseActivity implements DatePickerDialog.O
                         test.setTestType(TestType.valueOf(((Spinner) findViewById(R.id.test_type)).getSelectedItem().toString()));
                         test.setResult(0);
                         test.setSubjectId(mSubjectId);
-                        test.setPoints(Integer.valueOf(((TextView) findViewById(R.id.test_points)).getText().toString()));
+                        test.setPoints(Math.max(1,
+                                Integer.valueOf(((TextView) findViewById(R.id.test_points)).getText().toString())));
                         test.setDate(
                                 LocalDate.parse(((TextView) findViewById(R.id.test_date)).getText().toString()));
 

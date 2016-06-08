@@ -67,6 +67,15 @@ public abstract class GenericDAOSQLite<Entity extends IDable> implements Generic
         return id;
     }
 
+    @Override
+    public boolean clear() {
+        return DatabaseManager.getDatabase().delete(
+                getTableName(),
+                null,
+                null
+        ) != 0;
+    }
+
     protected List<Entity> getListFromCursor(Cursor cursor) {
         ArrayList<Entity> entities = new ArrayList<>();
         cursor.moveToFirst();

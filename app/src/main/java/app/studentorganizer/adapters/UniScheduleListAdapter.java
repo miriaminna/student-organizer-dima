@@ -57,11 +57,15 @@ public class UniScheduleListAdapter extends RecyclerView.Adapter<UniScheduleList
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         LocalTime time = new LocalTime(hourOfDay, minute);
                         if (isStart) {
-                            entry.setStart(time);
-                        } else {
-                            if (entry.getStart().isBefore(time)) {
+                            if (time.isAfter(entry.getEnd())) {
                                 entry.setEnd(time);
                             }
+                            entry.setStart(time);
+                        } else {
+                            if (entry.getStart().isAfter(time)) {
+                                entry.setStart(time);
+                            }
+                            entry.setEnd(time);
                         }
                         DBFactory.getFactory().getUnivScheduleDAO().updateEntity(entry);
                         UniScheduleListAdapter.this.notifyDataSetChanged();

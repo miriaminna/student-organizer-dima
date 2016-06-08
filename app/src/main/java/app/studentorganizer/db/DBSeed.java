@@ -20,6 +20,14 @@ import app.studentorganizer.entities.UnivScheduleEntry;
  * Created by Vitalii on 08-Dec-15.
  */
 public class DBSeed {
+    public static void clear() {
+        DBFactory.getFactory().getTeacherDAO().clear();
+        DBFactory.getFactory().getTaskDAO().clear();
+        DBFactory.getFactory().getSubjectDAO().clear();
+        DBFactory.getFactory().getUnivScheduleDAO().clear();
+        DBFactory.getFactory().getStudentScheduleDAO().clear();
+    }
+
     public static void seed() {
         seedTeachers();
         seedTasks();

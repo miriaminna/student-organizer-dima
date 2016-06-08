@@ -59,4 +59,10 @@ public class TeacherDAOTest
         System.out.println("Teachers: " + mTeachers.size());
         return teacher.getId();
     }
+
+    @Override
+    public boolean clear() {
+        mTeachers.clear();
+        return true;
+    }
 }

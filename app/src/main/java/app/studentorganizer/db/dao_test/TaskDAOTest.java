@@ -64,6 +64,12 @@ public class TaskDAOTest
     }
 
     @Override
+    public boolean clear() {
+        mTasks.clear();
+        return true;
+    }
+
+    @Override
     public List<Task> getBySubjectId(Long subjectId) {
         List<Task> tasks = new ArrayList<>();
         for (Task t : mTasks) {

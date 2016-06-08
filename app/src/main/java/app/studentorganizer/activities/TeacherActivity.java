@@ -2,7 +2,7 @@ package app.studentorganizer.activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
+import app.studentorganizer.util.Pair;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;

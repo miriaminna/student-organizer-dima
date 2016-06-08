@@ -65,6 +65,12 @@ public class SubjectDAOTest
     }
 
     @Override
+    public boolean clear() {
+        mSubjects.clear();
+        return true;
+    }
+
+    @Override
     public List<Subject> getByTeacherId(Long teacherId) {
         List<Subject> subjects = new ArrayList<>();
 

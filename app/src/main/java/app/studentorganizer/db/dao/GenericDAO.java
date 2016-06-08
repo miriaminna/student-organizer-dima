@@ -14,4 +14,5 @@ public interface GenericDAO<Entity extends IDable> {
     boolean updateEntity(Entity entity);
     boolean deleteEntity(Long id);
     Long addEntity(Entity entity);
+    boolean clear();
 }

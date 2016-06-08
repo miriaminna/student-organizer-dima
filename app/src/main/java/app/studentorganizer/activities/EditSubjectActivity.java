@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -97,6 +98,15 @@ public class EditSubjectActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         if (dateText != null) {
                             dateText.setText(DateUtils.dateToString(year, monthOfYear + 1, dayOfMonth));
+                            if (DateTime.parse(mStartDateText.getText().toString()).isAfter(
+                                    DateTime.parse(mEndDateText.getText().toString())))
+                            {
+                                if (dateText == mStartDateText) {
+                                    mEndDateText.setText(dateText.getText());
+                                } else {
+                                    mStartDateText.setText(dateText.getText());
+                                }
+                            }
                         }
                     }
                 };

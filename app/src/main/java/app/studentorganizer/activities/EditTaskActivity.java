@@ -47,12 +47,12 @@ public class EditTaskActivity extends BaseActivity implements DatePickerDialog.O
                         public void onClick(View v) {
                             Task task = new Task();
                             task.setName(((TextView) findViewById(R.id.task_name)).getText().toString());
-                            task.setTarget(
-                                    Integer.valueOf(((TextView) findViewById(R.id.task_target)).getText().toString()));
+                            task.setTarget(Math.max(1,
+                                    Integer.valueOf(((TextView) findViewById(R.id.task_target)).getText().toString())));
                             task.setProgress(0);
                             task.setSubjectId(mSubjectId);
-                            task.setPoints(
-                                    Double.valueOf(((TextView) findViewById(R.id.task_points)).getText().toString()));
+                            task.setPoints(Math.max(1,
+                                    Double.valueOf(((TextView) findViewById(R.id.task_points)).getText().toString())));
                             task.setDeadline(
                                     LocalDate.parse(((TextView) findViewById(R.id.task_deadline)).getText().toString()));
 

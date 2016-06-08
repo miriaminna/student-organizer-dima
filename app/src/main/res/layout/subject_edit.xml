@@ -38,6 +38,8 @@
                     style="@style/EditText"
                     android:layout_width="200dp"
                     android:id="@+id/name"
+                    android:maxLines="1"
+                    android:maxLength="20"
                     android:layout_below="@+id/name_label"/>
 
                 <TextView

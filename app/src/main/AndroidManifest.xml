@@ -33,23 +33,17 @@
             android:name=".activities.TeachersActivity"
             android:label="@string/teachers" />
         <activity android:name=".activities.SubjectActivity" />
-        <activity android:name=".activities.SubjectListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.SubjectListActivity" />
         <activity android:name=".activities.TeacherActivity" />
         <activity android:name=".activities.EditTaskActivity" />
         <activity android:name=".activities.EditTestActivity" />
         <activity android:name=".activities.EditTeacherActivity" />
         <activity android:name=".activities.EditSubjectActivity" />
-        <activity android:name=".activities.UniScheduleActivity"></activity>
-        <activity android:name=".activities.MyScheduleActivity"></activity>
-        <activity android:name=".activities.EditStudentScheduleActivity"></activity>
-        <activity android:name=".activities.MarksActivity"></activity>
-        <activity android:name=".activities.EditContentItemActivity"></activity>
+        <activity android:name=".activities.UniScheduleActivity"/>
+        <activity android:name=".activities.MyScheduleActivity"/>
+        <activity android:name=".activities.EditStudentScheduleActivity"/>
+        <activity android:name=".activities.MarksActivity"/>
+        <activity android:name=".activities.EditContentItemActivity"/>
     </application>
 
 </manifest>

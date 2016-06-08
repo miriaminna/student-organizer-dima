@@ -1,6 +1,6 @@
 package app.studentorganizer.entities;
 
-import android.util.Pair;
+import app.studentorganizer.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +75,9 @@ public class Teacher extends IDable {
             string.append(':');
             string.append(pair.second);
             string.append('\n');
+        }
+        if (string.length() > 0) {
+            string.deleteCharAt(string.length() - 1);
         }
         return string.toString();
     }
