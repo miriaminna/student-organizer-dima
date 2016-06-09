@@ -9,15 +9,20 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import org.hamcrest.Matchers;
+import org.joda.time.LocalTime;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import app.studentorganizer.activities.DashboardActivity;
 import app.studentorganizer.activities.UniScheduleActivity;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.db.DBSeed;
+import app.studentorganizer.entities.UnivScheduleEntry;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -48,6 +53,11 @@ public class UITest {
     public void checkUniSchedule() {
         DBFactory.getFactory().getUnivScheduleDAO().clear();
 
+        Assert.assertEquals(
+                DBFactory.getFactory().getUnivScheduleDAO().getAllEntities().size(),
+                0
+        );
+
         onView(withId(R.id.univ_schedule)).perform(click());
         onView(withId(R.id.fab)).perform(click());
 
@@ -63,6 +73,11 @@ public class UITest {
         onView(withText("OK")).perform(click());
 
         onView(withId(R.id.pair_start)).check(matches(withText("14:23")));
+
+        List<UnivScheduleEntry> entries =
+                DBFactory.getFactory().getUnivScheduleDAO().getAllEntities();
+        Assert.assertEquals(entries.size(), 1);
+        Assert.assertEquals(entries.get(0).getStart(), new LocalTime(14, 23));
 
         onView(withId(R.id.pair_start)).perform(click());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName())))
