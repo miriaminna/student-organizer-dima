@@ -13,9 +13,6 @@ import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.db.dao.TestDAO;
 import app.studentorganizer.entities.Test;
 
-/**
- * Created by Vitalii on 07-Dec-15.
- */
 public class TestDAOSQLite
         extends GenericDAOSQLite<Test>
         implements TestDAO {
@@ -67,5 +64,14 @@ public class TestDAOSQLite
                 null, null, null
         );
         return getListFromCursor(cursor);
+    }
+
+    @Override
+    public void deleteBySubjectId(Long subjectId) {
+
+        DatabaseManager.getDatabase().delete(
+                getTableName(),
+                Database.TEST_SUBJECT_ID + " = ?",
+                new String[]{ subjectId.toString() });
     }
 }

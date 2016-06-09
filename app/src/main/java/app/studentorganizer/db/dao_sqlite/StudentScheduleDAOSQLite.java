@@ -4,12 +4,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import app.studentorganizer.db.Database;
+import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.db.dao.StudentScheduleDAO;
 import app.studentorganizer.entities.StudentScheduleEntry;
 
-/**
- * Created by Vitalii on 07-Dec-15.
- */
 public class StudentScheduleDAOSQLite
         extends GenericDAOSQLite<StudentScheduleEntry>
         implements StudentScheduleDAO {
@@ -55,5 +53,13 @@ public class StudentScheduleDAOSQLite
                 studentScheduleEntry.getClassroom());
 
         return values;
+    }
+
+    @Override
+    public void deleteBySubjectId(Long subjectId) {
+        DatabaseManager.getDatabase().delete(
+                getTableName(),
+                Database.STUDENT_SCHEDULE_SUBJECT_ID + " = ?",
+                new String[]{ subjectId.toString() });
     }
 }

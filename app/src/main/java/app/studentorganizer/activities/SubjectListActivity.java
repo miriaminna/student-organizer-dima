@@ -74,6 +74,9 @@ public class SubjectListActivity extends BaseListActivity implements SubjectList
     @Override
     public void onDelete(Long subjectId) {
         DBFactory.getFactory().getSubjectDAO().deleteEntity(subjectId);
+        DBFactory.getFactory().getTaskDAO().deleteBySubjectId(subjectId);
+        DBFactory.getFactory().getStudentScheduleDAO().deleteBySubjectId(subjectId);
+
         loadDataFromDB();
         mAdapter.notifyDataSetChanged();
     }

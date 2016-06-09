@@ -42,7 +42,7 @@ public class PerformanceTest {
     }
 
     private final int ITEMS_NUM = 1000;
-    private final int NAVIOGATIONS = 100;
+    private final int NAVIGATIONS = 100;
 
     private void loadDB() {
         for (int i = 0; i < ITEMS_NUM; ++i) {
@@ -84,7 +84,7 @@ public class PerformanceTest {
     public void soakTest() {
         loadDB();
         Random random = new Random();
-        for (int i = 0; i < NAVIOGATIONS; ++i) {
+        for (int i = 0; i < NAVIGATIONS; ++i) {
             switch (random.nextInt(4)) {
                 case 0:
                     onView(withText(R.string.subjects)).perform(click());

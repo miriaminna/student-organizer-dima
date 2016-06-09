@@ -10,9 +10,6 @@ import app.studentorganizer.db.dao.TaskDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
-/**
- * Created by Vitalii on 07-Dec-15.
- */
 public class TaskDAOTest
         extends BaseDAOTest<Task>
         implements TaskDAO {
@@ -78,5 +75,10 @@ public class TaskDAOTest
             }
         }
         return tasks;
+    }
+
+    @Override
+    public void deleteBySubjectId(Long subjectId) {
+
     }
 }

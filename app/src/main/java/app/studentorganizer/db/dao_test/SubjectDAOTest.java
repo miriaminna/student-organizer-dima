@@ -12,9 +12,6 @@ import app.studentorganizer.db.dao.SubjectDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
-/**
- * Created by henko on 07.12.15.
- */
 public class SubjectDAOTest
         extends BaseDAOTest<Subject>
         implements SubjectDAO {
@@ -80,5 +77,10 @@ public class SubjectDAOTest
             }
         }
         return subjects;
+    }
+
+    @Override
+    public void deleteByTeacherId(Long teacherId) {
+
     }
 }
