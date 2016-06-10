@@ -22,6 +22,7 @@ import app.studentorganizer.activities.DashboardActivity;
 import app.studentorganizer.activities.UniScheduleActivity;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.db.DBSeed;
+import app.studentorganizer.entities.Teacher;
 import app.studentorganizer.entities.UnivScheduleEntry;
 
 import static android.support.test.espresso.Espresso.onView;
