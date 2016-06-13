@@ -15,9 +15,6 @@ import app.studentorganizer.db.dao.TaskDAO;
 import app.studentorganizer.entities.Subject;
 import app.studentorganizer.entities.Task;
 
-/**
- * Created by Vitalii on 07-Dec-15.
- */
 public class TaskDAOSQLite
         extends GenericDAOSQLite<Task>
         implements TaskDAO {
@@ -72,5 +69,13 @@ public class TaskDAOSQLite
                 null, null, null
         );
         return getListFromCursor(cursor);
+    }
+
+    @Override
+    public void deleteBySubjectId(Long subjectId) {
+        DatabaseManager.getDatabase().delete(
+                getTableName(),
+                Database.SIMPLE_TASK_SUBJECT_ID + " = ?",
+                new String[]{ subjectId.toString() });
     }
 }

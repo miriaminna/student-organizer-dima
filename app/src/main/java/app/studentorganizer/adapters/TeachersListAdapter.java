@@ -19,9 +19,6 @@ import app.studentorganizer.com.TeacherUtil;
 import app.studentorganizer.db.DBFactory;
 import app.studentorganizer.entities.Teacher;
 
-/**
- * Created by Vitalii on 06-Dec-15.
- */
 public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapter.ViewHolder> {
     private Context mContext;
     private List<Teacher> mTeachers;
@@ -87,6 +84,7 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
                 @Override
                 public void onClick(View v) {
                     DBFactory.getFactory().getTeacherDAO().deleteEntity(teacher.getId());
+                    DBFactory.getFactory().getSubjectDAO().deleteByTeacherId(teacher.getId());
                     mTeachers.remove(teacher);
                     TeachersListAdapter.this.notifyDataSetChanged();
                 }

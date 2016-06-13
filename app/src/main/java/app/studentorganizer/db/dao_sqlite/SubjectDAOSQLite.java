@@ -15,9 +15,6 @@ import app.studentorganizer.db.DatabaseManager;
 import app.studentorganizer.db.dao.SubjectDAO;
 import app.studentorganizer.entities.Subject;
 
-/**
- * Created by Vitalii on 07-Dec-15.
- */
 public class SubjectDAOSQLite
         extends GenericDAOSQLite<Subject>
         implements SubjectDAO {
@@ -71,5 +68,14 @@ public class SubjectDAOSQLite
                 null, null, null);
 
         return getListFromCursor(cursor);
+    }
+
+    @Override
+    public void deleteByTeacherId(Long teacherId) {
+        DatabaseManager.getDatabase().delete(
+                getTableName(),
+                Database.SUBJECT_TEACHER_ID + " = ?",
+                new String[]{ teacherId.toString() }
+        );
     }
 }
